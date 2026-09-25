@@ -1,0 +1,799 @@
+xml:id	ref	role	class	type	english	mandarin	gloss	text	after	lemma	normalized	strong	morph	person	number	gender	case	tense	voice	mood	degree	frame	subjref	referent
+n57001001001	PHM 1:1!1		noun	proper	Paul	保罗	Paul	Παῦλος	 	Παῦλος	Παῦλος	3972	N-NSM		singular	masculine	nominative							
+n57001001002	PHM 1:1!2		noun	common	prisoner	囚犯	a prisoner	δέσμιος	 	δέσμιος	δέσμιος	1198	N-NSM		singular	masculine	nominative							
+n57001001003	PHM 1:1!3		noun	proper	Christ	基督	of Christ	Χριστοῦ	 	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n57001001004	PHM 1:1!4		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	 	Ἰησοῦς	Ἰησοῦ	2424	N-GSM		singular	masculine	genitive							
+n57001001005	PHM 1:1!5		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001001006	PHM 1:1!6		noun	proper	Timothy	提摩太	Timothy	Τιμόθεος	 	Τιμόθεος	Τιμόθεος	5095	N-NSM		singular	masculine	nominative							
+n57001001007	PHM 1:1!7		det		the		[our]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n57001001008	PHM 1:1!8		noun	common	brother	弟兄	brother	ἀδελφὸς	 	ἀδελφός	ἀδελφὸς	80	N-NSM		singular	masculine	nominative							
+n57001001009	PHM 1:1!9		noun	proper	Philemon	腓利门	To Philemon	Φιλήμονι	 	Φιλήμων	Φιλήμονι	5371	N-DSM		singular	masculine	dative							
+n57001001010	PHM 1:1!10		det		the		the	τῷ	 	ὁ	τῷ	3588	T-DSM		singular	masculine	dative							
+n57001001011	PHM 1:1!11		adj		dear friend	亲爱的	beloved	ἀγαπητῷ	 	ἀγαπητός	ἀγαπητῷ	27	A-DSM		singular	masculine	dative							
+n57001001012	PHM 1:1!12		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001001013	PHM 1:1!13		adj		fellow worker	同工	fellow worker	συνεργῷ	 	συνεργός	συνεργῷ	4904	A-DSM		singular	masculine	dative							
+n57001001014	PHM 1:1!14		pron	personal	our	我们	of us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n57001001001 n57001001006
+n57001002001	PHM 1:2!1		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001002002	PHM 1:2!2		noun	proper	Apphia	亚腓亚	to Apphia	Ἀπφίᾳ	 	Ἀπφία	Ἀπφίᾳ	682	N-DSF		singular	feminine	dative							
+n57001002003	PHM 1:2!3		det		the sister		our	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n57001002004	PHM 1:2!4		noun	common	sister	姊妹	sister	ἀδελφῇ	 	ἀδελφή	ἀδελφῇ	79	N-DSF		singular	feminine	dative							
+n57001002005	PHM 1:2!5		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001002006	PHM 1:2!6		noun	proper	Archippus	亚基布	to Archippus	Ἀρχίππῳ	 	Ἄρχιππος	Ἀρχίππῳ	751	N-DSM		singular	masculine	dative							
+n57001002007	PHM 1:2!7		det		the		the	τῷ	 	ὁ	τῷ	3588	T-DSM		singular	masculine	dative							
+n57001002008	PHM 1:2!8		noun	common	fellow soldier	战友	fellow soldier	συστρατιώτῃ	 	συστρατιώτης	συστρατιώτῃ	4961	N-DSM		singular	masculine	dative							
+n57001002009	PHM 1:2!9		pron	personal	our	我们	of us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n57001001001 n57001001006
+n57001002010	PHM 1:2!10		conj		and	以及	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001002011	PHM 1:2!11		det		the		to the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n57001002012	PHM 1:2!12		prep		in	在	at	κατ	’	κατά	κατ	2596	PREP											
+n57001002013	PHM 1:2!13		noun	common	house	家	[the] house	οἶκόν	 	οἶκος	οἶκόν	3624	N-ASM		singular	masculine	accusative							
+n57001002014	PHM 1:2!14		pron	personal	your	你	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001001009
+n57001002015	PHM 1:2!15		noun	common	church	教会	church	ἐκκλησίᾳ	·	ἐκκλησία	ἐκκλησίᾳ	1577	N-DSF		singular	feminine	dative							
+n57001003001	PHM 1:3!1		noun	common	grace	恩惠	Grace	χάρις	 	χάρις	χάρις	5485	N-NSF		singular	feminine	nominative							
+n57001003002	PHM 1:3!2	io	pron	personal	you	你们	to you	ὑμῖν	 	σύ	ὑμῖν	5213	P-2DP		plural		dative							n57001001009 n57001002002 n57001002006 n57001002015
+n57001003003	PHM 1:3!3		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001003004	PHM 1:3!4		noun	common	peace	平安	peace	εἰρήνη	 	εἰρήνη	εἰρήνη	1515	N-NSF		singular	feminine	nominative							
+n57001003005	PHM 1:3!5		prep		from	从	from	ἀπὸ	 	ἀπό	ἀπὸ	575	PREP											
+n57001003006	PHM 1:3!6		noun	common	God	神	God	θεοῦ	 	θεός	θεοῦ	2316	N-GSM		singular	masculine	genitive							
+n57001003007	PHM 1:3!7		noun	common	father	父	Father	πατρὸς	 	πατήρ	πατρὸς	3962	N-GSM		singular	masculine	genitive							
+n57001003008	PHM 1:3!8		pron	personal	our	我们	of us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n57001001001 n57001001006 n57001001009 n57001002002 n57001002006 n57001002015
+n57001003009	PHM 1:3!9		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001003010	PHM 1:3!10		noun	common	Lord	主	[the] Lord	κυρίου	 	κύριος	κυρίου	2962	N-GSM		singular	masculine	genitive							
+n57001003011	PHM 1:3!11		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	 	Ἰησοῦς	Ἰησοῦ	2424	N-GSM		singular	masculine	genitive							
+n57001003012	PHM 1:3!12		noun	proper	Christ	基督	Christ	Χριστοῦ	.	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n57001004001	PHM 1:4!1	v	verb		thank	感谢	I thank	Εὐχαριστῶ	 	εὐχαριστέω	Εὐχαριστῶ	2168	V-PAI-1S	first	singular			present	active	indicative		A0:n57001001001 A1:n57001004003	n57001001001	
+n57001004002	PHM 1:4!2		det		to the		the	τῷ	 	ὁ	τῷ	3588	T-DSM		singular	masculine	dative							
+n57001004003	PHM 1:4!3		noun	common	God	神	God	θεῷ	 	θεός	θεῷ	2316	N-DSM		singular	masculine	dative							
+n57001004004	PHM 1:4!4		pron	personal	my	我	of me	μου	 	ἐγώ	μου	3450	P-1GS		singular		genitive							n57001001001
+n57001004005	PHM 1:4!5	adv	adv		always	常常	always	πάντοτε	 	πάντοτε	πάντοτε	3842	ADV											
+n57001004006	PHM 1:4!6		noun	common	mention	提到	mention	μνείαν	 	μνεία	μνείαν	3417	N-ASF		singular	feminine	accusative							
+n57001004007	PHM 1:4!7		pron	personal	you	你	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001001009
+n57001004008	PHM 1:4!8	v	verb		making	（一）	making	ποιούμενος	 	ποιέω	ποιούμενος	4160	V-PMP-NSM		singular	masculine	nominative	present	middle	participle		A0:n57001001001 A1:n57001004006	n57001001001	
+n57001004009	PHM 1:4!9		prep		in	在~中	upon	ἐπὶ	 	ἐπί	ἐπὶ	1909	PREP											
+n57001004010	PHM 1:4!10		det		the		the	τῶν	 	ὁ	τῶν	3588	T-GPF		plural	feminine	genitive							
+n57001004011	PHM 1:4!11		noun	common	prayers	祷告	prayers	προσευχῶν	 	προσευχή	προσευχῶν	4335	N-GPF		plural	feminine	genitive							
+n57001004012	PHM 1:4!12		pron	personal	my	我	of me	μου	,	ἐγώ	μου	3450	P-1GS		singular		genitive							n57001001001
+n57001005001	PHM 1:5!1	v	verb		hear	听说	hearing	ἀκούων	 	ἀκούω	ἀκούων	191	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n57001001001 A1:n57001005004;n57001005007	n57001001001	
+n57001005002	PHM 1:5!2		pron	personal	your	你	of your	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001001009
+n57001005003	PHM 1:5!3		det		the		-	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n57001005004	PHM 1:5!4		noun	common	love	爱心	love	ἀγάπην	 	ἀγάπη	ἀγάπην	26	N-ASF		singular	feminine	accusative							
+n57001005005	PHM 1:5!5		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001005006	PHM 1:5!6		det		the		the	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n57001005007	PHM 1:5!7		noun	common	faith	信心	faith	πίστιν	 	πίστις	πίστιν	4102	N-ASF		singular	feminine	accusative							
+n57001005008	PHM 1:5!8	o	pron	relative	which	所~的	that	ἣν	 	ὅς	ἣν	3739	R-ASF		singular	feminine	accusative							n57001005004 n57001005007
+n57001005009	PHM 1:5!9	v	verb		have	有	you have	ἔχεις	 	ἔχω	ἔχεις	2192	V-PAI-2S	second	singular			present	active	indicative		A0:n57001001009 A1:n57001005008	n57001001009	
+n57001005010	PHM 1:5!10		prep		toward	对	toward	πρὸς	 	πρός	πρὸς	4314	PREP											
+n57001005011	PHM 1:5!11		det		the		the	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n57001005012	PHM 1:5!12		noun	common	Lord	主	Lord	κύριον	 	κύριος	κύριον	2962	N-ASM		singular	masculine	accusative							
+n57001005013	PHM 1:5!13		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦν	 	Ἰησοῦς	Ἰησοῦν	2424	N-ASM		singular	masculine	accusative							
+n57001005014	PHM 1:5!14		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001005015	PHM 1:5!15		prep		for	对	toward	εἰς	 	εἰς	εἰς	1519	PREP											
+n57001005016	PHM 1:5!16		adj		all	众	all	πάντας	 	πᾶς	πάντας	3956	A-APM		plural	masculine	accusative							
+n57001005017	PHM 1:5!17		det		the		the	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n57001005018	PHM 1:5!18		adj		saints	圣徒	saints	ἁγίους	,	ἅγιος	ἁγίους	40	A-APM		plural	masculine	accusative							
+n57001006001	PHM 1:6!1		conj		that	使	so that	ὅπως	 	ὅπως	ὅπως	3704	ADV											
+n57001006002	PHM 1:6!2		det		the		the	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n57001006003	PHM 1:6!3		noun	common	sharing	团契	fellowship	κοινωνία	 	κοινωνία	κοινωνία	2842	N-NSF		singular	feminine	nominative							
+n57001006004	PHM 1:6!4		det		the		of the	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n57001006005	PHM 1:6!5		noun	common	faith	信心	faith	πίστεώς	 	πίστις	πίστεώς	4102	N-GSF		singular	feminine	genitive							
+n57001006006	PHM 1:6!6		pron	personal	your	你	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001001009
+n57001006007	PHM 1:6!7	p	adj		effective	功效	effective	ἐνεργὴς	 	ἐνεργής	ἐνεργὴς	1756	A-NSF		singular	feminine	nominative							
+n57001006008	PHM 1:6!8	vc	verb		become	产生	might become	γένηται	 	γίνομαι	γένηται	1096	V-2ADS-3S	third	singular			aorist	middle	subjunctive				
+n57001006009	PHM 1:6!9		prep		through	藉着	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001006010	PHM 1:6!10		noun	common	knowledge	知道	[the] acknowledgment	ἐπιγνώσει	 	ἐπίγνωσις	ἐπιγνώσει	1922	N-DSF		singular	feminine	dative							
+n57001006011	PHM 1:6!11		adj		every	各样	of every	παντὸς	 	πᾶς	παντὸς	3956	A-GSN		singular	neuter	genitive							
+n57001006012	PHM 1:6!12		adj	substantive	good	善事	good [thing]	ἀγαθοῦ	 	ἀγαθός	ἀγαθοῦ	18	A-GSN		singular	neuter	genitive							
+n57001006013	PHM 1:6!13		det		that		that [is]	τοῦ	 	ὁ	τοῦ	3588	T-GSN		singular	neuter	genitive							
+n57001006014	PHM 1:6!14		prep		in	在~中间	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001006015	PHM 1:6!15		pron	personal	us	我们	us	ἡμῖν	 	ἐγώ	ἡμῖν	2254	P-1DP		plural		dative							n57001001001 n57001001006 n57001001009 n57001002002 n57001002006 n57001002015
+n57001006016	PHM 1:6!16		prep		for	为	in	εἰς	 	εἰς	εἰς	1519	PREP											
+n57001006017	PHM 1:6!17		noun	proper	Christ	基督	Christ	Χριστόν	·	Χριστός	Χριστόν	5547	N-ASM		singular	masculine	accusative							
+n57001007001	PHM 1:7!1		noun	common	joy	喜乐	Joy	χαρὰν	 	χαρά	χαρὰν	5479	N-ASF		singular	feminine	accusative							
+n57001007002	PHM 1:7!2		conj		for	实际上	for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n57001007003	PHM 1:7!3		adj		great	极大	great	πολλὴν	 	πολύς	πολλὴν	4183	A-ASF		singular	feminine	accusative							
+n57001007004	PHM 1:7!4	v	verb		have	得到	I have	ἔσχον	 	ἔχω	ἔσχον	2192	V-2AAI-1S	first	singular			aorist	active	indicative		A0:n57001001001 A1:n57001007001;n57001007006	n57001001001	
+n57001007005	PHM 1:7!5		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001007006	PHM 1:7!6		noun	common	encouragement	鼓励	encouragement	παράκλησιν	 	παράκλησις	παράκλησιν	3874	N-ASF		singular	feminine	accusative							
+n57001007007	PHM 1:7!7		prep		from	因	by occasion of	ἐπὶ	 	ἐπί	ἐπὶ	1909	PREP											
+n57001007008	PHM 1:7!8		det		the		the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n57001007009	PHM 1:7!9		noun	common	love	爱心	love	ἀγάπῃ	 	ἀγάπη	ἀγάπῃ	26	N-DSF		singular	feminine	dative							
+n57001007010	PHM 1:7!10		pron	personal	your	你的	of you	σου	,	σύ	σου	4675	P-2GS		singular		genitive							n57001001009
+n57001007011	PHM 1:7!11		conj		because	因为	because	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n57001007012	PHM 1:7!12		det		the		the	τὰ	 	ὁ	τὰ	3588	T-NPN		plural	neuter	nominative							
+n57001007013	PHM 1:7!13		noun	common	hearts	心	hearts	σπλάγχνα	 	σπλάγχνον	σπλάγχνα	4698	N-NPN		plural	neuter	nominative							
+n57001007014	PHM 1:7!14		det		the		of the	τῶν	 	ὁ	τῶν	3588	T-GPM		plural	masculine	genitive							
+n57001007015	PHM 1:7!15		adj		saints	圣徒	saints	ἁγίων	 	ἅγιος	ἁγίων	40	A-GPM		plural	masculine	genitive							
+n57001007016	PHM 1:7!16	v	verb		refreshed	得到舒畅	have been refreshed	ἀναπέπαυται	 	ἀναπαύω	ἀναπέπαυται	373	V-RPI-3S	third	singular			perfect	passive	indicative		A1:n57001007013		
+n57001007017	PHM 1:7!17		prep		through	从	by	διὰ	 	διά	διὰ	1223	PREP											
+n57001007018	PHM 1:7!18		pron	personal	you	你	you	σοῦ	,	σύ	σοῦ	4675	P-2GS		singular		genitive							n57001001009
+n57001007019	PHM 1:7!19	aux	noun	common	brother	弟兄	brother	ἀδελφέ	.	ἀδελφός	ἀδελφέ	80	N-VSM		singular	masculine	vocative							
+n57001008001	PHM 1:8!1		conj		therefore	所以	Therefore	Διό	,	διό	Διό	1352	CONJ											
+n57001008002	PHM 1:8!2		adj		enough	大	much	πολλὴν	 	πολύς	πολλὴν	4183	A-ASF		singular	feminine	accusative							
+n57001008003	PHM 1:8!3		prep		in	在~里	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001008004	PHM 1:8!4		noun	proper	Christ	基督	Christ	Χριστῷ	 	Χριστός	Χριστῷ	5547	N-DSM		singular	masculine	dative							
+n57001008005	PHM 1:8!5		noun	common	bold	胆量	boldness	παρρησίαν	 	παρρησία	παρρησίαν	3954	N-ASF		singular	feminine	accusative							
+n57001008006	PHM 1:8!6	v	verb		have	有	having	ἔχων	 	ἔχω	ἔχων	2192	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n57001001001 A1:n57001008005	n57001001001	
+n57001008007	PHM 1:8!7	v	verb		command	吩咐	to order	ἐπιτάσσειν	 	ἐπιτάσσω	ἐπιτάσσειν	2004	V-PAN					present	active	infinitive		A0:n57001001001 A2:n57001008008 A1:n57001008010	n57001001001	
+n57001008008	PHM 1:8!8	io	pron	personal	you	你	you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n57001007019
+n57001008009	PHM 1:8!9		det		what		what [is]	τὸ	 	ὁ	τὸ	3588	T-ASN		singular	neuter	accusative							
+n57001008010	PHM 1:8!10	v	verb		proper	合宜	befitting	ἀνῆκον	,	ἀνήκω	ἀνῆκον	433	V-PAP-ASN		singular	neuter	accusative	present	active	participle		A0:n00000000000		
+n57001009001	PHM 1:9!1		prep		for ~ sake	凭着	for the sake of	διὰ	 	διά	διὰ	1223	PREP											
+n57001009002	PHM 1:9!2		det		the(our)		-	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n57001009003	PHM 1:9!3		noun	common	love	爱心	love	ἀγάπην	 	ἀγάπη	ἀγάπην	26	N-ASF		singular	feminine	accusative							
+n57001009004	PHM 1:9!4	adv	adv		rather	宁可	rather	μᾶλλον	 	μᾶλλον	μᾶλλον	3123	ADV											
+n57001009005	PHM 1:9!5	v	verb		appeal	请求	I exhort [you]	παρακαλῶ	,	παρακαλέω	παρακαλῶ	3870	V-PAI-1S	first	singular			present	active	indicative		A0:n57001001001	n57001001001	
+n57001009006	PHM 1:9!6	p	pron	demonstrative	such	这	such a one	τοιοῦτος	 	τοιοῦτος	τοιοῦτος	5108	D-NSM		singular	masculine	nominative							n57001009009
+n57001009007	PHM 1:9!7	vc	verb		am	（我）	being	ὢν	 	εἰμί	ὢν	5607	V-PAP-NSM		singular	masculine	nominative	present	active	participle			n57001001001	
+n57001009008	PHM 1:9!8		conj		as	像	as	ὡς	 	ὡς	ὡς	5613	ADV											
+n57001009009	PHM 1:9!9		noun	proper	Paul	保罗	Paul	Παῦλος	 	Παῦλος	Παῦλος	3972	N-NSM		singular	masculine	nominative							
+n57001009010	PHM 1:9!10		noun	common	old man	上了年纪的	aged	πρεσβύτης	 	πρεσβύτης	πρεσβύτης	4246	N-NSM		singular	masculine	nominative							
+n57001009011	PHM 1:9!11	adv	adv		now	现在	now	νυνὶ	 	νυνί	νυνὶ	3570	ADV											
+n57001009012	PHM 1:9!12		conj		and	而	then	δὲ	 	δέ	δὲ	1161	CONJ											
+n57001009013	PHM 1:9!13		adv		also	又	also	καὶ	 	καί	καὶ	2532	CONJ											
+n57001009014	PHM 1:9!14		noun	common	prisoner	囚犯	a prisoner	δέσμιος	 	δέσμιος	δέσμιος	1198	N-NSM		singular	masculine	nominative							
+n57001009015	PHM 1:9!15		noun	proper	Christ	基督	of Christ	Χριστοῦ	 	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n57001009016	PHM 1:9!16		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	 	Ἰησοῦς	Ἰησοῦ	2424	N-GSM		singular	masculine	genitive							
+n57001010001	PHM 1:10!1	v	verb		appeal to	求	I exhort	παρακαλῶ	 	παρακαλέω	παρακαλῶ	3870	V-PAI-1S	first	singular			present	active	indicative		A0:n57001009009 A1:n57001010002	n57001009009	
+n57001010002	PHM 1:10!2	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n57001007019
+n57001010003	PHM 1:10!3		prep		for	为	for	περὶ	 	περί	περὶ	4012	PREP											
+n57001010004	PHM 1:10!4		det		the		-	τοῦ	 	ὁ	τοῦ	3588	T-GSN		singular	neuter	genitive							
+n57001010005	PHM 1:10!5		adj		my	我	my	ἐμοῦ	 	ἐμός	ἐμοῦ	1699	S-1SGSN		singular	neuter	genitive							n57001009009
+n57001010006	PHM 1:10!6		noun	common	child	儿子	child	τέκνου	,	τέκνον	τέκνου	5043	N-GSN		singular	neuter	genitive							
+n57001010007	PHM 1:10!7		pron	relative	whom	所~的	whom	ὃν	 	ὅς	ὃν	3739	R-ASM		singular	masculine	accusative							n57001010012
+n57001010008	PHM 1:10!8	v	verb		begotten	生	I have begotten	ἐγέννησα	 	γεννάω	ἐγέννησα	1080	V-AAI-1S	first	singular			aorist	active	indicative		A0:n57001009009 A1:n57001010012	n57001009009	
+n57001010009	PHM 1:10!9		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001010010	PHM 1:10!10		det		the(my)		-	τοῖς	 	ὁ	τοῖς	3588	T-DPM		plural	masculine	dative							
+n57001010011	PHM 1:10!11		noun	common	imprisonment	捆锁	chains	δεσμοῖς	 	δεσμός	δεσμοῖς	1199	N-DPM		plural	masculine	dative							
+n57001010012	PHM 1:10!12		noun	proper	Onesimus	阿尼西谋	Onesimus	Ὀνήσιμον	,	Ὀνήσιμος	Ὀνήσιμον	3682	N-ASM		singular	masculine	accusative							
+n57001011001	PHM 1:11!1		det		he	他	-	τόν	 	ὁ	τόν	3588	T-ASM		singular	masculine	accusative							
+n57001011002	PHM 1:11!2		ptcl		formerly	从前	once	ποτέ	 	ποτέ	ποτέ	4218	PRT											
+n57001011003	PHM 1:11!3		pron	personal	you	你	to you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n57001007019
+n57001011004	PHM 1:11!4		adj		useless	没有益处	useless	ἄχρηστον	 	ἄχρηστος	ἄχρηστον	890	A-ASM		singular	masculine	accusative							
+n57001011005	PHM 1:11!5		adv		now	如今	now	νυνὶ	 	νυνί	νυνὶ	3570	ADV											
+n57001011006	PHM 1:11!6		conj		but	但	however	δὲ	 	δέ	δὲ	1161	CONJ											
+n57001011007	PHM 1:11!7		pron	personal	you	你	to you	σοὶ	 	σύ	σοὶ	4671	P-2DS		singular		dative							n57001007019
+n57001011008	PHM 1:11!8		conj		and	连	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001011009	PHM 1:11!9		pron	personal	me	我	to me	ἐμοὶ	 	ἐγώ	ἐμοὶ	1698	P-1DS		singular		dative							n57001009009
+n57001011010	PHM 1:11!10		adj		useful	有益处	useful	εὔχρηστον	,	εὔχρηστος	εὔχρηστον	2173	A-ASM		singular	masculine	accusative							
+n57001012001	PHM 1:12!1		pron	relative	whom	他	whom	ὃν	 	ὅς	ὃν	3739	R-ASM		singular	masculine	accusative							n57001010012
+n57001012002	PHM 1:12!2	v	verb		sending ~ back	打发~回到	I have sent back	ἀνέπεμψά	 	ἀναπέμπω	ἀνέπεμψά	375	V-AAI-1S	first	singular			aorist	active	indicative		A0:n57001009009 A2:n57001012003 A1:n57001012004	n57001009009	
+n57001012003	PHM 1:12!3	io	pron	personal	you	你	to you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n57001007019
+n57001012004	PHM 1:12!4		pron	personal	him	他	in person	αὐτόν	,	αὐτός	αὐτόν	846	P-ASM		singular	masculine	accusative							n57001010012
+n57001012005	PHM 1:12!5	s	pron	demonstrative	that		he who	τοῦτ	’	οὗτος	τοῦτ	5123	D-NSN		singular	neuter	nominative							n57001010012
+n57001012006	PHM 1:12!6	vc	verb		is	是	is	ἔστιν	 	εἰμί	ἔστιν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n57001012007	PHM 1:12!7		det		the		-	τὰ	 	ὁ	τὰ	3588	T-NPN		plural	neuter	accusative							
+n57001012008	PHM 1:12!8		adj		my	我	my	ἐμὰ	 	ἐμός	ἐμὰ	1699	S-1SNPN		plural	neuter	accusative							n57001009009
+n57001012009	PHM 1:12!9		noun	common	heart	心	very heart	σπλάγχνα	·	σπλάγχνον	σπλάγχνα	4698	N-NPN		plural	neuter	accusative							
+n57001013001	PHM 1:13!1	o	pron	relative	whom	他	whom	ὃν	 	ὅς	ὃν	3739	R-ASM		singular	masculine	accusative							n57001010012
+n57001013002	PHM 1:13!2	s	pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n57001009009
+n57001013003	PHM 1:13!3	v	verb		wanted	想	was wishing	ἐβουλόμην	 	βούλομαι	ἐβουλόμην	1014	V-INI-1S	first	singular			imperfect	middle	indicative		A0:n57001013002 A1:n57001013006		
+n57001013004	PHM 1:13!4		prep		with	在~身边	with	πρὸς	 	πρός	πρὸς	4314	PREP											
+n57001013005	PHM 1:13!5		pron	personal	me	我	myself	ἐμαυτὸν	 	ἐμαυτοῦ	ἐμαυτὸν	1683	F-1ASM		singular	masculine	accusative							n57001009009
+n57001013006	PHM 1:13!6	v	verb		keep	留	to keep	κατέχειν	,	κατέχω	κατέχειν	2722	V-PAN					present	active	infinitive		A0:n57001009009 A1:n57001013001	n57001009009	
+n57001013007	PHM 1:13!7		conj		so that	让	so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n57001013008	PHM 1:13!8		prep		on ~ behalf	替	on behalf of	ὑπὲρ	 	ὑπέρ	ὑπὲρ	5228	PREP											
+n57001013009	PHM 1:13!9		pron	personal	your	你	you	σοῦ	 	σύ	σοῦ	4675	P-2GS		singular		genitive							n57001007019
+n57001013010	PHM 1:13!10	o	pron	personal	me	我	me	μοι	 	ἐγώ	μοι	3427	P-1DS		singular		dative							n57001009009
+n57001013011	PHM 1:13!11	v	verb		serve	伺候	he might serve	διακονῇ	 	διακονέω	διακονῇ	1247	V-PAS-3S	third	singular			present	active	subjunctive		A0:n57001010012 A1:n57001013010	n57001010012	
+n57001013012	PHM 1:13!12		prep		in	在~时	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001013013	PHM 1:13!13		det		the		the	τοῖς	 	ὁ	τοῖς	3588	T-DPM		plural	masculine	dative							
+n57001013014	PHM 1:13!14		noun	common	imprisonment	捆锁	chains	δεσμοῖς	 	δεσμός	δεσμοῖς	1199	N-DPM		plural	masculine	dative							
+n57001013015	PHM 1:13!15		det		the		of the	τοῦ	 	ὁ	τοῦ	3588	T-GSN		singular	neuter	genitive							
+n57001013016	PHM 1:13!16		noun	common	gospel	福音	gospel	εὐαγγελίου	,	εὐαγγέλιον	εὐαγγελίου	2098	N-GSN		singular	neuter	genitive							
+n57001014001	PHM 1:14!1		prep		without	没有	Apart from	χωρὶς	 	χωρίς	χωρὶς	5565	ADV											
+n57001014002	PHM 1:14!2		conj		but	但	however	δὲ	 	δέ	δὲ	1161	CONJ											
+n57001014003	PHM 1:14!3		det		the		-	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n57001014004	PHM 1:14!4		adj		your	你的	your	σῆς	 	σός	σῆς	4674	S-2SGSF		singular	feminine	genitive							n57001007019
+n57001014005	PHM 1:14!5		noun	common	consent	同意	consent	γνώμης	 	γνώμη	γνώμης	1106	N-GSF		singular	feminine	genitive							
+n57001014006	PHM 1:14!6	o	adj		nothing	不	nothing	οὐδὲν	 	οὐδείς	οὐδὲν	3762	A-ASN-N		singular	neuter	accusative							
+n57001014007	PHM 1:14!7	v	verb		want	愿意	I wished	ἠθέλησα	 	θέλω	ἠθέλησα	2309	V-AAI-1S	first	singular			aorist	active	indicative		A0:n57001009009 A1:n57001014008	n57001009009	
+n57001014008	PHM 1:14!8	v	verb		do	做	to do	ποιῆσαι	,	ποιέω	ποιῆσαι	4160	V-AAN					aorist	active	infinitive		A0:n57001009009 A1:n57001014006	n57001009009	
+n57001014009	PHM 1:14!9		conj		in order that	好	so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n57001014010	PHM 1:14!10		adv		not	不	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n57001014011	PHM 1:14!11		conj		as	（是）	as	ὡς	 	ὡς	ὡς	5613	ADV											
+n57001014012	PHM 1:14!12		prep		by	出于	according to	κατὰ	 	κατά	κατὰ	2596	PREP											
+n57001014013	PHM 1:14!13		noun	common	compulsion	勉强	necessity	ἀνάγκην	 	ἀνάγκη	ἀνάγκην	318	N-ASF		singular	feminine	accusative							
+n57001014014	PHM 1:14!14		det		the		the	τὸ	 	ὁ	τὸ	3588	T-NSN		singular	neuter	nominative							
+n57001014015	PHM 1:14!15		adj		good	善行	good	ἀγαθόν	 	ἀγαθός	ἀγαθόν	18	A-NSN		singular	neuter	nominative							
+n57001014016	PHM 1:14!16		pron	personal	your	你的	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001007019
+n57001014017	PHM 1:14!17	vc	verb		be	是	may be	ᾖ	 	εἰμί	ᾖ	5600	V-PAS-3S	third	singular			present	active	subjunctive				
+n57001014018	PHM 1:14!18		conj		but	而是	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n57001014019	PHM 1:14!19		prep		of	出于	according to	κατὰ	 	κατά	κατὰ	2596	PREP											
+n57001014020	PHM 1:14!20		adj	substantive	free will	甘心	willingness	ἑκούσιον	·	ἑκούσιος	ἑκούσιον	1595	A-ASN		singular	neuter	accusative							
+n57001015001	PHM 1:15!1	adv	adv		perhaps	也许	Perhaps	τάχα	 	τάχα	τάχα	5029	ADV											
+n57001015002	PHM 1:15!2		conj		for	其实	for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n57001015003	PHM 1:15!3		prep		because of	为	because of	διὰ	 	διά	διὰ	1223	PREP											
+n57001015004	PHM 1:15!4		pron	demonstrative	this	（此）	this	τοῦτο	 	οὗτος	τοῦτο	5124	D-ASN		singular	neuter	accusative							
+n57001015005	PHM 1:15!5	v	verb		separated	离开	he was separated [from you]	ἐχωρίσθη	 	χωρίζω	ἐχωρίσθη	5563	V-API-3S	third	singular			aorist	passive	indicative		A1:n57001010012	n57001010012	
+n57001015006	PHM 1:15!6		prep		for		for	πρὸς	 	πρός	πρὸς	4314	PREP											
+n57001015007	PHM 1:15!7		noun	common	while	暂时	a time	ὥραν	 	ὥρα	ὥραν	5610	N-ASF		singular	feminine	accusative							
+n57001015008	PHM 1:15!8		conj		that	为了	so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n57001015009	PHM 1:15!9	adv	adj		forever	永远	eternally	αἰώνιον	 	αἰώνιος	αἰώνιον	166	A-ASM		singular	masculine	accusative							
+n57001015010	PHM 1:15!10	o	pron	personal	him	他	him	αὐτὸν	 	αὐτός	αὐτὸν	846	P-ASM		singular	masculine	accusative							n57001010012
+n57001015011	PHM 1:15!11	v	verb		have ~ back	得着	you might possess	ἀπέχῃς	,	ἀπέχω	ἀπέχῃς	568	V-PAS-2S	second	singular			aorist	active	subjunctive		A0:n57001007019 A1:n57001015010	n57001007019	
+n57001016001	PHM 1:16!1		adv		no longer	不再	no longer	οὐκέτι	 	οὐκέτι	οὐκέτι	3765	ADV-N											
+n57001016002	PHM 1:16!2		conj		as	作为	as	ὡς	 	ὡς	ὡς	5613	ADV											
+n57001016003	PHM 1:16!3		noun	common	slave	奴仆	a slave	δοῦλον	 	δοῦλος	δοῦλον	1401	N-ASM		singular	masculine	accusative							
+n57001016004	PHM 1:16!4		conj		but	而是	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n57001016005	PHM 1:16!5		prep		more than	高过	above	ὑπὲρ	 	ὑπέρ	ὑπὲρ	5228	PREP											
+n57001016006	PHM 1:16!6		noun	common	slave	奴仆	a slave	δοῦλον	,	δοῦλος	δοῦλον	1401	N-ASM		singular	masculine	accusative							
+n57001016007	PHM 1:16!7		noun	common	brother	弟兄	a brother	ἀδελφὸν	 	ἀδελφός	ἀδελφὸν	80	N-ASM		singular	masculine	accusative							
+n57001016008	PHM 1:16!8		adj		beloved	亲爱的	beloved	ἀγαπητόν	,	ἀγαπητός	ἀγαπητόν	27	A-ASM		singular	masculine	accusative							
+n57001016009	PHM 1:16!9	adv	adv		especially	确是如此	especially	μάλιστα	 	μάλιστα	μάλιστα	3122	ADV-S											
+n57001016010	PHM 1:16!10	io	pron	personal	me	我	to me	ἐμοί	,	ἐγώ	ἐμοί	1698	P-1DS		singular		dative							n57001009009
+n57001016011	PHM 1:16!11		pron	interrogative	how much	何况	how much	πόσῳ	 	πόσος	πόσῳ	4214	Q-DSN		singular	neuter	dative							
+n57001016012	PHM 1:16!12		conj		but	而	however	δὲ	 	δέ	δὲ	1161	CONJ											
+n57001016013	PHM 1:16!13		adv		more	更	more	μᾶλλον	 	μᾶλλον	μᾶλλον	3123	ADV											
+n57001016014	PHM 1:16!14	io	pron	personal	you	你	to you	σοὶ	 	σύ	σοὶ	4671	P-2DS		singular		dative							n57001007019
+n57001016015	PHM 1:16!15		conj		both	也	both	καὶ	 	καί	καὶ	2532	CONJ											
+n57001016016	PHM 1:16!16		prep		in	按	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001016017	PHM 1:16!17		noun	common	flesh	肉体	[the] flesh	σαρκὶ	 	σάρξ	σαρκὶ	4561	N-DSF		singular	feminine	dative							
+n57001016018	PHM 1:16!18		conj		and	而是	and	καὶ	 	καί	καὶ	2532	CONJ											
+n57001016019	PHM 1:16!19		prep		in	内	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001016020	PHM 1:16!20		noun	common	Lord	主	[the] Lord	κυρίῳ	.	κύριος	κυρίῳ	2962	N-DSM		singular	masculine	dative							
+n57001017001	PHM 1:17!1		conj		if	如果	If	Εἰ	 	εἰ	Εἰ	1487	COND											
+n57001017002	PHM 1:17!2		conj		so	所以	therefore	οὖν	 	οὖν	οὖν	3767	CONJ											
+n57001017003	PHM 1:17!3	o	pron	personal	me	我	me	με	 	ἐγώ	με	3165	P-1AS		singular		accusative							n57001009009
+n57001017004	PHM 1:17!4	v	verb		consider	以~为	you consider	ἔχεις	 	ἔχω	ἔχεις	2192	V-PAI-2S	second	singular			present	active	indicative		A0:n57001007019 A1:n57001017003	n57001007019	
+n57001017005	PHM 1:17!5	o2	noun	common	partner	同伴	a partner	κοινωνόν	,	κοινωνός	κοινωνόν	2844	N-ASM		singular	masculine	accusative							
+n57001017006	PHM 1:17!6	v	verb		welcome	接纳	receive	προσλαβοῦ	 	προσλαμβάνομαι	προσλαβοῦ	4355	V-2AMM-2S	second	singular			aorist	middle	imperative		A0:n57001007019 A1:n57001017007	n57001007019	
+n57001017007	PHM 1:17!7	o	pron	personal	him	他	him	αὐτὸν	 	αὐτός	αὐτὸν	846	P-ASM		singular	masculine	accusative							n57001010012
+n57001017008	PHM 1:17!8		conj		as	如同	as	ὡς	 	ὡς	ὡς	5613	ADV											
+n57001017009	PHM 1:17!9	o	pron	personal	me	我	me	ἐμέ	.	ἐγώ	ἐμέ	1691	P-1AS		singular		accusative							n57001009009
+n57001018001	PHM 1:18!1		conj		if	若	If	εἰ	 	εἰ	εἰ	1487	COND											
+n57001018002	PHM 1:18!2		conj		but	而	however	δέ	 	δέ	δέ	1161	CONJ											
+n57001018003	PHM 1:18!3	adv	pron	indefinite	anything	什么	in any way	τι	 	τις	τι	5100	X-ASN		singular	neuter	accusative							
+n57001018004	PHM 1:18!4	v	verb		wronged	亏负	he has wronged	ἠδίκησέν	 	ἀδικέω	ἠδίκησέν	91	V-AAI-3S	third	singular			aorist	active	indicative		A0:n57001010012 A1:n57001018005	n57001010012	
+n57001018005	PHM 1:18!5	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n57001007019
+n57001018006	PHM 1:18!6		conj		or	或	or	ἢ	 	ἤ	ἢ	2228	PRT											
+n57001018007	PHM 1:18!7	v	verb		owes	欠	he owes [you]	ὀφείλει	,	ὀφείλω	ὀφείλει	3784	V-PAI-3S	third	singular			present	active	indicative		A0:n57001010012 A1:n57001018003 A2:n57001018005	n57001010012	
+n57001018008	PHM 1:18!8	o	pron	demonstrative	that	这	this	τοῦτο	 	οὗτος	τοῦτο	5124	D-ASN		singular	neuter	accusative							n57001018004
+n57001018009	PHM 1:18!9	io	pron	personal	my	我	to me	ἐμοὶ	 	ἐγώ	ἐμοὶ	1698	P-1DS		singular		dative							n57001009009
+n57001018010	PHM 1:18!10	v	verb		charge ~ to ~ account	记在~帐上	charge	ἐλλόγα	·	ἐλλογέω	ἐλλόγα	1677	V-PAM-2S	second	singular			present	active	imperative		A0:n57001007019 A1:n57001018008 A2:n57001018009	n57001007019	
+n57001019001	PHM 1:19!1		pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n57001009009
+n57001019002	PHM 1:19!2		noun	proper	Paul	保罗	Paul	Παῦλος	 	Παῦλος	Παῦλος	3972	N-NSM		singular	masculine	nominative							
+n57001019003	PHM 1:19!3	v	verb		writing	写	did write	ἔγραψα	 	γράφω	ἔγραψα	1125	V-AAI-1S	first	singular			aorist	active	indicative		A0:n57001019001		
+n57001019004	PHM 1:19!4		det		this		with	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n57001019005	PHM 1:19!5		adj		my own	我	my own	ἐμῇ	 	ἐμός	ἐμῇ	1699	S-1SDSF		singular	feminine	dative							n57001019002
+n57001019006	PHM 1:19!6		noun	common	hand	亲手	hand	χειρί	,	χείρ	χειρί	5495	N-DSF		singular	feminine	dative							
+n57001019007	PHM 1:19!7	s	pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n57001019002
+n57001019008	PHM 1:19!8	v	verb		repay	偿还	will repay [it]	ἀποτίσω	·	ἀποτίνω	ἀποτίσω	661	V-FAI-1S	first	singular			future	active	indicative		A0:n57001019007		
+n57001019009	PHM 1:19!9		conj		to	（这）	that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n57001019010	PHM 1:19!10	adv	adv		not	不	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n57001019011	PHM 1:19!11	v	verb		mention	说	I may say	λέγω	 	λέγω	λέγω	3004	V-PAS-1S	first	singular			present	active	subjunctive		A0:n57001019002 A2:n57001019012	n57001019002	
+n57001019012	PHM 1:19!12	io	pron	personal	you	你	to you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n57001007019
+n57001019013	PHM 1:19!13		conj		that		that	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n57001019014	PHM 1:19!14		adv		even	甚至	even	καὶ	 	καί	καὶ	2532	CONJ											
+n57001019015	PHM 1:19!15		pron	personal	your own self	你自己	yourself	σεαυτόν	 	σεαυτοῦ	σεαυτόν	4572	F-2ASM		singular	masculine	accusative							n57001007019
+n57001019016	PHM 1:19!16	io	pron	personal	me	我	to me	μοι	 	ἐγώ	μοι	3427	P-1DS		singular		dative							n57001019002
+n57001019017	PHM 1:19!17	v	verb		owe	欠	you owe also	προσοφείλεις	.	προσοφείλω	προσοφείλεις	4359	V-PAI-2S	second	singular			present	active	indicative		A0:n57001007019 A1:n57001019015 A2:n57001019016	n57001007019	
+n57001020001	PHM 1:20!1	aux	ptcl		yes	是的	Yes	ναί	,	ναί	ναί	3483	PRT											
+n57001020002	PHM 1:20!2	aux	noun	common	brother	弟兄	brother	ἀδελφέ	,	ἀδελφός	ἀδελφέ	80	N-VSM		singular	masculine	vocative							
+n57001020003	PHM 1:20!3	s	pron	personal	I	我	I	ἐγώ	 	ἐγώ	ἐγώ	1473	P-1NS		singular		nominative							n57001019002
+n57001020004	PHM 1:20!4	adv	pron	personal	you	你	from you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001020002
+n57001020005	PHM 1:20!5	v	verb		benefit	让~得~助益	may have profit	ὀναίμην	 	ὀνίνημι	ὀναίμην	3685	V-2ADO-1S	first	singular			aorist	middle	optative		A0:n57001020003		
+n57001020006	PHM 1:20!6		prep		in	在~里	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001020007	PHM 1:20!7		noun	common	Lord	主	[the] Lord	κυρίῳ	·	κύριος	κυρίῳ	2962	N-DSM		singular	masculine	dative							
+n57001020008	PHM 1:20!8	v	verb		refresh	振奋	Refresh	ἀνάπαυσόν	 	ἀναπαύω	ἀνάπαυσόν	373	V-AAM-2S	second	singular			aorist	active	imperative		A0:n57001020002 A1:n57001020011	n57001020002	
+n57001020009	PHM 1:20!9		pron	personal	my	我的	my	μου	 	ἐγώ	μου	3450	P-1GS		singular		genitive							n57001019002
+n57001020010	PHM 1:20!10		det		the		-	τὰ	 	ὁ	τὰ	3588	T-APN		plural	neuter	accusative							
+n57001020011	PHM 1:20!11		noun	common	heart	心	heart	σπλάγχνα	 	σπλάγχνον	σπλάγχνα	4698	N-APN		plural	neuter	accusative							
+n57001020012	PHM 1:20!12		prep		in	在~里	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001020013	PHM 1:20!13		noun	proper	Christ	基督	Christ	Χριστῷ	.	Χριστός	Χριστῷ	5547	N-DSM		singular	masculine	dative							
+n57001021001	PHM 1:21!1	v	verb		confident	深信	Being persuaded of	πεποιθὼς	 	πείθω	πεποιθὼς	3982	V-2RAP-NSM		singular	masculine	nominative	perfect	active	participle		A0:n57001019002	n57001019002	
+n57001021002	PHM 1:21!2		det		in the		the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n57001021003	PHM 1:21!3		noun	common	obedience	听从	obedience	ὑπακοῇ	 	ὑπακοή	ὑπακοῇ	5218	N-DSF		singular	feminine	dative							
+n57001021004	PHM 1:21!4		pron	personal	your	你	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n57001020002
+n57001021005	PHM 1:21!5	v	verb		write	写信	I write	ἔγραψά	 	γράφω	ἔγραψά	1125	V-AAI-1S	first	singular			aorist	active	indicative		A0:n57001019002 A2:n57001021006	n57001019002	
+n57001021006	PHM 1:21!6	io	pron	personal	you	你	to you	σοι	,	σύ	σοι	4671	P-2DS		singular		dative							n57001020002
+n57001021007	PHM 1:21!7	v	verb		knowing	知道	knowing	εἰδὼς	 	ὁράω	εἰδὼς	3708	V-RAP-NSM		singular	masculine	nominative	perfect	active	participle		A0:n57001019002	n57001019002	
+n57001021008	PHM 1:21!8		conj		that		that	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n57001021009	PHM 1:21!9		adv		even	甚至	even	καὶ	 	καί	καὶ	2532	CONJ											
+n57001021010	PHM 1:21!10		prep		more than	超过	above	ὑπὲρ	 	ὑπέρ	ὑπὲρ	5228	PREP											
+n57001021011	PHM 1:21!11	o	pron	relative	what	所~的	what	ἃ	 	ὅς	ἃ	3739	R-APN		plural	neuter	accusative							
+n57001021012	PHM 1:21!12	v	verb		say	说	I say	λέγω	 	λέγω	λέγω	3004	V-PAI-1S	first	singular			present	active	indicative		A0:n57001019002 A1:n57001021011	n57001019002	
+n57001021013	PHM 1:21!13	v	verb		do	做	you will do	ποιήσεις	.	ποιέω	ποιήσεις	4160	V-FAI-2S	second	singular			future	active	indicative		A0:n57001020002	n57001020002	
+n57001022001	PHM 1:22!1		adv		at the same time	同时	At the same time	ἅμα	 	ἅμα	ἅμα	260	ADV											
+n57001022002	PHM 1:22!2		conj		but	此外	now	δὲ	 	δέ	δὲ	1161	CONJ											
+n57001022003	PHM 1:22!3		adv		also	还	also	καὶ	 	καί	καὶ	2532	CONJ											
+n57001022004	PHM 1:22!4	v	verb		prepare	预备	prepare	ἑτοίμαζέ	 	ἑτοιμάζω	ἑτοίμαζέ	2090	V-PAM-2S	second	singular			present	active	imperative		A0:n57001020002 A2:n57001022005 A1:n57001022006	n57001020002	
+n57001022005	PHM 1:22!5	io	pron	personal	me	我	for me	μοι	 	ἐγώ	μοι	3427	P-1DS		singular		dative							n57001019002
+n57001022006	PHM 1:22!6	o	noun	common	guest room	住处	a lodging	ξενίαν	,	ξενία	ξενίαν	3578	N-ASF		singular	feminine	accusative							
+n57001022007	PHM 1:22!7	v	verb		hope	盼望	I hope	ἐλπίζω	 	ἐλπίζω	ἐλπίζω	1679	V-PAI-1S	first	singular			present	active	indicative		A0:n57001019002	n57001019002	
+n57001022008	PHM 1:22!8		conj		for	因为	for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n57001022009	PHM 1:22!9		conj		that		that	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n57001022010	PHM 1:22!10		prep		through	藉着	through	διὰ	 	διά	διὰ	1223	PREP											
+n57001022011	PHM 1:22!11		det		the		the	τῶν	 	ὁ	τῶν	3588	T-GPF		plural	feminine	genitive							
+n57001022012	PHM 1:22!12		noun	common	prayers	祷告	prayers	προσευχῶν	 	προσευχή	προσευχῶν	4335	N-GPF		plural	feminine	genitive							
+n57001022013	PHM 1:22!13		pron	personal	your	你们的	of you	ὑμῶν	 	σύ	ὑμῶν	5216	P-2GP		plural		genitive							n57001020002 n57001002002 n57001002006 n57001002015
+n57001022014	PHM 1:22!14	v	verb		restored	赐给	I will be granted	χαρισθήσομαι	 	χαρίζομαι	χαρισθήσομαι	5483	V-FPI-1S	first	singular			future	passive	indicative		A1:n57001019002 A2:n57001022015	n57001019002	
+n57001022015	PHM 1:22!15	io	pron	personal	you	你们	to you	ὑμῖν	.	σύ	ὑμῖν	5213	P-2DP		plural		dative							n57001020002 n57001002002 n57001002006 n57001002015
+n57001023001	PHM 1:23!1	v	verb		greets	问候	Greets	Ἀσπάζεταί	 	ἀσπάζομαι	Ἀσπάζεταί	782	V-PNI-3S	third	singular			present	middle	indicative		A1:n57001023002 A0:n57001023003;n57001024001;n57001024002;n57001024003;n57001024004		
+n57001023002	PHM 1:23!2	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n57001020002
+n57001023003	PHM 1:23!3		noun	proper	Epaphras	以巴弗	Epaphras	Ἐπαφρᾶς	 	Ἐπαφρᾶς	Ἐπαφρᾶς	1889	N-NSM		singular	masculine	nominative							
+n57001023004	PHM 1:23!4		det		the		-	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n57001023005	PHM 1:23!5		noun	common	fellow prisoner	与~一起坐牢的	fellow prisoner	συναιχμάλωτός	 	συναιχμάλωτος	συναιχμάλωτός	4869	A-NSM		singular	masculine	nominative							
+n57001023006	PHM 1:23!6		pron	personal	my	我	my	μου	 	ἐγώ	μου	3450	P-1GS		singular		genitive							n57001019002
+n57001023007	PHM 1:23!7		prep		in	在~里	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n57001023008	PHM 1:23!8		noun	proper	Christ	基督	Christ	Χριστῷ	 	Χριστός	Χριστῷ	5547	N-DSM		singular	masculine	dative							
+n57001023009	PHM 1:23!9		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	,	Ἰησοῦς	Ἰησοῦ	2424	N-DSM		singular	masculine	dative							
+n57001024001	PHM 1:24!1		noun	proper	Mark	马可	[as do] Mark	Μᾶρκος	,	Μᾶρκος	Μᾶρκος	3138	N-NSM		singular	masculine	nominative							
+n57001024002	PHM 1:24!2		noun	proper	Aristarchus	亚里达古	Aristarchus	Ἀρίσταρχος	,	Ἀρίσταρχος	Ἀρίσταρχος	708	N-NSM		singular	masculine	nominative							
+n57001024003	PHM 1:24!3		noun	proper	Demas	底马	Demas	Δημᾶς	,	Δημᾶς	Δημᾶς	1214	N-NSM		singular	masculine	nominative							
+n57001024004	PHM 1:24!4		noun	proper	Luke	路加	[and] Luke	Λουκᾶς	,	Λουκᾶς	Λουκᾶς	3065	N-NSM		singular	masculine	nominative							
+n57001024005	PHM 1:24!5		det		the		the	οἱ	 	ὁ	οἱ	3588	T-NPM		plural	masculine	nominative							
+n57001024006	PHM 1:24!6		adj		fellow workers	同工	fellow workers	συνεργοί	 	συνεργός	συνεργοί	4904	A-NPM		plural	masculine	nominative							
+n57001024007	PHM 1:24!7		pron	personal	my	我	of me	μου	.	ἐγώ	μου	3450	P-1GS		singular		genitive							n57001019002
+n57001025001	PHM 1:25!1		det		the		The	Ἡ	 	ὁ	Ἡ	3588	T-NSF		singular	feminine	nominative							
+n57001025002	PHM 1:25!2		noun	common	grace	恩	grace	χάρις	 	χάρις	χάρις	5485	N-NSF		singular	feminine	nominative							
+n57001025003	PHM 1:25!3		det		the		of the	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n57001025004	PHM 1:25!4		noun	common	Lord	主	Lord	κυρίου	 	κύριος	κυρίου	2962	N-GSM		singular	masculine	genitive							
+n57001025005	PHM 1:25!5		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	 	Ἰησοῦς	Ἰησοῦ	2424	N-GSM		singular	masculine	genitive							
+n57001025006	PHM 1:25!6		noun	proper	Christ	基督	Christ	Χριστοῦ	 	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n57001025007	PHM 1:25!7		prep		with	与~同在	[be] with	μετὰ	 	μετά	μετὰ	3326	PREP											
+n57001025008	PHM 1:25!8		det		the		the	τοῦ	 	ὁ	τοῦ	3588	T-GSN		singular	neuter	genitive							
+n57001025009	PHM 1:25!9		noun	common	spirit	灵	spirit	πνεύματος	 	πνεῦμα	πνεύματος	4151	N-GSN		singular	neuter	genitive							
+n57001025010	PHM 1:25!10		pron	personal	your	你们	of you	ὑμῶν	.	σύ	ὑμῶν	5216	P-2GP		plural		genitive							n57001020002 n57001002002 n57001002006 n57001002015
+n63001001001	2JN 1:1!1		det		the	这	The	Ὁ	 	ὁ	Ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001001002	2JN 1:1!2		adj		elder	做长老的	elder	πρεσβύτερος	 	πρεσβύτερος	πρεσβύτερος	4245	A-NSM-C		singular	masculine	nominative				comparative			
+n63001001003	2JN 1:1!3		adj		elect	蒙拣选的	To [the] elect	ἐκλεκτῇ	 	ἐκλεκτός	ἐκλεκτῇ	1588	A-DSF		singular	feminine	dative							
+n63001001004	2JN 1:1!4		noun	common	lady	夫人	lady	κυρίᾳ	 	κυρία	κυρίᾳ	2959	N-DSF		singular	feminine	dative							
+n63001001005	2JN 1:1!5		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001001006	2JN 1:1!6		det		to the		the	τοῖς	 	ὁ	τοῖς	3588	T-DPN		plural	neuter	dative							
+n63001001007	2JN 1:1!7		noun	common	children	儿女	children	τέκνοις	 	τέκνον	τέκνοις	5043	N-DPN		plural	neuter	dative							
+n63001001008	2JN 1:1!8		pron	personal	her	她	of her	αὐτῆς	,	αὐτός	αὐτῆς	846	P-GSF		singular	feminine	genitive							n63001001004
+n63001001009	2JN 1:1!9	o	pron	relative	whom	所~的	whom	οὓς	 	ὅς	οὓς	3739	R-APM		plural	masculine	accusative							n63001001004 n63001001007
+n63001001010	2JN 1:1!10		pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n63001001002
+n63001001011	2JN 1:1!11	v	verb		love	爱	love	ἀγαπῶ	 	ἀγαπάω	ἀγαπῶ	25	V-PAI-1S	first	singular			present	active	indicative		A1:n63001001009 A0:n63001001010;n63001001015;n63001001016;n63001001022		
+n63001001012	2JN 1:1!12		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001001013	2JN 1:1!13		noun	common	truth	真理	truth	ἀληθείᾳ	,	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n63001001014	2JN 1:1!14		conj		and		and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001001015	2JN 1:1!15		adv		not	不但	not	οὐκ	 	οὐ	οὐκ	3756	PRT-N											
+n63001001016	2JN 1:1!16		pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n63001001002
+n63001001017	2JN 1:1!17		adj		only	单	only	μόνος	 	μόνος	μόνος	3441	A-NSM		singular	masculine	nominative							
+n63001001018	2JN 1:1!18		conj		but	（而）	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n63001001019	2JN 1:1!19		adv		also	也	also	καὶ	 	καί	καὶ	2532	CONJ											
+n63001001020	2JN 1:1!20		adj		all	一切	all	πάντες	 	πᾶς	πάντες	3956	A-NPM		plural	masculine	nominative							
+n63001001021	2JN 1:1!21		det		those	（者）	those	οἱ	 	ὁ	οἱ	3588	T-NPM		plural	masculine	nominative							
+n63001001022	2JN 1:1!22	v	verb		know	认识	having known	ἐγνωκότες	 	γινώσκω	ἐγνωκότες	1097	V-RAP-NPM		plural	masculine	nominative	perfect	active	participle		A0:n00000000000 A1:n63001001024		
+n63001001023	2JN 1:1!23		det		the		the	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n63001001024	2JN 1:1!24		noun	common	truth	真理	truth	ἀλήθειαν	,	ἀλήθεια	ἀλήθειαν	225	N-ASF		singular	feminine	accusative							
+n63001002001	2JN 1:2!1		prep		because of	因为	because of	διὰ	 	διά	διὰ	1223	PREP											
+n63001002002	2JN 1:2!2		det		the	这	the	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n63001002003	2JN 1:2!3		noun	common	truth	真理	truth	ἀλήθειαν	 	ἀλήθεια	ἀλήθειαν	225	N-ASF		singular	feminine	accusative							
+n63001002004	2JN 1:2!4		det				-	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n63001002005	2JN 1:2!5	v	verb		abides	存	abiding	μένουσαν	 	μένω	μένουσαν	3306	V-PAP-ASF		singular	feminine	accusative	present	active	participle		A0:n63001002003	n63001002003	
+n63001002006	2JN 1:2!6		prep		in	在~里面	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001002007	2JN 1:2!7		pron	personal	us	我们	us	ἡμῖν	,	ἐγώ	ἡμῖν	2254	P-1DP		plural		dative							n63001001002 n63001001004 n63001001007 n63001001022
+n63001002008	2JN 1:2!8		conj		and	也	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001002009	2JN 1:2!9		prep		with	与~同在	with	μεθ	’	μετά	μεθ	3326	PREP											
+n63001002010	2JN 1:2!10		pron	personal	us	我们	us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n63001001002 n63001001004 n63001001007 n63001001022
+n63001002011	2JN 1:2!11	vc	verb		be	在	that will be	ἔσται	 	εἰμί	ἔσται	2071	V-FDI-3S	third	singular			future	middle	indicative			n63001002003	
+n63001002012	2JN 1:2!12		prep		into	直到	to	εἰς	 	εἰς	εἰς	1519	PREP											
+n63001002013	2JN 1:2!13		det		the		the	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n63001002014	2JN 1:2!14		noun	common	age	永远	age	αἰῶνα	·	αἰών	αἰῶνα	165	N-ASM		singular	masculine	accusative							
+n63001003001	2JN 1:3!1	vc	verb		be	在	Will be	ἔσται	 	εἰμί	ἔσται	2071	V-FDI-3S	third	singular			future	middle	indicative				
+n63001003002	2JN 1:3!2		prep		with	与~同在	with	μεθ	’	μετά	μεθ	3326	PREP											
+n63001003003	2JN 1:3!3		pron	personal	us	我们	us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n63001001002 n63001001004 n63001001007 n63001001022
+n63001003004	2JN 1:3!4		noun	common	grace	恩惠	grace	χάρις	 	χάρις	χάρις	5485	N-NSF		singular	feminine	nominative							
+n63001003005	2JN 1:3!5		noun	common	mercy	怜悯	mercy	ἔλεος	 	ἔλεος	ἔλεος	1656	N-NSN		singular	neuter	nominative							
+n63001003006	2JN 1:3!6		noun	common	peace	平安	[and] peace	εἰρήνη	 	εἰρήνη	εἰρήνη	1515	N-NSF		singular	feminine	nominative							
+n63001003007	2JN 1:3!7		prep		from	从	from	παρὰ	 	παρά	παρὰ	3844	PREP											
+n63001003008	2JN 1:3!8		noun	common	God	神	God	θεοῦ	 	θεός	θεοῦ	2316	N-GSM		singular	masculine	genitive							
+n63001003009	2JN 1:3!9		noun	common	father	父	[the] Father	πατρός	,	πατήρ	πατρός	3962	N-GSM		singular	masculine	genitive							
+n63001003010	2JN 1:3!10		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001003011	2JN 1:3!11		prep		from	从	from	παρὰ	 	παρά	παρὰ	3844	PREP											
+n63001003012	2JN 1:3!12		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦ	 	Ἰησοῦς	Ἰησοῦ	2424	N-GSM		singular	masculine	genitive							
+n63001003013	2JN 1:3!13		noun	proper	Christ	基督	Christ	Χριστοῦ	 	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n63001003014	2JN 1:3!14		det		the		the	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n63001003015	2JN 1:3!15		noun	common	son	儿子	Son	υἱοῦ	 	υἱός	υἱοῦ	5207	N-GSM		singular	masculine	genitive							
+n63001003016	2JN 1:3!16		det		the		of the	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n63001003017	2JN 1:3!17		noun	common	father	父	Father	πατρός	,	πατήρ	πατρός	3962	N-GSM		singular	masculine	genitive							
+n63001003018	2JN 1:3!18		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001003019	2JN 1:3!19		noun	common	truth	真理	truth	ἀληθείᾳ	 	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n63001003020	2JN 1:3!20		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001003021	2JN 1:3!21		noun	common	love	爱	love	ἀγάπῃ	.	ἀγάπη	ἀγάπῃ	26	N-DSF		singular	feminine	dative							
+n63001004001	2JN 1:4!1	v	verb		glad	欢喜	I rejoiced	Ἐχάρην	 	χαίρω	Ἐχάρην	5463	V-2AOI-1S	first	singular			aorist	passive	indicative		A1:n63001001002	n63001001002	
+n63001004002	2JN 1:4!2	adv	adv		very	非常	exceedingly	λίαν	 	λίαν	λίαν	3029	ADV											
+n63001004003	2JN 1:4!3		conj		to	因为	that	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n63001004004	2JN 1:4!4	v	verb		find	见	I have found	εὕρηκα	 	εὑρίσκω	εὕρηκα	2147	V-RAI-1S	first	singular			perfect	active	indicative		A0:n63001001002 A1:n63001004009	n63001001002	
+n63001004005	2JN 1:4!5		prep		some of	中	[some] of	ἐκ	 	ἐκ	ἐκ	1537	PREP											
+n63001004006	2JN 1:4!6		det		the		the	τῶν	 	ὁ	τῶν	3588	T-GPN		plural	neuter	genitive							
+n63001004007	2JN 1:4!7		noun	common	children	儿女	children	τέκνων	 	τέκνον	τέκνων	5043	N-GPN		plural	neuter	genitive							
+n63001004008	2JN 1:4!8		pron	personal	your	你的	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n63001001004
+n63001004009	2JN 1:4!9	v	verb		walking	行事	walking	περιπατοῦντας	 	περιπατέω	περιπατοῦντας	4043	V-PAP-APM		plural	masculine	accusative	present	active	participle		A0:n00000000000		
+n63001004010	2JN 1:4!10		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001004011	2JN 1:4!11		noun	common	truth	真理	truth	ἀληθείᾳ	,	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n63001004012	2JN 1:4!12		conj		just as	照	just as	καθὼς	 	καθώς	καθὼς	2531	ADV											
+n63001004013	2JN 1:4!13	o	noun	common	commandment	命令	commandment	ἐντολὴν	 	ἐντολή	ἐντολὴν	1785	N-ASF		singular	feminine	accusative							
+n63001004014	2JN 1:4!14	v	verb		received	领受	we received	ἐλάβομεν	 	λαμβάνω	ἐλάβομεν	2983	V-2AAI-1P	first	plural			aorist	active	indicative		A0:n63001001002;n63001001004;n63001001007;n63001001022 A1:n63001004013	n63001001002 n63001001004 n63001001007 n63001001022	
+n63001004015	2JN 1:4!15		prep		from	从	from	παρὰ	 	παρά	παρὰ	3844	PREP											
+n63001004016	2JN 1:4!16		det		the		the	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n63001004017	2JN 1:4!17		noun	common	father	父	Father	πατρός	.	πατήρ	πατρός	3962	N-GSM		singular	masculine	genitive							
+n63001005001	2JN 1:5!1		conj		and		And	καὶ	 	καί	καὶ	2532	CONJ											
+n63001005002	2JN 1:5!2	adv	adv		now	现在	now	νῦν	 	νῦν	νῦν	3568	ADV											
+n63001005003	2JN 1:5!3	v	verb		ask	请求	I implore	ἐρωτῶ	 	ἐρωτάω	ἐρωτῶ	2065	V-PAI-1S	first	singular			present	active	indicative		A0:n63001001002 A1:n63001005004	n63001001002	
+n63001005004	2JN 1:5!4	o	pron	personal	you	你	you	σε	,	σύ	σε	4571	P-2AS		singular		accusative							n63001005005
+n63001005005	2JN 1:5!5	aux	noun	common	lady	夫人	lady	κυρία	,	κυρία	κυρία	2959	N-VSF		singular	feminine	vocative							
+n63001005006	2JN 1:5!6		adv		not	不是	not	οὐχ	 	οὐ	οὐχ	3756	PRT-N											
+n63001005007	2JN 1:5!7		conj		as though	像	as	ὡς	 	ὡς	ὡς	5613	ADV											
+n63001005008	2JN 1:5!8		noun	common	commandment	命令	a commandment	ἐντολὴν	 	ἐντολή	ἐντολὴν	1785	N-ASF		singular	feminine	accusative							
+n63001005009	2JN 1:5!9		adj		new	新	new	καινὴν	 	καινός	καινὴν	2537	A-ASF		singular	feminine	accusative							
+n63001005010	2JN 1:5!10	v	verb		writing	写	I am writing	γράφων	 	γράφω	γράφων	1125	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n63001001002 A2:n63001005011	n63001001002	
+n63001005011	2JN 1:5!11	io	pron	personal	you	你	to you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n63001005005
+n63001005012	2JN 1:5!12		conj		but	而是	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n63001005013	2JN 1:5!13	o	pron	relative	one		that which	ἣν	 	ὅς	ἣν	3739	R-ASF		singular	feminine	accusative							
+n63001005014	2JN 1:5!14	v	verb		had	有	we have had	εἴχομεν	 	ἔχω	εἴχομεν	2192	V-IAI-1P	first	plural			imperfect	active	indicative		A0:n63001001002;n63001005005;n63001001007;n63001001022 A1:n63001005013	n63001001002 n63001005005 n63001001007 n63001001022	
+n63001005015	2JN 1:5!15		prep		from	从	from	ἀπ	’	ἀπό	ἀπ	575	PREP											
+n63001005016	2JN 1:5!16		noun	common	beginning	起初	[the] beginning	ἀρχῆς	,	ἀρχή	ἀρχῆς	746	N-GSF		singular	feminine	genitive							
+n63001005017	2JN 1:5!17		conj		that	（要）	that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n63001005018	2JN 1:5!18	v	verb		love	相爱	we should love	ἀγαπῶμεν	 	ἀγαπάω	ἀγαπῶμεν	25	V-PAS-1P	first	plural			present	active	subjunctive		A0:n63001001002;n63001005005;n63001001007;n63001001022 A1:n63001005019	n63001001002 n63001005005 n63001001007 n63001001022	
+n63001005019	2JN 1:5!19	o	pron	personal	one another	彼此	one another	ἀλλήλους	.	ἀλλήλων	ἀλλήλους	240	C-APM		plural	masculine	accusative							n63001001002 n63001005005 n63001001007 n63001001022
+n63001006001	2JN 1:6!1		conj		and	就	And	καὶ	 	καί	καὶ	2532	CONJ											
+n63001006002	2JN 1:6!2	p	pron	demonstrative	this	这	this	αὕτη	 	οὗτος	αὕτη	3778	D-NSF		singular	feminine	nominative							n63001006007
+n63001006003	2JN 1:6!3	vc	verb		is	是	is	ἐστὶν	 	εἰμί	ἐστὶν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n63001006004	2JN 1:6!4		det				-	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n63001006005	2JN 1:6!5		noun	common	love	爱	love	ἀγάπη	,	ἀγάπη	ἀγάπη	26	N-NSF		singular	feminine	nominative							
+n63001006006	2JN 1:6!6		adv		that	（要）	that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n63001006007	2JN 1:6!7	v	verb		walk	行事	we should walk	περιπατῶμεν	 	περιπατέω	περιπατῶμεν	4043	V-PAS-1P	first	plural			present	active	subjunctive		A0:n63001001002;n63001005005;n63001001007;n63001001022	n63001001002 n63001005005 n63001001007 n63001001022	
+n63001006008	2JN 1:6!8		prep		according to	照	according to	κατὰ	 	κατά	κατὰ	2596	PREP											
+n63001006009	2JN 1:6!9		det		the		the	τὰς	 	ὁ	τὰς	3588	T-APF		plural	feminine	accusative							
+n63001006010	2JN 1:6!10		noun	common	commandments	命令	commandments	ἐντολὰς	 	ἐντολή	ἐντολὰς	1785	N-APF		plural	feminine	accusative							
+n63001006011	2JN 1:6!11		pron	personal	his	他	of Him	αὐτοῦ	·	αὐτός	αὐτοῦ	846	P-GSM		singular	masculine	genitive							n63001004017
+n63001006012	2JN 1:6!12	p	pron	demonstrative	this	这	This	αὕτη	 	οὗτος	αὕτη	3778	D-NSF		singular	feminine	nominative							n63001006023
+n63001006013	2JN 1:6!13		det		the	那	the	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n63001006014	2JN 1:6!14		noun	common	commandment	命令	commandment	ἐντολή	 	ἐντολή	ἐντολή	1785	N-NSF		singular	feminine	nominative							
+n63001006015	2JN 1:6!15	vc	verb		is	是	is	ἐστιν	,	εἰμί	ἐστιν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n63001006016	2JN 1:6!16		conj		just as	正如	just as	καθὼς	 	καθώς	καθὼς	2531	ADV											
+n63001006017	2JN 1:6!17	v	verb		heard	听见	you have heard	ἠκούσατε	 	ἀκούω	ἠκούσατε	191	V-AAI-2P	second	plural			aorist	active	indicative		A0:n63001005005;n63001001007	n63001005005 n63001001007	
+n63001006018	2JN 1:6!18		prep		from	从	from	ἀπ	’	ἀπό	ἀπ	575	PREP											
+n63001006019	2JN 1:6!19		noun	common	beginning	起初	[the] beginning	ἀρχῆς	,	ἀρχή	ἀρχῆς	746	N-GSF		singular	feminine	genitive							
+n63001006020	2JN 1:6!20		adv		that		so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n63001006021	2JN 1:6!21		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001006022	2JN 1:6!22		pron	personal	it	它	it	αὐτῇ	 	αὐτός	αὐτῇ	846	P-DSF		singular	feminine	dative							n63001006005
+n63001006023	2JN 1:6!23	v	verb		walk	行	you should walk	περιπατῆτε	.	περιπατέω	περιπατῆτε	4043	V-PAS-2P	second	plural			present	active	subjunctive		A0:n63001005005;n63001001007	n63001005005 n63001001007	
+n63001007001	2JN 1:7!1		conj		for	因为	For	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n63001007002	2JN 1:7!2		adj		many	许多	many	πολλοὶ	 	πολύς	πολλοὶ	4183	A-NPM		plural	masculine	nominative							
+n63001007003	2JN 1:7!3		adj		deceivers	迷惑人的	deceivers	πλάνοι	 	πλάνος	πλάνοι	4108	A-NPM		plural	masculine	nominative							
+n63001007004	2JN 1:7!4	v	verb		gone out	出现	have entered	ἐξῆλθον	 	ἐξέρχομαι	ἐξῆλθον	1831	V-2AAI-3P	third	plural			aorist	active	indicative		A0:n63001007003		
+n63001007005	2JN 1:7!5		prep		into	在	into	εἰς	 	εἰς	εἰς	1519	PREP											
+n63001007006	2JN 1:7!6		det		the		the	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n63001007007	2JN 1:7!7		noun	common	world	世上	world	κόσμον	,	κόσμος	κόσμον	2889	N-ASM		singular	masculine	accusative							
+n63001007008	2JN 1:7!8		det		those	他们	those	οἱ	 	ὁ	οἱ	3588	T-NPM		plural	masculine	nominative							
+n63001007009	2JN 1:7!9	adv	adv		not	不	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n63001007010	2JN 1:7!10	v	verb		confess	承认	confessing	ὁμολογοῦντες	 	ὁμολογέω	ὁμολογοῦντες	3670	V-PAP-NPM		plural	masculine	nominative	present	active	participle		A0:n63001007003 A1:n63001007013	n63001007003	
+n63001007011	2JN 1:7!11		noun	proper	Jesus	耶稣	Jesus	Ἰησοῦν	 	Ἰησοῦς	Ἰησοῦν	2424	N-ASM		singular	masculine	accusative							
+n63001007012	2JN 1:7!12		noun	proper	Christ	基督	Christ	Χριστὸν	 	Χριστός	Χριστὸν	5547	N-ASM		singular	masculine	accusative							
+n63001007013	2JN 1:7!13	v	verb		coming	来	coming	ἐρχόμενον	 	ἔρχομαι	ἐρχόμενον	2064	V-PNP-ASM		singular	masculine	accusative	present	middle	participle		A0:n63001007011		
+n63001007014	2JN 1:7!14		prep		in	在~里	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001007015	2JN 1:7!15		noun	common	flesh	肉身	flesh	σαρκί	·	σάρξ	σαρκί	4561	N-DSF		singular	feminine	dative							
+n63001007016	2JN 1:7!16	s	pron	demonstrative	this	这	This	οὗτός	 	οὗτος	οὗτός	3778	D-NSM		singular	masculine	nominative							n63001007003
+n63001007017	2JN 1:7!17	vc	verb		is	是	is	ἐστιν	 	εἰμί	ἐστιν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n63001007018	2JN 1:7!18		det		the	那	the	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001007019	2JN 1:7!19		adj		deceiver	骗子	deceiver	πλάνος	 	πλάνος	πλάνος	4108	A-NSM		singular	masculine	nominative							
+n63001007020	2JN 1:7!20		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001007021	2JN 1:7!21		det		the	那	the	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001007022	2JN 1:7!22		noun	common	antichrist	敌基督的	antichrist	ἀντίχριστος	.	ἀντίχριστος	ἀντίχριστος	500	N-NSM		singular	masculine	nominative							
+n63001008001	2JN 1:8!1	v	verb		watch	小心	Watch	βλέπετε	 	βλέπω	βλέπετε	991	V-PAM-2P	second	plural			present	active	imperative		A0:n63001005005;n63001001007 A1:n63001008002	n63001005005 n63001001007	
+n63001008002	2JN 1:8!2	o	pron	personal	yourselves	你们	yourselves	ἑαυτούς	,	ἑαυτοῦ	ἑαυτούς	1438	F-2APM		plural	masculine	accusative							n63001005005 n63001001007
+n63001008003	2JN 1:8!3		conj		that		so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n63001008004	2JN 1:8!4		adv		not	（免得）	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n63001008005	2JN 1:8!5	v	verb		lose	失去	you should lose	ἀπολέσητε	 	ἀπόλλυμι	ἀπολέσητε	622	V-AAS-2P	second	plural			aorist	active	subjunctive		A0:n63001005005;n63001001007 A1:n63001008007	n63001005005 n63001001007	
+n63001008006	2JN 1:8!6	o	pron	relative	what	所~的	what things	ἃ	 	ὅς	ἃ	3739	R-APN		plural	neuter	accusative							
+n63001008007	2JN 1:8!7	v	verb		worked for	完成	we have worked for	εἰργασάμεθα	,	ἐργάζομαι	εἰργασάμεθα	2038	V-ADI-1P	first	plural			aorist	middle	indicative		A0:n63001001002;n63001005005;n63001001007;n63001001022 A1:n63001008006	n63001001002 n63001005005 n63001001007 n63001001022	
+n63001008008	2JN 1:8!8		conj		but	而	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n63001008009	2JN 1:8!9		noun	common	reward	赏赐	a reward	μισθὸν	 	μισθός	μισθὸν	3408	N-ASM		singular	masculine	accusative							
+n63001008010	2JN 1:8!10		adj		full	丰硕	full	πλήρη	 	πλήρης	πλήρη	4134	A-ASM		singular	masculine	accusative							
+n63001008011	2JN 1:8!11	v	verb		receive	得着	you may receive	ἀπολάβητε	.	ἀπολαμβάνω	ἀπολάβητε	618	V-2AAS-2P	second	plural			aorist	active	subjunctive		A0:n63001005005;n63001001007 A1:n63001008009	n63001005005 n63001001007	
+n63001009001	2JN 1:9!1		adj		everyone	凡	Anyone	πᾶς	 	πᾶς	πᾶς	3956	A-NSM		singular	masculine	nominative							
+n63001009002	2JN 1:9!2		det		the	（者）	-	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001009003	2JN 1:9!3	v	verb		goes beyond	越过	going on ahead	προάγων	 	προάγω	προάγων	4254	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000		
+n63001009004	2JN 1:9!4		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001009005	2JN 1:9!5	adv	adv		not	不	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n63001009006	2JN 1:9!6	v	verb		abide	持守	abiding	μένων	 	μένω	μένων	3306	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000		
+n63001009007	2JN 1:9!7		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001009008	2JN 1:9!8		det		the		the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n63001009009	2JN 1:9!9		noun	common	teaching	教训	teaching	διδαχῇ	 	διδαχή	διδαχῇ	1322	N-DSF		singular	feminine	dative							
+n63001009010	2JN 1:9!10		det				-	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n63001009011	2JN 1:9!11		noun	proper	Christ	基督	of Christ	Χριστοῦ	 	Χριστός	Χριστοῦ	5547	N-GSM		singular	masculine	genitive							
+n63001009012	2JN 1:9!12	o	noun	common	God	神	God	θεὸν	 	θεός	θεὸν	2316	N-ASM		singular	masculine	accusative							
+n63001009013	2JN 1:9!13	adv	adv		not	没有	not	οὐκ	 	οὐ	οὐκ	3756	PRT-N											
+n63001009014	2JN 1:9!14	v	verb		have	得着	has	ἔχει	·	ἔχω	ἔχει	2192	V-PAI-3S	third	singular			present	active	indicative		A0:n63001009003;n63001009006 A1:n63001009012		
+n63001009015	2JN 1:9!15		det		the	那	The [one]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001009016	2JN 1:9!16	v	verb		abides	持守	abiding	μένων	 	μένω	μένων	3306	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000		
+n63001009017	2JN 1:9!17		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n63001009018	2JN 1:9!18		det		the	这	the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n63001009019	2JN 1:9!19		noun	common	teaching	教训	teaching	διδαχῇ	,	διδαχή	διδαχῇ	1322	N-DSF		singular	feminine	dative							
+n63001009020	2JN 1:9!20	s	pron	demonstrative	this one	这	this [one]	οὗτος	 	οὗτος	οὗτος	3778	D-NSM		singular	masculine	nominative							n63001009016
+n63001009021	2JN 1:9!21		conj		both		both	καὶ	 	καί	καὶ	2532	CONJ											
+n63001009022	2JN 1:9!22		det		the		the	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n63001009023	2JN 1:9!23		noun	common	father	父	Father	πατέρα	 	πατήρ	πατέρα	3962	N-ASM		singular	masculine	accusative							
+n63001009024	2JN 1:9!24		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001009025	2JN 1:9!25		det		the		the	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n63001009026	2JN 1:9!26		noun	common	son	子	Son	υἱὸν	 	υἱός	υἱὸν	5207	N-ASM		singular	masculine	accusative							
+n63001009027	2JN 1:9!27	v	verb		has	有	has	ἔχει	.	ἔχω	ἔχει	2192	V-PAI-3S	third	singular			present	active	indicative		A0:n63001009020 A1:n63001009023;n63001009026		
+n63001010001	2JN 1:10!1		conj		if	若	If	εἴ	 	εἰ	εἴ	1487	COND											
+n63001010002	2JN 1:10!2	s	pron	indefinite	anyone	有人	anyone	τις	 	τις	τις	5100	X-NSM		singular	masculine	nominative							
+n63001010003	2JN 1:10!3	v	verb		comes	去	comes	ἔρχεται	 	ἔρχομαι	ἔρχεται	2064	V-PNI-3S	third	singular			present	middle	indicative		A0:n63001010002		
+n63001010004	2JN 1:10!4		prep		to	到	to	πρὸς	 	πρός	πρὸς	4314	PREP											
+n63001010005	2JN 1:10!5		pron	personal	you	你们	you	ὑμᾶς	 	σύ	ὑμᾶς	5209	P-2AP		plural		accusative							n63001005005 n63001001007
+n63001010006	2JN 1:10!6		conj		and	却	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001010007	2JN 1:10!7		pron	demonstrative	this	这	this	ταύτην	 	οὗτος	ταύτην	5026	D-ASF		singular	feminine	accusative							
+n63001010008	2JN 1:10!8		det				-	τὴν	 	ὁ	τὴν	3588	T-ASF		singular	feminine	accusative							
+n63001010009	2JN 1:10!9		noun	common	teaching	教训	teaching	διδαχὴν	 	διδαχή	διδαχὴν	1322	N-ASF		singular	feminine	accusative							
+n63001010010	2JN 1:10!10	adv	adv		not	不	not	οὐ	 	οὐ	οὐ	3756	PRT-N											
+n63001010011	2JN 1:10!11	v	verb		bring	传	does bring	φέρει	,	φέρω	φέρει	5342	V-PAI-3S	third	singular			present	active	indicative		A0:n63001010002 A1:n63001010009	n63001010002	
+n63001010012	2JN 1:10!12	adv	adv		not	不要	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n63001010013	2JN 1:10!13	v	verb		receive	接待	receive	λαμβάνετε	 	λαμβάνω	λαμβάνετε	2983	V-PAM-2P	second	plural			present	active	imperative		A0:n63001005005;n63001001007 A1:n63001010014	n63001005005 n63001001007	
+n63001010014	2JN 1:10!14	o	pron	personal	him	他	him	αὐτὸν	 	αὐτός	αὐτὸν	846	P-ASM		singular	masculine	accusative							n63001010002
+n63001010015	2JN 1:10!15		prep		into	到~里	into	εἰς	 	εἰς	εἰς	1519	PREP											
+n63001010016	2JN 1:10!16		noun	common	house	家	[the] house	οἰκίαν	 	οἰκία	οἰκίαν	3614	N-ASF		singular	feminine	accusative							
+n63001010017	2JN 1:10!17		conj		and	也	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001010018	2JN 1:10!18	v	verb		welcome	请安	to rejoice	χαίρειν	 	χαίρω	χαίρειν	5463	V-PAN					present	active	infinitive		A0:n63001005005;n63001001007	n63001005005 n63001001007	
+n63001010019	2JN 1:10!19	io	pron	personal	him	他	him	αὐτῷ	 	αὐτός	αὐτῷ	846	P-DSM		singular	masculine	dative							n63001010002
+n63001010020	2JN 1:10!20	adv	adv		not	不要	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n63001010021	2JN 1:10!21	v	verb		speak	说	tell	λέγετε	·	λέγω	λέγετε	3004	V-PAM-2P	second	plural			present	active	imperative		A0:n63001005005;n63001001007 A1:n63001010018 A2:n63001010019	n63001005005 n63001001007	
+n63001011001	2JN 1:11!1		det		the	（者）	the [one]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n63001011002	2JN 1:11!2	v	verb		speaks	说	telling	λέγων	 	λέγω	λέγων	3004	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000 A2:n63001011004 A1:n63001011005		
+n63001011003	2JN 1:11!3		conj		for	因为	for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n63001011004	2JN 1:11!4	io	pron	personal	him	他	him	αὐτῷ	 	αὐτός	αὐτῷ	846	P-DSM		singular	masculine	dative							n63001010002
+n63001011005	2JN 1:11!5	v	verb		welcome	问候	to rejoice	χαίρειν	 	χαίρω	χαίρειν	5463	V-PAN					present	active	infinitive		A0:n63001011002	n63001011002	
+n63001011006	2JN 1:11!6	v	verb		shares	有份	partakes	κοινωνεῖ	 	κοινωνέω	κοινωνεῖ	2841	V-PAI-3S	third	singular			present	active	indicative		A0:n63001011002		
+n63001011007	2JN 1:11!7		det		in the		in the	τοῖς	 	ὁ	τοῖς	3588	T-DPN		plural	neuter	dative							
+n63001011008	2JN 1:11!8		noun	common	deeds	行为	works	ἔργοις	 	ἔργον	ἔργοις	2041	N-DPN		plural	neuter	dative							
+n63001011009	2JN 1:11!9		pron	personal	his	他	of him	αὐτοῦ	 	αὐτός	αὐτοῦ	846	P-GSM		singular	masculine	genitive							n63001010002
+n63001011010	2JN 1:11!10		det		the		-	τοῖς	 	ὁ	τοῖς	3588	T-DPN		plural	neuter	dative							
+n63001011011	2JN 1:11!11		adj		evil	邪恶	evil	πονηροῖς	.	πονηρός	πονηροῖς	4190	A-DPN		plural	neuter	dative							
+n63001012001	2JN 1:12!1	o	adj	substantive	many	许多	Many things	Πολλὰ	 	πολύς	Πολλὰ	4183	A-APN		plural	neuter	accusative							
+n63001012002	2JN 1:12!2	v	verb		have	有	having	ἔχων	 	ἔχω	ἔχων	2192	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n63001001002 A1:n63001012004	n63001001002	
+n63001012003	2JN 1:12!3	io	pron	personal	you	你们	to you	ὑμῖν	 	σύ	ὑμῖν	5213	P-2DP		plural		dative							n63001005005 n63001001007
+n63001012004	2JN 1:12!4	v	verb		write	写	to write	γράφειν	 	γράφω	γράφειν	1125	V-PAN					present	active	infinitive		A0:n63001001002 A1:n63001012001 A2:n63001012003	n63001001002	
+n63001012005	2JN 1:12!5	adv	adv		not	不	not	οὐκ	 	οὐ	οὐκ	3756	PRT-N											
+n63001012006	2JN 1:12!6	v	verb		want	想	I purposed	ἐβουλήθην	 	βούλομαι	ἐβουλήθην	1014	V-AOI-1S	first	singular			aorist	passive	indicative		A1:n63001001002	n63001001002	
+n63001012007	2JN 1:12!7		prep		with	用	with	διὰ	 	διά	διὰ	1223	PREP											
+n63001012008	2JN 1:12!8		noun	common	paper	纸	paper	χάρτου	 	χάρτης	χάρτου	5489	N-GSM		singular	masculine	genitive							
+n63001012009	2JN 1:12!9		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001012010	2JN 1:12!10		noun	common	ink	墨	ink	μέλανος	,	μέλαν	μέλανος	3188	A-GSN		singular	neuter	genitive							
+n63001012011	2JN 1:12!11		conj		instead	但	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n63001012012	2JN 1:12!12	v	verb		hope	盼望	I hope	ἐλπίζω	 	ἐλπίζω	ἐλπίζω	1679	V-PAI-1S	first	singular			present	active	indicative		A0:n63001001002 A1:n63001012015;n63001012020	n63001001002	
+n63001012013	2JN 1:12!13	v	verb		come	到	to come	γενέσθαι	 	γίνομαι	γενέσθαι	1096	V-2ADN					aorist	middle	infinitive			n63001001002	
+n63001012014	2JN 1:12!14		prep		to	到	to	πρὸς	 	πρός	πρὸς	4314	PREP											
+n63001012015	2JN 1:12!15		pron	personal	you	你们	you	ὑμᾶς	 	σύ	ὑμᾶς	5209	P-2AP		plural		accusative							n63001005005 n63001001007
+n63001012016	2JN 1:12!16		conj		and	并且	and	καὶ	 	καί	καὶ	2532	CONJ											
+n63001012017	2JN 1:12!17		noun	common	mouth	口	mouth	στόμα	 	στόμα	στόμα	4750	N-ASN		singular	neuter	accusative							
+n63001012018	2JN 1:12!18		prep		to	对	to	πρὸς	 	πρός	πρὸς	4314	PREP											
+n63001012019	2JN 1:12!19		noun	common	mouth	口	mouth	στόμα	 	στόμα	στόμα	4750	N-ASN		singular	neuter	accusative							
+n63001012020	2JN 1:12!20	v	verb		talk	谈论	to speak	λαλῆσαι	,	λαλέω	λαλῆσαι	2980	V-AAN					aorist	active	infinitive		A0:n63001001002	n63001001002	
+n63001012021	2JN 1:12!21		conj		so that	好让	so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n63001012022	2JN 1:12!22		det		the		the	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n63001012023	2JN 1:12!23		noun	common	joy	喜乐	joy	χαρὰ	 	χαρά	χαρὰ	5479	N-NSF		singular	feminine	nominative							
+n63001012024	2JN 1:12!24		pron	personal	of you	你们的		ὑμῶν	 	σύ	ὑμῶν	4675	P-GP-		plural		genitive							n63001005005 n63001001007 n63001001022
+n63001012025	2JN 1:12!25		verb		complete	满溢	having been completed	πεπληρωμένη	 	πληρόω	πεπληρωμένη	4137	V-RPP-NSF		singular	feminine	nominative	perfect	passive	participle		A1:n63001012023		
+n63001012026	2JN 1:12!26		verb		be		may be	ᾖ	.	εἰμί	ᾖ	5600	V-PAS-3S	third	singular			present	active	subjunctive				
+n63001013001	2JN 1:13!1	v	verb		greet	问安	Greet	Ἀσπάζεταί	 	ἀσπάζομαι	Ἀσπάζεταί	782	V-PNI-3S	third	singular			present	middle	indicative		A1:n63001013002 A0:n63001013004		
+n63001013002	2JN 1:13!2	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n63001005005
+n63001013003	2JN 1:13!3		det		the		the	τὰ	 	ὁ	τὰ	3588	T-NPN		plural	neuter	nominative							
+n63001013004	2JN 1:13!4		noun	common	children	儿女	children	τέκνα	 	τέκνον	τέκνα	5043	N-NPN		plural	neuter	nominative							
+n63001013005	2JN 1:13!5		det		of  the	那	of the	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n63001013006	2JN 1:13!6		noun	common	sister	姊妹	sister	ἀδελφῆς	 	ἀδελφή	ἀδελφῆς	79	N-GSF		singular	feminine	genitive							
+n63001013007	2JN 1:13!7		pron	personal	your	你	of you	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n63001005005
+n63001013008	2JN 1:13!8		det			那	-	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n63001013009	2JN 1:13!9		adj		elect	蒙拣选的	elect	ἐκλεκτῆς	.	ἐκλεκτός	ἐκλεκτῆς	1588	A-GSF		singular	feminine	genitive							
+n64001001001	3JN 1:1!1		det		the	这	The	Ὁ	 	ὁ	Ὁ	3588	T-NSM		singular	masculine	nominative							
+n64001001002	3JN 1:1!2		adj		elder	做长老的	elder	πρεσβύτερος	 	πρεσβύτερος	πρεσβύτερος	4245	A-NSM-C		singular	masculine	nominative				comparative			
+n64001001003	3JN 1:1!3		noun	proper	Gaius	该犹	To Gaius	Γαΐῳ	 	Γάϊος	Γαΐῳ	1050	N-DSM		singular	masculine	dative							
+n64001001004	3JN 1:1!4		det		the		the	τῷ	 	ὁ	τῷ	3588	T-DSM		singular	masculine	dative							
+n64001001005	3JN 1:1!5		adj		beloved	亲爱的	beloved	ἀγαπητῷ	,	ἀγαπητός	ἀγαπητῷ	27	A-DSM		singular	masculine	dative							
+n64001001006	3JN 1:1!6	o	pron	relative	whom	所~的	whom	ὃν	 	ὅς	ὃν	3739	R-ASM		singular	masculine	accusative							n64001001003
+n64001001007	3JN 1:1!7	s	pron	personal	I	我	I	ἐγὼ	 	ἐγώ	ἐγὼ	1473	P-1NS		singular		nominative							n64001001002
+n64001001008	3JN 1:1!8	v	verb		love	爱	love	ἀγαπῶ	 	ἀγαπάω	ἀγαπῶ	25	V-PAI-1S	first	singular			present	active	indicative		A1:n64001001006 A0:n64001001007		
+n64001001009	3JN 1:1!9		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n64001001010	3JN 1:1!10		noun	common	truth	真理	truth	ἀληθείᾳ	.	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n64001002001	3JN 1:2!1	aux	adj	substantive	beloved	亲爱的	Beloved	Ἀγαπητέ	,	ἀγαπητός	Ἀγαπητέ	27	A-VSM		singular	masculine	vocative							
+n64001002002	3JN 1:2!2		prep		in		concerning	περὶ	 	περί	περὶ	4012	PREP											
+n64001002003	3JN 1:2!3		adj		all	凡事	all things	πάντων	 	πᾶς	πάντων	3956	A-GPN		plural	neuter	genitive							
+n64001002004	3JN 1:2!4	v	verb		pray	愿	I pray	εὔχομαί	 	εὔχομαι	εὔχομαί	2172	V-PNI-1S	first	singular			present	middle	indicative		A0:n64001001002 A1:n64001002006;n64001002008	n64001001002	
+n64001002005	3JN 1:2!5	s	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n64001002001
+n64001002006	3JN 1:2!6		verb		prosper	顺利	to prosper	εὐοδοῦσθαι	 	εὐοδόομαι	εὐοδοῦσθαι	2137	V-PPN					present	passive	infinitive		A0:n64001002005		
+n64001002007	3JN 1:2!7		conj		and		and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001002008	3JN 1:2!8		verb		in good health	健康	to be in good health	ὑγιαίνειν	,	ὑγιαίνω	ὑγιαίνειν	5198	V-PAN					present	active	infinitive		A0:n64001002005		
+n64001002009	3JN 1:2!9		conj		just as	正如	just as	καθὼς	 	καθώς	καθὼς	2531	ADV											
+n64001002010	3JN 1:2!10	v	verb		prospers	平安顺遂	prospers	εὐοδοῦταί	 	εὐοδόομαι	εὐοδοῦταί	2137	V-PPI-3S	third	singular			present	passive	indicative		A0:n64001002013		
+n64001002011	3JN 1:2!11		pron	personal	your	你的	your	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n64001002001
+n64001002012	3JN 1:2!12		det		the		-	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n64001002013	3JN 1:2!13		noun	common	soul	灵魂	soul	ψυχή	.	ψυχή	ψυχή	5590	N-NSF		singular	feminine	nominative							
+n64001003001	3JN 1:3!1	v	verb		rejoiced	欢喜	I rejoiced	ἐχάρην	 	χαίρω	ἐχάρην	5463	V-2AOI-1S	first	singular			aorist	passive	indicative		A1:n64001001002	n64001001002	
+n64001003002	3JN 1:3!2		conj		for		for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n64001003003	3JN 1:3!3	adv	adv		very	非常	exceedingly	λίαν	 	λίαν	λίαν	3029	ADV											
+n64001003004	3JN 1:3!4	v	verb		came	来	coming	ἐρχομένων	 	ἔρχομαι	ἐρχομένων	2064	V-PNP-GPM		plural	masculine	genitive	present	middle	participle		A0:n64001003005		
+n64001003005	3JN 1:3!5	s	noun	common	brothers	弟兄	of [the] brothers	ἀδελφῶν	 	ἀδελφός	ἀδελφῶν	80	N-GPM		plural	masculine	genitive							
+n64001003006	3JN 1:3!6		conj		and	并且	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001003007	3JN 1:3!7	v	verb		testified	证实	bearing witness	μαρτυρούντων	 	μαρτυρέω	μαρτυρούντων	3140	V-PAP-GPM		plural	masculine	genitive	present	active	participle		A0:n64001003005 A2:n64001003010	n64001003005	
+n64001003008	3JN 1:3!8		pron	personal	your	你	of your	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n64001002001
+n64001003009	3JN 1:3!9		det		the		-	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n64001003010	3JN 1:3!10		noun	common	truth	真理	truth	ἀληθείᾳ	,	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n64001003011	3JN 1:3!11		conj		how	这样	just as	καθὼς	 	καθώς	καθὼς	2531	ADV											
+n64001003012	3JN 1:3!12	s	pron	personal	you	你	you	σὺ	 	σύ	σὺ	4771	P-2NS		singular		nominative							n64001002001
+n64001003013	3JN 1:3!13		prep		in	按着	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n64001003014	3JN 1:3!14		noun	common	truth	真理	truth	ἀληθείᾳ	 	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n64001003015	3JN 1:3!15	v	verb		walking	行	are walking	περιπατεῖς	.	περιπατέω	περιπατεῖς	4043	V-PAI-2S	second	singular			present	active	indicative		A0:n64001003012		
+n64001004001	3JN 1:4!1		adj		greater	大	Greater	μειζοτέραν	 	μειζότερος	μειζοτέραν	3186	A-ASF-C		singular	feminine	accusative				comparative			
+n64001004002	3JN 1:4!2	adv	pron	demonstrative	this	这个	than these things	τούτων	 	οὗτος	τούτων	5130	D-GPN		plural	neuter	genitive							n64001004007
+n64001004003	3JN 1:4!3	adv	adv		no	没有	not	οὐκ	 	οὐ	οὐκ	3756	PRT-N											
+n64001004004	3JN 1:4!4	v	verb		have	有	I have	ἔχω	 	ἔχω	ἔχω	2192	V-PAI-1S	first	singular			present	active	indicative		A0:n64001001002 A1:n64001004005	n64001001002	
+n64001004005	3JN 1:4!5		noun	common	joy	喜乐	joy	χαράν	,	χαρά	χαράν	5479	N-ASF		singular	feminine	accusative							
+n64001004006	3JN 1:4!6		adv		to	（当）	that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n64001004007	3JN 1:4!7	v	verb		hear	听见	I should hear of	ἀκούω	 	ἀκούω	ἀκούω	191	V-PAS-1S	first	singular			present	active	subjunctive		A0:n64001001002 A1:n64001004014	n64001001002	
+n64001004008	3JN 1:4!8		det				-	τὰ	 	ὁ	τὰ	3588	T-APN		plural	neuter	accusative							
+n64001004009	3JN 1:4!9		adj		my	我的	my	ἐμὰ	 	ἐμός	ἐμὰ	1699	S-1SAPN		plural	neuter	accusative							n64001001002
+n64001004010	3JN 1:4!10		noun	common	children	儿女	children	τέκνα	 	τέκνον	τέκνα	5043	N-APN		plural	neuter	accusative							
+n64001004011	3JN 1:4!11		prep		in	在~中	in	ἐν	 	ἐν	ἐν	1722	PREP											
+n64001004012	3JN 1:4!12		det		the		the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n64001004013	3JN 1:4!13		noun	common	truth	真理	truth	ἀληθείᾳ	 	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n64001004014	3JN 1:4!14	v	verb		walking	行	walking	περιπατοῦντα	.	περιπατέω	περιπατοῦντα	4043	V-PAP-APN		plural	neuter	accusative	present	active	participle		A0:n64001004010		
+n64001005001	3JN 1:5!1	aux	adj	substantive	beloved	亲爱的	Beloved	Ἀγαπητέ	,	ἀγαπητός	Ἀγαπητέ	27	A-VSM		singular	masculine	vocative							
+n64001005002	3JN 1:5!2	o	adj		faithfully	忠心	faithfully	πιστὸν	 	πιστός	πιστὸν	4103	A-ASN		singular	neuter	accusative							
+n64001005003	3JN 1:5!3	v	verb		do	行	you are doing	ποιεῖς	 	ποιέω	ποιεῖς	4160	V-PAI-2S	second	singular			present	active	indicative		A0:n64001005001 A1:n64001005002	n64001005001	
+n64001005004	3JN 1:5!4	o	pron	relative	whenever	所~的	whatever	ὃ	 	ὅς	ὃ	3739	R-ASN		singular	neuter	accusative							
+n64001005005	3JN 1:5!5		ptcl		*		if	ἐὰν	 	ἐάν	ἐὰν	1437	COND											
+n64001005006	3JN 1:5!6	v	verb		do	做	you might have done	ἐργάσῃ	 	ἐργάζομαι	ἐργάσῃ	2038	V-ADS-2S	second	singular			aorist	middle	subjunctive		A0:n64001005001 A1:n64001005004	n64001005001	
+n64001005007	3JN 1:5!7		prep		for	向	toward	εἰς	 	εἰς	εἰς	1519	PREP											
+n64001005008	3JN 1:5!8		det		the		the	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n64001005009	3JN 1:5!9		noun	common	brothers	弟兄	brothers	ἀδελφοὺς	 	ἀδελφός	ἀδελφοὺς	80	N-APM		plural	masculine	accusative							
+n64001005010	3JN 1:5!10		conj		even though	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001005011	3JN 1:5!11	o	pron	demonstrative	*	（这）	they are	τοῦτο	 	οὗτος	τοῦτο	5124	D-ASN		singular	neuter	accusative							n64001005002
+n64001005012	3JN 1:5!12		adj	substantive	strangers	陌生	strangers	ξένους	,	ξένος	ξένους	3581	A-APM		plural	masculine	accusative							
+n64001006001	3JN 1:6!1	s	pron	relative	they	他们	who	οἳ	 	ὅς	οἳ	3739	R-NPM		plural	masculine	nominative							n64001005012
+n64001006002	3JN 1:6!2	v	verb		testified	证实	testified	ἐμαρτύρησάν	 	μαρτυρέω	ἐμαρτύρησάν	3140	V-AAI-3P	third	plural			aorist	active	indicative		A0:n64001006001 A2:n64001006005		
+n64001006003	3JN 1:6!3		pron	personal	your	你的	of your	σου	 	σύ	σου	4675	P-2GS		singular		genitive							n64001005001
+n64001006004	3JN 1:6!4		det		the		-	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n64001006005	3JN 1:6!5		noun	common	love	爱	love	ἀγάπῃ	 	ἀγάπη	ἀγάπῃ	26	N-DSF		singular	feminine	dative							
+n64001006006	3JN 1:6!6		prep		before	在~面前	before	ἐνώπιον	 	ἐνώπιον	ἐνώπιον	1799	PREP											
+n64001006007	3JN 1:6!7		noun	common	church	教会	[the] church	ἐκκλησίας	,	ἐκκλησία	ἐκκλησίας	1577	N-GSF		singular	feminine	genitive							
+n64001006008	3JN 1:6!8	adv	pron	relative	(as to)  whom	他们	whom	οὓς	 	ὅς	οὓς	3739	R-APM		plural	masculine	accusative							n64001005012
+n64001006009	3JN 1:6!9	adv	adv		well	好	well	καλῶς	 	καλῶς	καλῶς	2573	ADV											
+n64001006010	3JN 1:6!10	v	verb		do	做	you will do	ποιήσεις	 	ποιέω	ποιήσεις	4160	V-FAI-2S	second	singular			future	active	indicative		A0:n64001005001	n64001005001	
+n64001006011	3JN 1:6!11	v	verb		send ~ on ~ way	送行	having set forward	προπέμψας	 	προπέμπω	προπέμψας	4311	V-AAP-NSM		singular	masculine	nominative	aorist	active	participle		A0:n64001005001	n64001005001	
+n64001006012	3JN 1:6!12	adv	adv		worthy	以对得起~的方式	worthily	ἀξίως	 	ἀξίως	ἀξίως	516	ADV											
+n64001006013	3JN 1:6!13		det				-	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n64001006014	3JN 1:6!14		noun	common	God	神	of God	θεοῦ	·	θεός	θεοῦ	2316	N-GSM		singular	masculine	genitive							
+n64001007001	3JN 1:7!1		prep		for the sake of	为	On behalf	ὑπὲρ	 	ὑπέρ	ὑπὲρ	5228	PREP											
+n64001007002	3JN 1:7!2		conj		for	因为	for	γὰρ	 	γάρ	γὰρ	1063	CONJ											
+n64001007003	3JN 1:7!3		det		the	这	of the	τοῦ	 	ὁ	τοῦ	3588	T-GSN		singular	neuter	genitive							
+n64001007004	3JN 1:7!4		noun	common	name	名	name	ὀνόματος	 	ὄνομα	ὀνόματος	3686	N-GSN		singular	neuter	genitive							
+n64001007005	3JN 1:7!5	v	verb		went out	出外	they went forth	ἐξῆλθον	 	ἐξέρχομαι	ἐξῆλθον	1831	V-2AAI-3P	third	plural			aorist	active	indicative		A0:n64001005012	n64001005012	
+n64001007006	3JN 1:7!6	o	adj	substantive	nothing	没有	nothing	μηδὲν	 	μηδείς	μηδὲν	3367	A-ASN-N		singular	neuter	accusative							
+n64001007007	3JN 1:7!7	v	verb		accepting	接受	accepting	λαμβάνοντες	 	λαμβάνω	λαμβάνοντες	2983	V-PAP-NPM		plural	masculine	nominative	present	active	participle		A0:n64001005012 A1:n64001007006	n64001005012	
+n64001007008	3JN 1:7!8		prep		from	从	from	ἀπὸ	 	ἀπό	ἀπὸ	575	PREP											
+n64001007009	3JN 1:7!9		det		the		the	τῶν	 	ὁ	τῶν	3588	T-GPM		plural	masculine	genitive							
+n64001007010	3JN 1:7!10		adj		pagans	外邦人	Gentiles	ἐθνικῶν	.	ἐθνικός	ἐθνικῶν	1482	A-GPM		plural	masculine	genitive							
+n64001008001	3JN 1:8!1	s	pron	personal	we	我们	We	ἡμεῖς	 	ἐγώ	ἡμεῖς	2249	P-1NP		plural		nominative							n64001001002 n64001005001
+n64001008002	3JN 1:8!2		conj		therefore	所以	therefore	οὖν	 	οὖν	οὖν	3767	CONJ											
+n64001008003	3JN 1:8!3	v	verb		ought	应该	ought	ὀφείλομεν	 	ὀφείλω	ὀφείλομεν	3784	V-PAI-1P	first	plural			present	active	indicative		A0:n64001008001 A1:n64001008004		
+n64001008004	3JN 1:8!4	v	verb		support	接待	to receive	ὑπολαμβάνειν	 	ὑπολαμβάνω	ὑπολαμβάνειν	5274	V-PAN					present	active	infinitive		A0:n64001001002;n64001005001 A1:n64001008006	n64001001002 n64001005001	
+n64001008005	3JN 1:8!5		det				-	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n64001008006	3JN 1:8!6		pron	demonstrative	such	这样的人	such [men]	τοιούτους	,	τοιοῦτος	τοιούτους	5108	D-APM		plural	masculine	accusative							n64001005012
+n64001008007	3JN 1:8!7		conj		so that	好	so that	ἵνα	 	ἵνα	ἵνα	2443	CONJ											
+n64001008008	3JN 1:8!8	p	adj	substantive	fellow workers	同工	fellow workers	συνεργοὶ	 	συνεργός	συνεργοὶ	4904	A-NPM		plural	masculine	nominative							
+n64001008009	3JN 1:8!9	vc	verb		become	成为	we may be	γινώμεθα	 	γίνομαι	γινώμεθα	1096	V-PNS-1P	first	plural			present	middle	subjunctive			n64001001002 n64001005001	
+n64001008010	3JN 1:8!10		det		the		in the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n64001008011	3JN 1:8!11		noun	common	truth	真理	truth	ἀληθείᾳ	.	ἀλήθεια	ἀληθείᾳ	225	N-DSF		singular	feminine	dative							
+n64001009001	3JN 1:9!1	v	verb		wrote	写	I have written	Ἔγραψά	 	γράφω	Ἔγραψά	1125	V-AAI-1S	first	singular			aorist	active	indicative		A0:n64001001002 A1:n64001009002 A2:n64001009004	n64001001002	
+n64001009002	3JN 1:9!2	o	pron	indefinite	something	略略	something	τι	 	τις	τι	5100	X-ASN		singular	neuter	accusative							
+n64001009003	3JN 1:9!3		det		the	这个	to the	τῇ	 	ὁ	τῇ	3588	T-DSF		singular	feminine	dative							
+n64001009004	3JN 1:9!4		noun	common	church	教会	church	ἐκκλησίᾳ	·	ἐκκλησία	ἐκκλησίᾳ	1577	N-DSF		singular	feminine	dative							
+n64001009005	3JN 1:9!5		conj		but	但	but	ἀλλ	’	ἀλλά	ἀλλ	235	CONJ											
+n64001009006	3JN 1:9!6		det		the one	那	the [one]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n64001009007	3JN 1:9!7	v	verb		loves to be first	好作领袖	loving to be first	φιλοπρωτεύων	 	φιλοπρωτεύω	φιλοπρωτεύων	5383	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n64001009009	n64001009009	
+n64001009008	3JN 1:9!8	adv	pron	personal	them	他们	among them	αὐτῶν	 	αὐτός	αὐτῶν	846	P-GPF		plural	masculine	genitive							n64001009004
+n64001009009	3JN 1:9!9		noun	proper	Diotrephes	丢特腓	Diotrephes	Διοτρέφης	 	Διοτρέφης	Διοτρέφης	1361	N-NSM		singular	masculine	nominative							
+n64001009010	3JN 1:9!10	adv	adv		not	不	not	οὐκ	 	οὐ	οὐκ	3756	PRT-N											
+n64001009011	3JN 1:9!11	v	verb		acknowledge	接纳	welcomes	ἐπιδέχεται	 	ἐπιδέχομαι	ἐπιδέχεται	1926	V-PNI-3S	third	singular			present	middle	indicative		A0:n64001009007 A1:n64001009012		
+n64001009012	3JN 1:9!12	o	pron	personal	us	我们	us	ἡμᾶς	.	ἐγώ	ἡμᾶς	2248	P-1AP		plural		accusative							n64001001002 n64001005001
+n64001010001	3JN 1:10!1		prep		therefore		Because of	διὰ	 	διά	διὰ	1223	PREP											
+n64001010002	3JN 1:10!2		pron	demonstrative	so	所以	this	τοῦτο	,	οὗτος	τοῦτο	5124	D-ASN		singular	neuter	accusative							
+n64001010003	3JN 1:10!3		conj		if	当~的时候	if	ἐὰν	 	ἐάν	ἐὰν	1437	COND											
+n64001010004	3JN 1:10!4	v	verb		come	来	I might come	ἔλθω	,	ἔρχομαι	ἔλθω	2064	V-2AAS-1S	first	singular			aorist	active	subjunctive		A0:n64001001002	n64001001002	
+n64001010005	3JN 1:10!5	v	verb		call attention to	提起	I will bring to remembrance	ὑπομνήσω	 	ὑπομιμνῄσκω	ὑπομνήσω	5279	V-FAI-1S	first	singular			future	active	indicative		A0:n64001001002 A1:n64001010008	n64001001002	
+n64001010006	3JN 1:10!6		pron	personal	his	他	of him	αὐτοῦ	 	αὐτός	αὐτοῦ	846	P-GSM		singular	masculine	genitive							n64001009007
+n64001010007	3JN 1:10!7		det		the		the	τὰ	 	ὁ	τὰ	3588	T-APN		plural	neuter	accusative							
+n64001010008	3JN 1:10!8		noun	common	deeds	事	works	ἔργα	 	ἔργον	ἔργα	2041	N-APN		plural	neuter	accusative							
+n64001010009	3JN 1:10!9	o	pron	relative	what	所~的	which	ἃ	 	ὅς	ἃ	3739	R-APN		plural	neuter	accusative							n64001010008
+n64001010010	3JN 1:10!10	v	verb		doing	做	he is doing	ποιεῖ	,	ποιέω	ποιεῖ	4160	V-PAI-3S	third	singular			present	active	indicative		A0:n64001009007 A1:n64001010009	n64001009007	
+n64001010011	3JN 1:10!11		noun	common	words	语言	with words	λόγοις	 	λόγος	λόγοις	3056	N-DPM		plural	masculine	dative							
+n64001010012	3JN 1:10!12		adj		malicious	恶毒	evil	πονηροῖς	 	πονηρός	πονηροῖς	4190	A-DPM		plural	masculine	dative							
+n64001010013	3JN 1:10!13	v	verb		slandering	造谣	prating against	φλυαρῶν	 	φλυαρέω	φλυαρῶν	5396	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n64001009007 A1:n64001010014	n64001009007	
+n64001010014	3JN 1:10!14	o	pron	personal	us	我们	us	ἡμᾶς	,	ἐγώ	ἡμᾶς	2248	P-1AP		plural		accusative							n64001001002 n64001005001
+n64001010015	3JN 1:10!15		conj		and	还	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001010016	3JN 1:10!16	adv	adv		not	不	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n64001010017	3JN 1:10!17	v	verb		content	满足	being satisfied	ἀρκούμενος	 	ἀρκέω	ἀρκούμενος	714	V-PPP-NSM		singular	masculine	nominative	present	passive	participle		A1:n64001009007	n64001009007	
+n64001010018	3JN 1:10!18		prep		with	在~上	with	ἐπὶ	 	ἐπί	ἐπὶ	1909	PREP											
+n64001010019	3JN 1:10!19		pron	demonstrative	that	此	these	τούτοις	 	οὗτος	τούτοις	5125	D-DPM		plural	neuter	dative							n64001010008
+n64001010020	3JN 1:10!20		conj		not	不	neither	οὔτε	 	οὔτε	οὔτε	3777	CONJ-N											
+n64001010021	3JN 1:10!21	s	pron	personal	he	他	himself	αὐτὸς	 	αὐτός	αὐτὸς	846	P-NSM		singular	masculine	nominative							n64001009007
+n64001010022	3JN 1:10!22	v	verb		welcome	接待	he receives	ἐπιδέχεται	 	ἐπιδέχομαι	ἐπιδέχεται	1926	V-PNI-3S	third	singular			present	middle	indicative		A0:n64001010021 A1:n64001010024		
+n64001010023	3JN 1:10!23		det		the		the	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n64001010024	3JN 1:10!24		noun	common	brothers	弟兄	brothers	ἀδελφοὺς	 	ἀδελφός	ἀδελφοὺς	80	N-APM		plural	masculine	accusative							
+n64001010025	3JN 1:10!25		conj		and	还	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001010026	3JN 1:10!26		det		those	那些	those	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n64001010027	3JN 1:10!27	v	verb		want	愿意	purposing	βουλομένους	 	βούλομαι	βουλομένους	1014	V-PNP-APM		plural	masculine	accusative	present	middle	participle		A0:n00000000000		
+n64001010028	3JN 1:10!28	v	verb		stops	阻止	he forbids	κωλύει	 	κωλύω	κωλύει	2967	V-PAI-3S	third	singular			present	active	indicative		A0:n64001009007 A1:n64001010027	n64001009007	
+n64001010029	3JN 1:10!29		conj		and	甚至	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001010030	3JN 1:10!30		prep		out of		from	ἐκ	 	ἐκ	ἐκ	1537	PREP											
+n64001010031	3JN 1:10!31		det		the		the	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n64001010032	3JN 1:10!32		noun	common	church	教会	church	ἐκκλησίας	 	ἐκκλησία	ἐκκλησίας	1577	N-GSF		singular	feminine	genitive							
+n64001010033	3JN 1:10!33	v	verb		puts	赶出	he casts [them] out	ἐκβάλλει	.	ἐκβάλλω	ἐκβάλλει	1544	V-PAI-3S	third	singular			present	active	indicative		A0:n64001009007	n64001009007	
+n64001011001	3JN 1:11!1	aux	adj	substantive	beloved	亲爱的	Beloved	Ἀγαπητέ	,	ἀγαπητός	Ἀγαπητέ	27	A-VSM		singular	masculine	vocative							
+n64001011002	3JN 1:11!2		adv		not	不要	not	μὴ	 	μή	μὴ	3361	PRT-N											
+n64001011003	3JN 1:11!3	v	verb		imitate	效法	do imitate	μιμοῦ	 	μιμέομαι	μιμοῦ	3401	V-PNM-2S	second	singular			present	middle	imperative		A0:n64001011001 A1:n64001011005	n64001011001	
+n64001011004	3JN 1:11!4		det		the		what [is]	τὸ	 	ὁ	τὸ	3588	T-ASN		singular	neuter	accusative							
+n64001011005	3JN 1:11!5		adj		evil	恶	evil	κακὸν	 	κακός	κακὸν	2556	A-ASN		singular	neuter	accusative							
+n64001011006	3JN 1:11!6		conj		but	只要	but	ἀλλὰ	 	ἀλλά	ἀλλὰ	235	CONJ											
+n64001011007	3JN 1:11!7		det		the		what [is]	τὸ	 	ὁ	τὸ	3588	T-ASN		singular	neuter	accusative							
+n64001011008	3JN 1:11!8		adj		good	善	good	ἀγαθόν	.	ἀγαθός	ἀγαθόν	18	A-ASN		singular	neuter	accusative							
+n64001011009	3JN 1:11!9		det		the	那	The [one]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n64001011010	3JN 1:11!10	v	verb		does good	行善	doing good	ἀγαθοποιῶν	 	ἀγαθοποιέω	ἀγαθοποιῶν	15	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000		
+n64001011011	3JN 1:11!11		prep		of	属	of	ἐκ	 	ἐκ	ἐκ	1537	PREP											
+n64001011012	3JN 1:11!12		det				-	τοῦ	 	ὁ	τοῦ	3588	T-GSM		singular	masculine	genitive							
+n64001011013	3JN 1:11!13		noun	common	God	神	God	θεοῦ	 	θεός	θεοῦ	2316	N-GSM		singular	masculine	genitive							
+n64001011014	3JN 1:11!14	vc	verb		is	属乎	is	ἐστιν	·	εἰμί	ἐστιν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n64001011015	3JN 1:11!15		det		the	那	the [one]	ὁ	 	ὁ	ὁ	3588	T-NSM		singular	masculine	nominative							
+n64001011016	3JN 1:11!16	v	verb		does evil	作恶	doing evil	κακοποιῶν	 	κακοποιέω	κακοποιῶν	2554	V-PAP-NSM		singular	masculine	nominative	present	active	participle		A0:n00000000000		
+n64001011017	3JN 1:11!17	adv	adv		not	未曾	not	οὐχ	 	οὐ	οὐχ	3756	PRT-N											
+n64001011018	3JN 1:11!18	v	verb		seen	见	has seen	ἑώρακεν	 	ὁράω	ἑώρακεν	3708	V-RAI-3S-ATT	third	singular			perfect	active	indicative		A0:n64001011016 A1:n64001011020		
+n64001011019	3JN 1:11!19		det				-	τὸν	 	ὁ	τὸν	3588	T-ASM		singular	masculine	accusative							
+n64001011020	3JN 1:11!20		noun	common	God	神	God	θεόν	.	θεός	θεόν	2316	N-ASM		singular	masculine	accusative							
+n64001012001	3JN 1:12!1	adv	noun	proper	Demetrius	低米丢	To Demetrius	Δημητρίῳ	 	Δημήτριος	Δημητρίῳ	1216	N-DSM		singular	masculine	dative							
+n64001012002	3JN 1:12!2	v	verb		testified	作证	witness has been given	μεμαρτύρηται	 	μαρτυρέω	μεμαρτύρηται	3140	V-RPI-3S	third	singular			perfect	passive	indicative		A1:n00000000000 A2:n64001012001		
+n64001012003	3JN 1:12!3		prep		from	（由）	by	ὑπὸ	 	ὑπό	ὑπὸ	5259	PREP											
+n64001012004	3JN 1:12!4		adj		everyone	人	all	πάντων	 	πᾶς	πάντων	3956	A-GPM		plural	masculine	genitive							
+n64001012005	3JN 1:12!5		conj		and	也	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001012006	3JN 1:12!6		prep		from		by	ὑπὸ	 	ὑπό	ὑπὸ	5259	PREP											
+n64001012007	3JN 1:12!7		pron	personal	itself	本身	itself	αὐτῆς	 	αὐτός	αὐτῆς	846	P-GSF		singular	feminine	genitive							n64001012009
+n64001012008	3JN 1:12!8		det		the		the	τῆς	 	ὁ	τῆς	3588	T-GSF		singular	feminine	genitive							
+n64001012009	3JN 1:12!9		noun	common	truth	真理	truth	ἀληθείας	·	ἀλήθεια	ἀληθείας	225	N-GSF		singular	feminine	genitive							
+n64001012010	3JN 1:12!10		adv		also	也	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001012011	3JN 1:12!11		pron	personal	we	我们	we	ἡμεῖς	 	ἐγώ	ἡμεῖς	2249	P-1NP		plural		nominative							n64001001002 n64001010024
+n64001012012	3JN 1:12!12		conj		and		also	δὲ	 	δέ	δὲ	1161	CONJ											
+n64001012013	3JN 1:12!13	v	verb		testify	作证	bear witness	μαρτυροῦμεν	,	μαρτυρέω	μαρτυροῦμεν	3140	V-PAI-1P	first	plural			present	active	indicative		A0:n64001012011		
+n64001012014	3JN 1:12!14		conj		and	而且	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001012015	3JN 1:12!15	v	verb		know	知道	you know	οἶδας	 	οἶδα	οἶδας	1492	V-RAI-2S	second	singular			perfect	active	indicative		A0:n64001011001	n64001011001	
+n64001012016	3JN 1:12!16		conj		that		that	ὅτι	 	ὅτι	ὅτι	3754	CONJ											
+n64001012017	3JN 1:12!17		det		the		the	ἡ	 	ὁ	ἡ	3588	T-NSF		singular	feminine	nominative							
+n64001012018	3JN 1:12!18		noun	common	testimony	见证	testimony	μαρτυρία	 	μαρτυρία	μαρτυρία	3141	N-NSF		singular	feminine	nominative							
+n64001012019	3JN 1:12!19		pron	personal	our	我们	of us	ἡμῶν	 	ἐγώ	ἡμῶν	2257	P-1GP		plural		genitive							n64001001002 n64001010024
+n64001012020	3JN 1:12!20	p	adj		true	真	true	ἀληθής	 	ἀληθής	ἀληθής	227	A-NSF		singular	feminine	nominative							
+n64001012021	3JN 1:12!21	vc	verb		is	是	is	ἐστιν	.	εἰμί	ἐστιν	2076	V-PAI-3S	third	singular			present	active	indicative				
+n64001013001	3JN 1:13!1	o	adj	substantive	many	许多	Many things	Πολλὰ	 	πολύς	Πολλὰ	4183	A-APN		plural	neuter	accusative							
+n64001013002	3JN 1:13!2	v	verb		have	有	I had	εἶχον	 	ἔχω	εἶχον	2192	V-IAI-1S	first	singular			imperfect	active	indicative		A0:n64001001002 A1:n64001013003	n64001001002	
+n64001013003	3JN 1:13!3	v	verb		write	写	to write	γράψαι	 	γράφω	γράψαι	1125	V-AAN					aorist	active	infinitive		A0:n64001001002 A1:n64001013001 A2:n64001013004	n64001001002	
+n64001013004	3JN 1:13!4	io	pron	personal	you	你	to you	σοι	,	σύ	σοι	4671	P-2DS		singular		dative							n64001011001
+n64001013005	3JN 1:13!5		conj		but	但	but	ἀλλ	’	ἀλλά	ἀλλ	235	CONJ											
+n64001013006	3JN 1:13!6	adv	adv		not	不	not	οὐ	 	οὐ	οὐ	3756	PRT-N											
+n64001013007	3JN 1:13!7	v	verb		want	想	I desire	θέλω	 	θέλω	θέλω	2309	V-PAI-1S	first	singular			present	active	indicative		A0:n64001001002 A1:n64001013013	n64001001002	
+n64001013008	3JN 1:13!8		prep		with	用	with	διὰ	 	διά	διὰ	1223	PREP											
+n64001013009	3JN 1:13!9		noun	common	ink	墨	ink	μέλανος	 	μέλαν	μέλανος	3188	A-GSN		singular	neuter	genitive							
+n64001013010	3JN 1:13!10		conj		and	和	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001013011	3JN 1:13!11		noun	common	pen	笔	pen	καλάμου	 	κάλαμος	καλάμου	2563	N-GSM		singular	masculine	genitive							
+n64001013012	3JN 1:13!12	io	pron	personal	you	你	to you	σοι	 	σύ	σοι	4671	P-2DS		singular		dative							n64001011001
+n64001013013	3JN 1:13!13	v	verb		write	写	to write	γράφειν	·	γράφω	γράφειν	1125	V-PAN					present	active	infinitive		A0:n64001001002 A2:n64001013012	n64001001002	
+n64001014001	3JN 1:14!1	v	verb		hope	盼望	I hope	ἐλπίζω	 	ἐλπίζω	ἐλπίζω	1679	V-PAI-1S	first	singular			present	active	indicative		A0:n64001001002 A1:n64001014005	n64001001002	
+n64001014002	3JN 1:14!2		conj		but	但	however	δὲ	 	δέ	δὲ	1161	CONJ											
+n64001014003	3JN 1:14!3	adv	adv		soon	不久	soon	εὐθέως	 	εὐθέως	εὐθέως	2112	ADV											
+n64001014004	3JN 1:14!4	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n64001011001
+n64001014005	3JN 1:14!5	v	verb		see	见到	to see	ἰδεῖν	,	ὁράω	ἰδεῖν	3708	V-2AAN					aorist	active	infinitive		A0:n64001001002 A1:n64001014004	n64001001002	
+n64001014006	3JN 1:14!6		conj		and	并且	and	καὶ	 	καί	καὶ	2532	CONJ											
+n64001014007	3JN 1:14!7		noun	common	mouth	口	mouth	στόμα	 	στόμα	στόμα	4750	N-ASN		singular	neuter	accusative							
+n64001014008	3JN 1:14!8		prep		to	对	to	πρὸς	 	πρός	πρὸς	4314	PREP											
+n64001014009	3JN 1:14!9		noun	common	mouth	口	mouth	στόμα	 	στόμα	στόμα	4750	N-ASN		singular	neuter	accusative							
+n64001014010	3JN 1:14!10	v	verb		talk	倾谈	we will speak	λαλήσομεν	.	λαλέω	λαλήσομεν	2980	V-FAI-1P	first	plural			future	active	indicative		A0:n64001001002;n64001011001	n64001001002 n64001011001	
+n64001015001	3JN 1:15!1	s	noun	common	peace	平安	Peace	Εἰρήνη	 	εἰρήνη	Εἰρήνη	1515	N-NSF		singular	feminine	nominative							
+n64001015002	3JN 1:15!2	io	pron	personal	you	你	to you	σοι	.	σύ	σοι	4671	P-2DS		singular		dative							n64001011001
+n64001015003	3JN 1:15!3	v	verb		greet	问候	Greet	ἀσπάζονταί	 	ἀσπάζομαι	ἀσπάζονταί	782	V-PNI-3P	third	plural			present	middle	indicative		A1:n64001015004 A0:n64001015006		
+n64001015004	3JN 1:15!4	o	pron	personal	you	你	you	σε	 	σύ	σε	4571	P-2AS		singular		accusative							n64001011001
+n64001015005	3JN 1:15!5		det		the	这里	the	οἱ	 	ὁ	οἱ	3588	T-NPM		plural	masculine	nominative							
+n64001015006	3JN 1:15!6		adj		friends	朋友们	friends	φίλοι	.	φίλος	φίλοι	5384	A-NPM		plural	masculine	nominative							
+n64001015007	3JN 1:15!7	v	verb		greet	问安	Greet	ἀσπάζου	 	ἀσπάζομαι	ἀσπάζου	782	V-PNM-2S	second	singular			present	middle	imperative		A0:n64001011001 A1:n64001015009	n64001011001	
+n64001015008	3JN 1:15!8		det		the		the	τοὺς	 	ὁ	τοὺς	3588	T-APM		plural	masculine	accusative							
+n64001015009	3JN 1:15!9		adj		friends	朋友	friends	φίλους	 	φίλος	φίλους	5384	A-APM		plural	masculine	accusative							
+n64001015010	3JN 1:15!10		prep		by	按著	by	κατ	’	κατά	κατ	2596	PREP											
+n64001015011	3JN 1:15!11		noun	common	name	名字		ὄνομα	.	ὄνομα	ὄνομα	3686	N-ASN		singular	neuter	accusative							
