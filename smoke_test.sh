@@ -125,8 +125,13 @@ step "[10] schema"
 OUT="$("${GBG[@]}" schema --check 2>&1)" || fail "docs/SCHEMA.md is stale (got: $OUT)"
 pass "docs/SCHEMA.md matches graphdef"
 
-# --- 11. SQL/PGQ: optional, reported, never fatal -----------------------------------------------
-step "[11] SQL/PGQ (optional)"
+# --- 11. the NL eval goldens still hold -----------------------------------------------------
+step "[11] eval goldens"
+OUT="$("${GBG[@]}" eval --check-goldens --db "$DB" 2>&1)" || fail "eval goldens drifted (got: $OUT)"
+pass "every fixture golden reproduces from its reference query"
+
+# --- 12. SQL/PGQ: optional, reported, never fatal -----------------------------------------------
+step "[12] SQL/PGQ (optional)"
 set +e; OUT="$("${GBG[@]}" query frame_args --pgq --db "$DB" --param verb_lemma=ἀγαπάω 2>&1)"; RC=$?; set -e
 if [[ $RC -eq 0 && "$OUT" == *"3JN 1:1!8"* ]]; then pass "DuckPGQ twin runs"
 else printf '  \033[33mskip\033[0m DuckPGQ unavailable here (exit %s); plain SQL is the contract\n' "$RC"; fi

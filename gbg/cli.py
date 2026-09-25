@@ -35,6 +35,7 @@ COMMANDS: list[tuple[str, str, str]] = [
     ("resolve", "gbg.resolve", "resolve a reference to ids, or an id to its reference"),
     ("sql", "gbg.db", "run one read-only SELECT against the built graph"),
     ("query", "gbg.queries", "run a saved query from queries/"),
+    ("eval", "gbg.evals", "check the NL eval goldens, or score a set of answers"),
 ]
 
 
