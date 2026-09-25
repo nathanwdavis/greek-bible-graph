@@ -257,9 +257,11 @@ TABLES: tuple[Table, ...] = (
     ), ("src", "ord")),
 
     Table("has_subject", "edge",
-          "Coreference-resolved SUBJECT of a verb, from MACULA's subjref column. This is NOT "
-          "the syntactic subject: most targets lie outside the verb's verse. For the "
-          "syntactic subject use the tree (a sibling group with role = 's').", (
+          "Coreference-resolved subject of a verb whose subject is NOT EXPRESSED, from "
+          "MACULA's subjref column (90% of verbs without an expressed subject have one; 6% "
+          "of verbs with an expressed subject do). It is not the syntactic subject, and its "
+          "target usually lies in another verse. For expressed subjects use the tree (a "
+          "sibling constituent with role = 's') and, for pronouns, refers_to.", (
         C("src", "VARCHAR", "Verb token.", ref="token", label="HAS_SUBJECT", nullable=False),
         C("dst", "VARCHAR", "Subject referent token; NULL when implicit.", ref="token",
           label="HAS_SUBJECT"),

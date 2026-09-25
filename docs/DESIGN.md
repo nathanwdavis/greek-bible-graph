@@ -172,7 +172,11 @@ Each finding below is pinned as an anomaly count in `build-manifest.json`. A new
   - 8,009 of 8,010 sentences have a word-group root; one has a lone word, so `forest-root` counts root *nodes*.
   - 6,038 tokens are `discontinuous`, and 9,461 word groups are non-contiguous in the text.
   - Tree order ≠ surface order, so there are two ordinals: `ord` (surface) and `tree_ord` (constituent order).
-- **`subjref` is coreference, not grammar.** Of its 20,372 edges, most point outside the verb's verse. So the edge is named `has_subject`, and the pitfalls section of the schema and the skill both lead with it. `subject_lemma_tree` and `subject_lemma_subjref` are separate saved queries: they answer different questions.
+- **`subjref` is coreference, not grammar, and it covers unexpressed subjects.** Of its 20,372 edges, most point outside the verb's verse.
+  - 90% of clause verbs with no expressed subject carry a `subjref` (15,018 of 16,674).
+  - Only 6% of verbs with an expressed subject do (523 of 8,812).
+
+  So the edge is named `has_subject`, and the pitfalls section of the schema and the skill both lead with it. `subject_lemma_tree` and `subject_lemma_subjref` are separate saved queries: they answer different questions. "Every verb whose subject is Paul" needs both, plus `refers_to` from pronoun subjects. The second end-to-end eval run found this (`evals/runs/2026-09-25-gbg-query-full.yaml`).
 
 ## 5. Normalisation and references
 

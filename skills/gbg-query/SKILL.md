@@ -27,9 +27,12 @@ gbg schema
 Read **"Read this first"** before writing any SQL. Two traps catch almost
 every first query:
 
-- `has_subject` is **coreference** (who the subject refers to, often in
-  another verse), not the grammatical subject. The grammatical subject is the
-  clause constituent with `role = 's'`.
+- `has_subject` is **coreference for unexpressed subjects** (who an implied
+  subject refers to, often in another verse), not the grammatical subject --
+  and a verb whose subject is written out (ἐγώ, Παῦλος) almost never has one.
+  The grammatical subject is the clause constituent with `role = 's'`; follow
+  `refers_to` from it when it is a pronoun. "Every verb whose subject is X"
+  needs both.
 - Lemmas match **exactly**, accents included. For accent-free input use
   `lemma_key = gbg_key('...')` and report every lemma that matches.
 
