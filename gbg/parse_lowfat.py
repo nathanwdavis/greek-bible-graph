@@ -148,6 +148,12 @@ def _walk_sentence(sentence: ET.Element, book: str, res: LowfatResult) -> None:
                 row[col] = v
         for col in set(WG_ATTRS.values()):
             row.setdefault(col, None)
+        if (row["role"] or "").startswith("err"):
+            # Six SBLGNT groups carry an annotator's error note ("err__subordinated
+            # simple cl., parent rule: ...") where the role belongs. Kept verbatim --
+            # rewriting upstream data here would be a guess -- and counted, so the
+            # manifest shows when upstream fixes them.
+            res.anomalies["wg.role_is_upstream_error_note"] += 1
         res.wgs.append(row)
         kids = [c for c in el if c.tag in ("wg", "w")]
         # Push in reverse so the first child is processed first (preorder).

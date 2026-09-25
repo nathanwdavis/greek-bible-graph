@@ -30,6 +30,11 @@ COMMANDS: list[tuple[str, str, str]] = [
     ("fetch", "gbg.sources", "download the pinned upstream files into the cache"),
     ("build", "gbg.store", "build the corpus graph (Parquet + DuckDB) from the pinned sources"),
     ("lint", "gbg.lint", "check the built graph's integrity (FILE\\tRULE\\tREASON)"),
+    ("schema", "gbg.schemadoc", "print the schema document Claude reads before writing SQL"),
+    ("ref", "gbg.interlinear", "show a passage as an interlinear"),
+    ("resolve", "gbg.resolve", "resolve a reference to ids, or an id to its reference"),
+    ("sql", "gbg.db", "run one read-only SELECT against the built graph"),
+    ("query", "gbg.queries", "run a saved query from queries/"),
 ]
 
 

@@ -13,7 +13,8 @@
     "tsv_lowfat_mismatch.frame": 3,
     "tsv_lowfat_mismatch.gloss": 1,
     "tsv_lowfat_mismatch.role": 1,
-    "tsv_lowfat_mismatch.text": 7
+    "tsv_lowfat_mismatch.text": 7,
+    "wg.role_is_upstream_error_note": 6
   },
   "edition": "sblgnt",
   "excluded_fields": [

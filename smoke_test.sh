@@ -89,4 +89,46 @@ COLS="$("$PY" -c "import duckdb,sys; print(' '.join(r[0] for r in duckdb.connect
 for c in $COLS; do [[ "$c" != "domain" && "$c" != "ln" ]] || fail "excluded column $c in the build"; done
 pass "no Louw-Nida (MARBLE) fields in fixture or build"
 
+# --- 6. resolve: 0 found, 1 absent, 2 malformed ------------------------------------
+step "[6] resolve"
+OUT="$("${GBG[@]}" resolve --db "$DB" "Phlm 10" 2>&1)" || fail "resolve Phlm 10 failed (got: $OUT)"
+[[ "$OUT" == *"sblgnt:PHM.1.10"* ]] || fail "resolve Phlm 10 did not give the verse id (got: $OUT)"
+set +e; OUT="$("${GBG[@]}" resolve --db "$DB" "Phlm 30" 2>&1)"; RC=$?; set -e
+[[ $RC -eq 1 ]] || fail "absent verse should exit 1 (exit $RC, got: $OUT)"
+set +e; OUT="$("${GBG[@]}" resolve --db "$DB" "Jud 3" 2>&1)"; RC=$?; set -e
+[[ $RC -eq 2 && "$OUT" == *ambiguous* ]] || fail "ambiguous book should exit 2 (exit $RC, got: $OUT)"
+pass "resolve exits 0 / 1 / 2"
+
+# --- 7. the interlinear ---------------------------------------------------------------
+step "[7] ref"
+OUT="$("${GBG[@]}" ref --db "$DB" "Phlm 2" --width 200 2>&1)" || fail "ref failed (got: $OUT)"
+[[ "$OUT" == *"κατ’  οἶκόν"* ]] || fail "interlinear lost the elision spacing (got: $OUT)"
+pass "Phlm 2 renders with κατ’ οἶκόν"
+
+# --- 8. a saved query answers an anchor fact -------------------------------------------
+step "[8] saved queries"
+OUT="$("${GBG[@]}" query lemma_by_book --db "$DB" --param lemma=θεός 2>/dev/null)" || fail "saved query failed (got: $OUT)"
+[[ "$OUT" == *$'sblgnt:PHM\tPhilemon\t2'* ]] || fail "θεός should occur twice in Philemon (got: $OUT)"
+pass "θεός occurs 2x in Philemon"
+
+# --- 9. the SQL sandbox --------------------------------------------------------------------
+step "[9] sandbox"
+set +e; OUT="$("${GBG[@]}" sql --db "$DB" "COPY token TO '$WORK/leak.csv'" 2>&1)"; RC=$?; set -e
+[[ $RC -eq 2 ]] || fail "COPY should be refused with exit 2 (exit $RC, got: $OUT)"
+[[ ! -e "$WORK/leak.csv" ]] || fail "COPY wrote a file"
+set +e; OUT="$("${GBG[@]}" sql --db "$DB" "SELECT * FROM read_text('/etc/hostname')" 2>&1)"; RC=$?; set -e
+[[ $RC -eq 2 ]] || fail "file read should be refused (exit $RC, got: $OUT)"
+pass "COPY and file reads refused; nothing written"
+
+# --- 10. generated docs are current ----------------------------------------------------------
+step "[10] schema"
+OUT="$("${GBG[@]}" schema --check 2>&1)" || fail "docs/SCHEMA.md is stale (got: $OUT)"
+pass "docs/SCHEMA.md matches graphdef"
+
+# --- 11. SQL/PGQ: optional, reported, never fatal -----------------------------------------------
+step "[11] SQL/PGQ (optional)"
+set +e; OUT="$("${GBG[@]}" query frame_args --pgq --db "$DB" --param verb_lemma=ἀγαπάω 2>&1)"; RC=$?; set -e
+if [[ $RC -eq 0 && "$OUT" == *"3JN 1:1!8"* ]]; then pass "DuckPGQ twin runs"
+else printf '  \033[33mskip\033[0m DuckPGQ unavailable here (exit %s); plain SQL is the contract\n' "$RC"; fi
+
 step "all smoke checks passed"
