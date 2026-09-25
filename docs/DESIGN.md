@@ -172,7 +172,7 @@ Each finding below is pinned as an anomaly count in `build-manifest.json`. A new
   - 8,009 of 8,010 sentences have a word-group root; one has a lone word, so `forest-root` counts root *nodes*.
   - 6,038 tokens are `discontinuous`, and 9,461 word groups are non-contiguous in the text.
   - Tree order ≠ surface order, so there are two ordinals: `ord` (surface) and `tree_ord` (constituent order).
-- **`subjref` is coreference, not grammar, and it covers unexpressed subjects.** Of its 20,372 edges, most point outside the verb's verse.
+- **`subjref` is coreference, not grammar, and it mostly covers unexpressed subjects.** Of its 20,372 edges, most point outside the verb's verse.
   - 90% of clause verbs with no expressed subject carry a `subjref` (15,018 of 16,674).
   - Only 6% of verbs with an expressed subject do (523 of 8,812).
 

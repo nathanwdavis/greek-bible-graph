@@ -10,8 +10,10 @@ CI cannot run Claude, so the eval splits:
   question. The hard failure is a HALLUCINATED id -- one that looks like
   ``sblgnt:n...`` but does not exist in the build -- because a fabricated
   citation is worse than no answer. Beyond that: precision/recall of cited
-  ids against the golden, the golden number stated (digits or words), or a
-  proper refusal: a decline phrase plus the topic, with any cited ids real.
+  ids against the golden, the golden number stated (in digits, or as a number
+  word up to twenty -- compound phrases like "one hundred sixteen" are not
+  parsed), or a proper refusal: a decline phrase plus the topic, with any
+  cited ids real.
 """
 
 from __future__ import annotations
@@ -112,6 +114,7 @@ def score(root: Path, db: Path, answers: dict[str, str]) -> tuple[list[dict], bo
             elif "rows" in g or "value" in g:
                 want = str(g.get("rows", g.get("value")))
                 # "1,307" and "1 307" state the same number as "1307"; "Four" states 4.
+                # Number words stop at twenty (NUMBER_WORDS) by contract.
                 plain = re.sub(r"(?<=\d)[,\u202f\u00a0 ](?=\d{3}\b)", "", text)
                 plain = re.sub(r"\b[A-Za-z]+\b", lambda m: str(NUMBER_WORDS.get(
                     m.group(0).lower(), m.group(0))), plain)

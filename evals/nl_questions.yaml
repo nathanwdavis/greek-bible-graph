@@ -43,8 +43,9 @@ questions:
     params: {lemma: ἐγώ, scope: Phlm}
     golden: {rows: 4}
 
-  # MACULA's subjref resolves UNEXPRESSED subjects (90% of verbs without an
-  # expressed subject carry one; 6% of verbs with one do). The four Philemon verbs
+  # MACULA's subjref mostly resolves unexpressed subjects (90% of verbs without an
+  # expressed subject carry one; 6% of verbs with one do). All 21 below are on
+  # verbs with no expressed subject (checked against the full-NT build). The four Philemon verbs
   # whose expressed subject is ἐγώ (= Paul) therefore have none -- an earlier
   # wording ("once pronouns ... are resolved") asked for those too, and a Claude
   # run rightly answered 25 (evals/runs/2026-09-25-gbg-query-full.yaml).

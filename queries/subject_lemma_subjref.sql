@@ -1,8 +1,10 @@
 -- name: subject_lemma_subjref
--- description: Verbs whose UNEXPRESSED subject, as resolved by MACULA's coreference
--- description: annotation (subjref), is a word of the lemma. The referent is often in
--- description: another verse. Verbs whose subject is written out (e.g. ἐγώ) are not
--- description: here: add subject_lemma_tree, and follow refers_to from pronoun subjects.
+-- description: Verbs whose subject, as resolved by MACULA's coreference annotation
+-- description: (subjref), is a word of the lemma. The referent is often in another
+-- description: verse. subjref mostly covers unexpressed subjects; the rarer edges on
+-- description: verbs with a written-out subject are returned too (no filter). Verbs whose
+-- description: expressed subject is a pronoun (e.g. ἐγώ) usually have no subjref: add
+-- description: subject_lemma_tree, and follow refers_to from pronoun subjects.
 -- param: lemma lemma -- e.g. Παῦλος, θεός
 -- param: scope passage optional -- limit to a passage (applied to the verb)
 -- cites: token
