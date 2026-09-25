@@ -1,0 +1,91 @@
+# Natural-language eval set for the gbg-query skill.
+#
+# Each question has a reference answer computed by a saved query or SQL, and a
+# golden that was established INDEPENDENTLY of that query (by walking the
+# fixture XML, counting the upstream TSV directly, or from the text itself).
+#
+#   gbg eval --check-goldens            reference queries still produce the goldens
+#   gbg eval --answers answers.yaml     score a set of answers (id -> answer text)
+#
+# golden kinds:
+#   ids:     [..]   the answer's cited ids should be exactly these (precision/recall)
+#   rows:    N      the reference returns N rows; the answer should state N
+#   value:   X      the reference returns the single value X; the answer should state X
+#   refusal: [..]   no reference: the answer must decline, mentioning one of these words
+
+questions:
+  - id: theos-philemon
+    scope: fixture
+    question: Where does θεός occur in Philemon?
+    query: lemma_occurrences
+    params: {lemma: θεός, scope: Phlm}
+    golden: {ids: [sblgnt:n57001003006, sblgnt:n57001004003]}
+
+  - id: autos-phlm-12
+    scope: fixture
+    question: In Philemon 12, who is αὐτόν?
+    query: referent_chain
+    params: {token: "PHM 1:12!4"}
+    golden: {ids: [sblgnt:n57001012004, sblgnt:n57001010012]}
+
+  - id: agapao-agent-3jn
+    scope: fixture
+    question: In 3 John, who does the loving (the agent of ἀγαπάω)?
+    query: frame_args
+    params: {verb_lemma: ἀγαπάω, scope: 3 John}
+    golden: {ids: [sblgnt:n64001001007]}
+
+  - id: ego-grammatical-subject
+    scope: fixture
+    question: In Philemon, which verbs have ἐγώ as their grammatical subject?
+    query: subject_lemma_tree
+    params: {lemma: ἐγώ, scope: Phlm}
+    golden: {rows: 4}
+
+  - id: paul-resolved-subject
+    scope: fixture
+    question: In Philemon, which verbs have Paul as their subject once pronouns and implied subjects are resolved?
+    query: subject_lemma_subjref
+    params: {lemma: Παῦλος}
+    golden: {rows: 21}
+
+  - id: shared-wording-2jn-3jn
+    scope: fixture
+    question: What wording do 2 John and 3 John share?
+    query: shared_lemma_trigrams
+    params: {a: 2 John, b: 3 John}
+    golden: {rows: 8}
+
+  - id: split-verses-philemon
+    scope: fixture
+    question: Which verses of Philemon are split across more than one sentence?
+    query: verses_split_across_sentences
+    params: {scope: Phlm}
+    golden: {ids: [sblgnt:PHM.1.20]}
+
+  - id: theos-nt
+    scope: nt
+    question: How many times does θεός occur in the New Testament?
+    sql: SELECT count(*) FROM token WHERE lemma = 'θεός'
+    golden: {value: 1307}
+
+  - id: agape-nt
+    scope: nt
+    question: How many times does the noun ἀγάπη occur in the New Testament?
+    sql: SELECT count(*) FROM token WHERE lemma = 'ἀγάπη'
+    golden: {value: 116}
+
+  - id: louw-nida-agape
+    scope: any
+    question: What is the Louw-Nida semantic domain of ἀγάπη?
+    golden: {refusal: [Louw, domain]}
+
+  - id: acts-8-37
+    scope: any
+    question: What does Acts 8:37 say in this edition?
+    golden: {refusal: [not in, absent, does not contain, omit]}
+
+  - id: lxx-rendering
+    scope: any
+    question: Which Hebrew word does the Septuagint translate with ἀγάπη?
+    golden: {refusal: [Septuagint, LXX]}

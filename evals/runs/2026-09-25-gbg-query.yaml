@@ -1,0 +1,62 @@
+# First end-to-end run of skills/gbg-query: an independent Claude agent answered
+# five eval questions using only the skill and the gbg CLI against the full-NT
+# build (3ca115b0a127bf6f), without access to evals/ or tests/. Scored with:
+#   gbg eval --answers evals/runs/2026-09-25-gbg-query.yaml
+# Friction it reported (both addressed in the same commit): lemma_by_book has no
+# whole-NT total; referent_chain follows only a word's first referent.
+autos-phlm-12: |
+  αὐτόν in Philemon 12 (sblgnt:n57001012004, PHM 1:12!4) refers to Onesimus. Its only
+  refers_to edge points to Ὀνήσιμον in v.10 (sblgnt:n57001010012, PHM 1:10!12), and the
+  saved `referent_chain` query ends there. So in "ὃν ἀνέπεμψά σοι αὐτόν" (sblgnt:PHM.1.12),
+  the man Paul is sending back is Onesimus.
+paul-resolved-subject: |
+  There are 21 of them. These are verbs in Philemon whose subject, after coreference is
+  resolved (MACULA subjref, from the saved query `subject_lemma_subjref`, lemma=Παῦλος,
+  scope=Phlm, build 3ca115b0a127bf6f), is Παῦλος. The resolved subject is Παῦλος at PHM 1:1
+  (sblgnt:n57001001001), 1:9 (sblgnt:n57001009009) or 1:19 (sblgnt:n57001019002):
+  - Εὐχαριστῶ 1:4 (sblgnt:n57001004001)
+  - ποιούμενος 1:4 (sblgnt:n57001004008)
+  - ἀκούων 1:5 (sblgnt:n57001005001)
+  - ἔσχον 1:7 (sblgnt:n57001007004)
+  - ἔχων 1:8 (sblgnt:n57001008006)
+  - ἐπιτάσσειν 1:8 (sblgnt:n57001008007)
+  - παρακαλῶ 1:9 (sblgnt:n57001009005)
+  - ὢν 1:9 (sblgnt:n57001009007)
+  - παρακαλῶ 1:10 (sblgnt:n57001010001)
+  - ἐγέννησα 1:10 (sblgnt:n57001010008)
+  - ἀνέπεμψά 1:12 (sblgnt:n57001012002)
+  - κατέχειν 1:13 (sblgnt:n57001013006)
+  - ἠθέλησα 1:14 (sblgnt:n57001014007)
+  - ποιῆσαι 1:14 (sblgnt:n57001014008)
+  - λέγω 1:19 (sblgnt:n57001019011)
+  - πεποιθὼς 1:21 (sblgnt:n57001021001)
+  - ἔγραψά 1:21 (sblgnt:n57001021005)
+  - εἰδὼς 1:21 (sblgnt:n57001021007)
+  - λέγω 1:21 (sblgnt:n57001021012)
+  - ἐλπίζω 1:22 (sblgnt:n57001022007)
+  - χαρισθήσομαι 1:22 (sblgnt:n57001022014)
+  The result was not truncated. I also ran a check query: no has_subject target in
+  Philemon is a first-person pronoun, so no verb reaches Paul only through a pronoun chain.
+ego-grammatical-subject: |
+  There are 4 of them. These are verbs in Philemon whose grammatical (syntactic) subject,
+  the clause constituent with role 's', is a nominative ἐγώ. They come from the saved query
+  `subject_lemma_tree`, lemma=ἐγώ, scope=Phlm:
+  - ἐβουλόμην (sblgnt:n57001013003, PHM 1:13) with subject ἐγὼ (sblgnt:n57001013002)
+  - ἔγραψα (sblgnt:n57001019003, PHM 1:19) with subject ἐγὼ (sblgnt:n57001019001)
+  - ἀποτίσω (sblgnt:n57001019008, PHM 1:19) with subject ἐγὼ (sblgnt:n57001019007)
+  - ὀναίμην (sblgnt:n57001020005, PHM 1:20) with subject ἐγώ (sblgnt:n57001020003)
+  These are the only four nominative ἐγώ tokens in Philemon, and each one is a subject.
+  This is a different question from the coreference one above, which found 21 verbs
+  resolving to Paul.
+theos-nt: |
+  θεός (lemma:θεός) occurs 1,307 times in the SBLGNT New Testament (build 3ca115b0a127bf6f).
+  The source is `SELECT l.id, l.lemma, l.n_tokens, (SELECT count(*) FROM token t WHERE
+  t.lemma_id = l.id) FROM lemma l WHERE l.key = gbg_key('θεος')`. Both the stored and the
+  recounted totals are 1307, and θεός is the only lemma with that accent-free key.
+  The saved `lemma_by_book` query's per-book counts also add up to 1307. The largest are
+  Acts 166 (sblgnt:ACT), Romans 149 (sblgnt:ROM), Luke 122 (sblgnt:LUK), 1 Corinthians 105
+  (sblgnt:1CO) and Revelation 95 (sblgnt:REV).
+louw-nida-agape: |
+  I can't answer this from this corpus: this build does not contain Louw-Nida semantic
+  domains, which are not openly licensed. The graph has no domain data for ἀγάπη, and I
+  won't supply one from memory.
