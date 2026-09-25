@@ -1,0 +1,229 @@
+{
+  "_comment": [
+    "Pinned upstream inputs. 'commit', 'sha256' and 'bytes' are written by `gbg fetch --update`;",
+    "everything else is curated. Each component maps upstream field names (TSV columns / XML",
+    "attributes) to a license. A component whose license is not open is DECLARED here so its",
+    "fields are excluded at parse time -- see gbg/licenses.py and docs/DESIGN.md."
+  ],
+  "sources": {
+    "macula-greek": {
+      "repo": "https://github.com/Clear-Bible/macula-greek",
+      "raw_url": "https://raw.githubusercontent.com/Clear-Bible/macula-greek/{commit}/{path}",
+      "commit": "8423afe47b9e8f24b7772e808af45c7159a6fe7e",
+      "license": "CC-BY-4.0",
+      "attribution": "MACULA Greek Linguistic Datasets, available at https://github.com/Clear-Bible/macula-greek/",
+      "files": [
+        {
+          "path": "SBLGNT/tsv/macula-greek-SBLGNT.tsv",
+          "sha256": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5",
+          "bytes": 20843282
+        },
+        {
+          "path": "SBLGNT/lowfat/01-matthew.xml",
+          "sha256": "83082bb2a094f06a4f9fd03e1f5a4b2af3977622a5c705ab65ab15ba74986de5",
+          "bytes": 14779751
+        },
+        {
+          "path": "SBLGNT/lowfat/02-mark.xml",
+          "sha256": "1906a855c55c00c4048de8d919caa81a35ebb7726a82b9031830e3dd9c266db8",
+          "bytes": 9244217
+        },
+        {
+          "path": "SBLGNT/lowfat/03-luke.xml",
+          "sha256": "10efdbb0415c1020cc288e25496496683c54ec884eb1cdee3f0ea47a0409e81b",
+          "bytes": 16729945
+        },
+        {
+          "path": "SBLGNT/lowfat/04-john.xml",
+          "sha256": "071d44e5a0e6c4b9c7e65944d924aed47d2b53c1774ed3ea9043b2651057715c",
+          "bytes": 12354789
+        },
+        {
+          "path": "SBLGNT/lowfat/05-acts.xml",
+          "sha256": "8b3093174e5cdf8d6846c316e1dc76e4dfd9d3599d6044b3419d692bcd5df37d",
+          "bytes": 15662106
+        },
+        {
+          "path": "SBLGNT/lowfat/06-romans.xml",
+          "sha256": "b4553cdfab04484617196657a82d596fb135ac82b252b0b55e0a3655513b7134",
+          "bytes": 5688684
+        },
+        {
+          "path": "SBLGNT/lowfat/07-1corinthians.xml",
+          "sha256": "701972e038bfb04c262a59e27ac73b9948800c6b67ac17e09cf3238dd41ecba2",
+          "bytes": 5249420
+        },
+        {
+          "path": "SBLGNT/lowfat/08-2corinthians.xml",
+          "sha256": "b675686f0a69744be1ff4057994860ee59c923fbd662bf2435841cf93ea71522",
+          "bytes": 3623591
+        },
+        {
+          "path": "SBLGNT/lowfat/09-galatians.xml",
+          "sha256": "33b390ff9f22fda1d7d27b9d234bc7f7cdd111efff9e72398da763cfce3b772b",
+          "bytes": 1759669
+        },
+        {
+          "path": "SBLGNT/lowfat/10-ephesians.xml",
+          "sha256": "0ad9968729285b856f5a8b0e51a3845a7d7256ab03abe31a47b827bf3b078824",
+          "bytes": 2162023
+        },
+        {
+          "path": "SBLGNT/lowfat/11-philippians.xml",
+          "sha256": "59d5843599152524b66b43ece2364b91b8155c92fadd832860086e71066f5daa",
+          "bytes": 1356360
+        },
+        {
+          "path": "SBLGNT/lowfat/12-colossians.xml",
+          "sha256": "10646a85185273b4df4d8e2f9019ca5748cced50fbe3348d5fffb0dd83ae0035",
+          "bytes": 1421337
+        },
+        {
+          "path": "SBLGNT/lowfat/13-1thessalonians.xml",
+          "sha256": "71baa51b9f4e90d63cef7a7dba05c31d08359ce7349f03afaa7745ffab12a467",
+          "bytes": 1227207
+        },
+        {
+          "path": "SBLGNT/lowfat/14-2thessalonians.xml",
+          "sha256": "d4546f7b670aa74bdc171497ea97f44c3b59fb89b5d2d529b1c6791d77018186",
+          "bytes": 703128
+        },
+        {
+          "path": "SBLGNT/lowfat/15-1timothy.xml",
+          "sha256": "968be311bf38e20dbb74ca56f78bd81fe3490066aec524ed328b0c45f057c86b",
+          "bytes": 1320418
+        },
+        {
+          "path": "SBLGNT/lowfat/16-2timothy.xml",
+          "sha256": "ac85240a120687404dc192fed630b81ddf906a5aa9b3e27d465fce66c9d3ff2d",
+          "bytes": 1055754
+        },
+        {
+          "path": "SBLGNT/lowfat/17-titus.xml",
+          "sha256": "7a9af3c04636e2d558b06e7685a289cdd7982f920a946f96417e252e3fc8f708",
+          "bytes": 555308
+        },
+        {
+          "path": "SBLGNT/lowfat/18-philemon.xml",
+          "sha256": "3782b340f3946192829fe07c229c2201390790bef2536d0223180f28bfaa756d",
+          "bytes": 267251
+        },
+        {
+          "path": "SBLGNT/lowfat/19-hebrews.xml",
+          "sha256": "d993eed41dc40e2b920021735853499ddaa136b5a373c7be294a87cf383fe077",
+          "bytes": 4108317
+        },
+        {
+          "path": "SBLGNT/lowfat/20-james.xml",
+          "sha256": "b65a8516c3f263ad907ba3c6061ca9b524ced71ae7c2cbc753ba58e4a2cac6ef",
+          "bytes": 1346565
+        },
+        {
+          "path": "SBLGNT/lowfat/21-1peter.xml",
+          "sha256": "5884b7c028e716535ac6a23b454cd23b19dbcc9519416f2f7f128f38de978cd2",
+          "bytes": 1386272
+        },
+        {
+          "path": "SBLGNT/lowfat/22-2peter.xml",
+          "sha256": "d382f7cf9151419ce68cf8250a33436b5aba09ea6109b3bbf202271a0a1a99fc",
+          "bytes": 931344
+        },
+        {
+          "path": "SBLGNT/lowfat/23-1john.xml",
+          "sha256": "cd7e151003667ceaec07b2276b2a75f8dbc6f2c57d5e5e5f09149ceffdf86b5e",
+          "bytes": 1610987
+        },
+        {
+          "path": "SBLGNT/lowfat/24-2john.xml",
+          "sha256": "de822aa64dc6374ba1a0920fe85e44639b26d6a74e671c49b167334c17291a47",
+          "bytes": 187075
+        },
+        {
+          "path": "SBLGNT/lowfat/25-3john.xml",
+          "sha256": "bf5737c05c54083f315d777e7b8f0056c893fff8632a82d6186258872b07f579",
+          "bytes": 159991
+        },
+        {
+          "path": "SBLGNT/lowfat/26-jude.xml",
+          "sha256": "096aaad13159b9354399e640344c07f4ba52ea28e14e26db4d17c4050ee63e80",
+          "bytes": 396128
+        },
+        {
+          "path": "SBLGNT/lowfat/27-revelation.xml",
+          "sha256": "21d60a5eefce0b30a0c9d9426b07faa659a2a59953cdabb11b84964068715df5",
+          "bytes": 8186163
+        }
+      ],
+      "components": {
+        "sblgnt-text": {
+          "fields": [
+            "text",
+            "unicode",
+            "after",
+            "normalized"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "SBL Greek New Testament (SBLGNT), copyright 2010 by the Society of Biblical Literature and Logos Bible Software, https://github.com/LogosBible/SBLGNT"
+        },
+        "macula-clear": {
+          "fields": [
+            "xml:id",
+            "ref",
+            "class",
+            "type",
+            "role",
+            "lemma",
+            "strong",
+            "morph",
+            "person",
+            "number",
+            "gender",
+            "case",
+            "tense",
+            "voice",
+            "mood",
+            "degree",
+            "frame",
+            "subjref",
+            "referent",
+            "discontinuous",
+            "rule",
+            "Rule",
+            "nodeId",
+            "articular",
+            "clauseType",
+            "junction",
+            "predication",
+            "note",
+            "syntax"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "MACULA Greek Linguistic Datasets, available at https://github.com/Clear-Bible/macula-greek/"
+        },
+        "berean": {
+          "fields": [
+            "gloss"
+          ],
+          "license": "LicenseRef-PublicDomain",
+          "attribution": "Berean Interlinear Bible glosses, placed in the public domain on 2023-04-30, https://interlinearbible.com/"
+        },
+        "cherith": {
+          "fields": [
+            "english",
+            "mandarin"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics"
+        },
+        "marble": {
+          "fields": [
+            "domain",
+            "ln"
+          ],
+          "license": "LicenseRef-UsedWithPermission",
+          "attribution": "Word sense data from the United Bible Societies MARBLE project, used by MACULA with permission -- EXCLUDED from this build"
+        }
+      }
+    }
+  }
+}

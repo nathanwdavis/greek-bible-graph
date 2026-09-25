@@ -27,6 +27,7 @@ EXIT_USAGE = 2
 #: (subcommand, module, one-line help). Each module defines
 #: ``add_arguments(parser)`` and ``run(args) -> int``.
 COMMANDS: list[tuple[str, str, str]] = [
+    ("fetch", "gbg.sources", "download the pinned upstream files into the cache"),
 ]
 
 
