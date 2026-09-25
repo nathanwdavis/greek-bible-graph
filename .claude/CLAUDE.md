@@ -36,6 +36,20 @@ Every output column declares its source component in `gbg/graphdef.py`; the
 build refuses an unmapped or non-open one. Do not add a column without a
 component, and do not add a component without a license in `sources.lock.json`.
 
+## What the data is really like (read before "fixing" a gate)
+
+Upstream has quirks the build tolerates *and counts*: non-NFC input, implicit
+participants, self-references, referent cycles, six `wg.role` values that are
+annotator error notes, and 19 fields where MACULA's TSV and lowfat disagree
+(the tree copy wins; rows come from it). All are pinned as anomaly counts in
+the manifests. Never "clean" upstream values in the build to make a count go
+away, and never make a lint pass by loosening it -- `docs/DESIGN.md` §4 says
+what each count is.
+
+Goldens are anchor facts computed WITHOUT the code under test (walking the
+fixture XML, counting the TSV). Never regenerate a golden from a query's own
+output: that golden can then match anything.
+
 ## Environment facts
 
 - `api.github.com` answers 403 from the cloud sandbox; `git ls-remote` and
@@ -47,6 +61,12 @@ component, and do not add a component without a license in `sources.lock.json`.
   one and materialises foreign-key edge tables there (see `gbg/db.py`).
 - Python UDFs in DuckDB need numpy; `gbg_key`/`gbg_nfc` are SQL macros stored
   in the database instead (`gbg/greek.py`).
+- DuckPGQ drops bound parameters inside GRAPH_TABLE; `--pgq` inlines them as
+  quoted literals (`db.inline_params`).
+- A read-only DuckDB connection is not a sandbox (COPY TO, read_text, ATTACH
+  all work). `gbg/db.py` is; route every query through it.
+- `gbg build` replaces `build/` wholesale. Do not rebuild while something
+  (a running agent, a test) is reading `build/gbg.duckdb`; use `--out`.
 
 ## Conventions (carried over from auto-zettel-skill)
 
