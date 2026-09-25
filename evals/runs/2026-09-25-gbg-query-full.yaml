@@ -1,0 +1,72 @@
+# Second end-to-end run of skills/gbg-query: all 12 eval questions, answered by
+# an independent Claude agent using only the skill and the gbg CLI against the
+# full-NT build (3ca115b0a127bf6f), without access to evals/ or tests/.
+# Scored with:  gbg eval --answers evals/runs/2026-09-25-gbg-query-full.yaml
+#
+# Findings acted on in the same PR:
+# - paul-resolved-subject: the agent answered 25, not the golden 21. It was right
+#   about the question as worded. MACULA's subjref (has_subject) resolves mainly
+#   UNEXPRESSED subjects -- 90% of verbs with no expressed subject carry one, only
+#   6% of verbs with an expressed subject do -- so the four verbs whose expressed
+#   subject is ἐγώ (= Paul) are not in it. The golden had been taken from the
+#   saved query's own output; the question is reworded to what subjref measures,
+#   the golden re-anchored on the raw TSV, and the schema doc and skill corrected.
+# - The referent_chain example id (PHM 1:12!3) is σοι, not αὐτόν; that is
+#   intended (it is an example), and needed no change.
+theos-philemon: |
+  θεός occurs twice in Philemon (saved query lemma_occurrences, scope Phlm, build 3ca115b0a127bf6f):
+  - Phlm 3: θεοῦ (N-GSM), sblgnt:n57001003006 (sblgnt:PHM.1.3)
+  - Phlm 4: θεῷ (N-DSM), sblgnt:n57001004003 (sblgnt:PHM.1.4)
+autos-phlm-12: |
+  In Phlm 12, αὐτόν (sblgnt:n57001012004, PHM 1:12!4) refers to Onesimus: Ὀνήσιμον in Phlm 10 (sblgnt:n57001010012, PHM 1:10!12). The refers_to table has exactly one referent for this word, so there are no others to consider.
+agapao-agent-3jn: |
+  ἀγαπάω occurs once in 3 John: ἀγαπῶ in 3 John 1 (sblgnt:n64001001008). Its A0 (agent) frame argument is ἐγώ (sblgnt:n64001001007). That pronoun's referent chain leads to πρεσβύτερος, "the elder" (sblgnt:n64001001002, 3JN 1:1!2). So the lover is the Elder, the letter's author.
+ego-grammatical-subject: |
+  Four verbs in Philemon have ἐγώ (nominative) in their syntactic subject, meaning the clause constituent with role 's' (saved query subject_lemma_tree):
+  - ἐβουλόμην, Phlm 13 (sblgnt:n57001013003); subject ἐγώ sblgnt:n57001013002
+  - ἔγραψα, Phlm 19 (sblgnt:n57001019003); subject ἐγώ sblgnt:n57001019001. The subject constituent is ἐγὼ Παῦλος, so it also contains Παῦλος (sblgnt:n57001019002).
+  - ἀποτίσω, Phlm 19 (sblgnt:n57001019008); subject ἐγώ sblgnt:n57001019007
+  - ὀναίμην, Phlm 20 (sblgnt:n57001020005); subject ἐγώ sblgnt:n57001020003
+  Other first-person verbs in the letter have no expressed subject, so they are not included here.
+paul-resolved-subject: |
+  25 verbs in Philemon resolve to Paul as their subject. The referent is one of three Παῦλος tokens: sblgnt:n57001001001 (Phlm 1), sblgnt:n57001009009 (Phlm 9) and sblgnt:n57001019002 (Phlm 19).
+  21 of them have an implied subject that has_subject (MACULA subjref) links to Παῦλος:
+  - Phlm 4: Εὐχαριστῶ sblgnt:n57001004001, ποιούμενος sblgnt:n57001004008
+  - Phlm 5: ἀκούων sblgnt:n57001005001
+  - Phlm 7: ἔσχον sblgnt:n57001007004
+  - Phlm 8: ἔχων sblgnt:n57001008006, ἐπιτάσσειν sblgnt:n57001008007
+  - Phlm 9: παρακαλῶ sblgnt:n57001009005, ὢν sblgnt:n57001009007
+  - Phlm 10: παρακαλῶ sblgnt:n57001010001, ἐγέννησα sblgnt:n57001010008
+  - Phlm 12: ἀνέπεμψά sblgnt:n57001012002
+  - Phlm 13: κατέχειν sblgnt:n57001013006
+  - Phlm 14: ἠθέλησα sblgnt:n57001014007, ποιῆσαι sblgnt:n57001014008
+  - Phlm 19: λέγω sblgnt:n57001019011
+  - Phlm 21: πεποιθὼς sblgnt:n57001021001, ἔγραψά sblgnt:n57001021005, εἰδὼς sblgnt:n57001021007, λέγω sblgnt:n57001021012
+  - Phlm 22: ἐλπίζω sblgnt:n57001022007, χαρισθήσομαι sblgnt:n57001022014
+  4 more have an expressed ἐγώ subject whose refers_to target is Παῦλος:
+  - ἐβουλόμην sblgnt:n57001013003 (ἐγώ sblgnt:n57001013002 → sblgnt:n57001009009)
+  - ἔγραψα sblgnt:n57001019003 (ἐγώ sblgnt:n57001019001 → sblgnt:n57001009009; Παῦλος sblgnt:n57001019002 is also in the subject)
+  - ἀποτίσω sblgnt:n57001019008 (ἐγώ sblgnt:n57001019007 → sblgnt:n57001019002)
+  - ὀναίμην sblgnt:n57001020005 (ἐγώ sblgnt:n57001020003 → sblgnt:n57001019002)
+  I checked every other Philemon verb that has no has_subject edge. None has a subject that resolves to Paul. The genitive μου inside the subject of Ἀσπάζεταί in Phlm 23 refers to Paul, but it is not the subject.
+shared-wording-2jn-3jn: |
+  The saved query shared_lemma_trigrams finds 8 exact three-lemma sequences within one sentence that occur in both letters. Each occurs once in each letter, and together they form four shared phrases:
+  1. "whom I love in truth": 2 John 1 οὓς ἐγὼ ἀγαπῶ ἐν ἀληθείᾳ (sblgnt:n63001001009 to sblgnt:n63001001013) and 3 John 1 ὃν ἐγὼ ἀγαπῶ ἐν ἀληθείᾳ (sblgnt:n64001001006 to sblgnt:n64001001010). This accounts for 3 trigrams.
+  2. γράφω σύ ἀλλά: 2 John 5 γράφων σοι ἀλλά (sblgnt:n63001005010 to sblgnt:n63001005012) and 3 John 13 γράψαι σοι ἀλλ’ (sblgnt:n64001013003 to sblgnt:n64001013005).
+  3. "mouth to mouth": 2 John 12 καὶ στόμα πρὸς στόμα λαλῆσαι (sblgnt:n63001012016 to sblgnt:n63001012020) and 3 John 14 καὶ στόμα πρὸς στόμα λαλήσομεν (sblgnt:n64001014006 to sblgnt:n64001014010). This accounts for 3 trigrams.
+  4. The closing greeting: 2 John 13 Ἀσπάζεταί σε τὰ (sblgnt:n63001013001 to sblgnt:n63001013003) and 3 John 15 ἀσπάζονταί σε οἱ (sblgnt:n64001015003 to sblgnt:n64001015005).
+  This method only finds exact lemma sequences, so looser parallels would not show up.
+split-verses-philemon: |
+  Only one verse of Philemon is split across sentences: Phlm 20 (sblgnt:PHM.1.20), which spans 2 sentences.
+  - Sentence 1 is words 1–7: ναί, ἀδελφέ, ἐγώ σου ὀναίμην ἐν κυρίῳ· (sblgnt:n57001020001 to sblgnt:n57001020007)
+  - Sentence 2 is words 8–13: ἀνάπαυσόν μου τὰ σπλάγχνα ἐν Χριστῷ. (sblgnt:n57001020008 to sblgnt:n57001020013)
+theos-nt: |
+  θεός (lemma:θεός) occurs 1,307 times in this edition of the SBLGNT, all tagged as nouns. Source: `gbg resolve lemma:θεός` on build 3ca115b0a127bf6f. `SELECT lemma, pos, count(*) FROM token WHERE lemma = 'θεός' GROUP BY lemma, pos` gives the same number. No other lemma shares its accent-free key.
+agape-nt: |
+  The noun ἀγάπη (lemma:ἀγάπη) occurs 116 times in this edition, and every one is tagged as a noun. Source: `gbg resolve lemma:ἀγάπη` on build 3ca115b0a127bf6f, confirmed by `SELECT lemma, pos, count(*) FROM token WHERE lemma = 'ἀγάπη' GROUP BY lemma, pos`. No other lemma shares its accent-free key.
+louw-nida-agape: |
+  This build can't answer that. Louw-Nida semantic domains are not in the graph because they are not openly licensed, and I won't supply the domain from memory. The graph does have lemma:ἀγάπη, with 116 occurrences and Strong's 26.
+acts-8-37: |
+  Acts 8:37 is not in this edition. `gbg resolve "Acts 8:37"` returns "ACT 8:37 is not in this edition" (exit 1), and resolving Acts 8:36–38 returns only sblgnt:ACT.8.36 and sblgnt:ACT.8.38. Textual variants are also outside this build, so I can't give the verse's wording.
+lxx-rendering: |
+  This build can't answer that. The Septuagint is not in the graph, and neither is any Hebrew data, so it has nothing on which Hebrew word ἀγάπη translates. I won't answer from memory.

@@ -22,10 +22,14 @@ from pathlib import Path
 from . import cli, db as dbmod, graphdef, ids
 
 PITFALLS = [
-    "**`has_subject` is coreference, not grammar.** It links a verb to the word its "
-    "subject *refers to* (MACULA `subjref`), usually in another verse. For the "
-    "grammatical subject use the tree: the clause constituent with `role = 's'` -- see "
-    "the saved queries `subject_lemma_tree` (grammar) and `subject_lemma_subjref` (coreference).",
+    "**`has_subject` is coreference, not grammar -- and mostly for unexpressed subjects.** "
+    "It links a verb to the word its subject refers to (MACULA `subjref`), usually in another "
+    "verse. It is mainly present when the subject is not written out (90% of such verbs); "
+    "only about 6% of verbs with an expressed subject carry one. Its presence is not a test "
+    "of whether the subject is expressed -- keep every row a query returns. \"Every verb whose "
+    "subject is Paul\" needs both: `has_subject`, plus the tree (`role = 's'`) and "
+    "`refers_to` for pronoun subjects like ἐγώ. See the saved queries "
+    "`subject_lemma_subjref` and `subject_lemma_tree`.",
     "**Lemmas match exactly, accents and case included.** `WHERE lemma = 'θεός'`. For "
     "accent-free lookup use `lemma_key = gbg_key('θεος')`; a key can match several lemmas "
     "(τίς/τις, εἰς/εἷς) -- report every match, never pick one.",

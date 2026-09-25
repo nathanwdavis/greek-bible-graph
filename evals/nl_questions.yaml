@@ -11,7 +11,8 @@
 #   ids:     [..]   the answer's cited ids should be exactly these (precision/recall)
 #   rows:    N      the reference returns N rows; the answer should state N
 #   value:   X      the reference returns the single value X; the answer should state X
-#   refusal: [..]   no reference: the answer must decline, mentioning one of these words
+#   refusal: [..]   no reference: the answer must decline (a decline phrase, see
+#                   gbg/evals.py) and name the topic -- one of these words
 
 questions:
   - id: theos-philemon
@@ -42,9 +43,17 @@ questions:
     params: {lemma: ἐγώ, scope: Phlm}
     golden: {rows: 4}
 
+  # MACULA's subjref mostly resolves unexpressed subjects (90% of verbs without an
+  # expressed subject carry one; 6% of verbs with one do). All 21 below are on
+  # verbs with no expressed subject (checked against the full-NT build). The four Philemon verbs
+  # whose expressed subject is ἐγώ (= Paul) therefore have none -- an earlier
+  # wording ("once pronouns ... are resolved") asked for those too, and a Claude
+  # run rightly answered 25 (evals/runs/2026-09-25-gbg-query-full.yaml).
+  # Golden anchored on the raw upstream TSV: 21 PHM rows whose subjref names a
+  # Παῦλος token, counted without gbg.
   - id: paul-resolved-subject
     scope: fixture
-    question: In Philemon, which verbs have Paul as their subject once pronouns and implied subjects are resolved?
+    question: In Philemon, which verbs does MACULA's coreference annotation mark as having Paul as their unexpressed (implied) subject?
     query: subject_lemma_subjref
     params: {lemma: Παῦλος}
     golden: {rows: 21}
@@ -83,7 +92,7 @@ questions:
   - id: acts-8-37
     scope: any
     question: What does Acts 8:37 say in this edition?
-    golden: {refusal: [not in, absent, does not contain, omit]}
+    golden: {refusal: ["8:37"]}
 
   - id: lxx-rendering
     scope: any
