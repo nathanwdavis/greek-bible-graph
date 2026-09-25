@@ -39,12 +39,28 @@ def test_scoring_ids_and_fabrication(fixture_db, answer, ok, fabricated):
     assert hallucinated is fabricated
 
 
-def test_scoring_refusals(fixture_db):
-    good = "This build does not include Louw-Nida semantic domains (license), so I can't say."
-    bad = "ἀγάπη is in domain 25.43 (sblgnt:n63001003014)."
-    rows, _ = evals.score(ROOT, fixture_db, {"louw-nida-agape": good})
+@pytest.mark.parametrize("qid,answer,ok", [
+    ("louw-nida-agape", "This build does not include Louw-Nida semantic domains (license), "
+                        "so I can't say.", True),
+    # Declining while citing real context is good practice, not a failure.
+    ("louw-nida-agape", "I can't answer that: Louw-Nida domains are not in this build. The graph "
+                        "does have lemma:ἀγάπη (sblgnt:n63001003014).", True),
+    ("acts-8-37", "Acts 8:37 is not in this edition; Acts 8:36-38 resolves only to "
+                  "sblgnt:PHM.1.1.", True),
+    # Naming the topic is not declining: this answers anyway.
+    ("louw-nida-agape", "ἀγάπη is in domain 25.43 (sblgnt:n63001003014).", False),
+    # A fabricated id sinks even a proper decline.
+    ("louw-nida-agape", "Louw-Nida is not in this build (see sblgnt:n57099099099).", False),
+])
+def test_scoring_refusals(fixture_db, qid, answer, ok):
+    rows, _ = evals.score(ROOT, fixture_db, {qid: answer})
+    assert rows[0]["ok"] is ok
+
+
+def test_number_words_state_the_number(fixture_db):
+    rows, _ = evals.score(ROOT, fixture_db, {"ego-grammatical-subject": "Four verbs, namely ..."})
     assert rows[0]["ok"]
-    rows, _ = evals.score(ROOT, fixture_db, {"louw-nida-agape": bad})
+    rows, _ = evals.score(ROOT, fixture_db, {"ego-grammatical-subject": "Five verbs, namely ..."})
     assert not rows[0]["ok"]
 
 

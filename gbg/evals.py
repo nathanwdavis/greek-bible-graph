@@ -10,7 +10,8 @@ CI cannot run Claude, so the eval splits:
   question. The hard failure is a HALLUCINATED id -- one that looks like
   ``sblgnt:n...`` but does not exist in the build -- because a fabricated
   citation is worse than no answer. Beyond that: precision/recall of cited
-  ids against the golden, the golden number stated, or a proper refusal.
+  ids against the golden, the golden number stated (digits or words), or a
+  proper refusal: a decline phrase plus the topic, with any cited ids real.
 """
 
 from __future__ import annotations
@@ -22,6 +23,15 @@ from pathlib import Path
 import yaml
 
 from . import cli, db as dbmod, ids, queries
+
+#: A decline must say it cannot answer -- naming the topic alone is not enough
+#: ("ἀγάπη is in domain 25.43" names the topic and answers anyway).
+DECLINE_MARKERS = ("not in", "can't", "cannot", "can not", "does not contain",
+                   "doesn't contain", "not available", "unable", "won't", "will not",
+                   "no data", "not include", "doesn't include", "does not include")
+NUMBER_WORDS = {w: i for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+    "fifteen sixteen seventeen eighteen nineteen twenty".split())}
 
 ID_RE = re.compile(r"\b(?:sblgnt:(?:n\d{11}|[1-4A-Z][A-Z0-9]{2}(?:\.\d+\.\d+)?)|lemma:[^\s,;)\]`'\"]+)")
 
@@ -101,12 +111,18 @@ def score(root: Path, db: Path, answers: dict[str, str]) -> tuple[list[dict], bo
                 ok = rec == 1.0 and not fake
             elif "rows" in g or "value" in g:
                 want = str(g.get("rows", g.get("value")))
-                # "1,307" and "1 307" state the same number as "1307".
+                # "1,307" and "1 307" state the same number as "1307"; "Four" states 4.
                 plain = re.sub(r"(?<=\d)[,\u202f\u00a0 ](?=\d{3}\b)", "", text)
+                plain = re.sub(r"\b[A-Za-z]+\b", lambda m: str(NUMBER_WORDS.get(
+                    m.group(0).lower(), m.group(0))), plain)
                 ok = re.search(rf"\b{re.escape(want)}\b", plain) is not None and not fake
                 verdict = f"states {want}: {'yes' if ok else 'no'}"
             else:
-                ok = any(w.lower() in text.lower() for w in g["refusal"]) and not cited
+                # Citing real context (the lemma, the neighbouring verses) while
+                # declining is good practice; fabricated ids still fail above.
+                low = text.lower()
+                ok = (any(m in low for m in DECLINE_MARKERS)
+                      and any(w.lower() in low for w in g["refusal"]) and not fake)
                 verdict = "declines" if ok else "does not decline cleanly"
             rows.append({"id": q["id"], "ok": ok, "verdict": verdict, "fabricated_ids": fake})
         return rows, hallucinated
