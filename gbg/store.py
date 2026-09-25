@@ -335,7 +335,8 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
             "anomalies": dict(sorted(anomalies.items())),
         }
         text = manifest.serialize(man)
-        comps = {c.name: c.license for c in src.components}
+        comps = {c.name: {"license": c.license, "fields": list(c.fields)}
+                 for c in src.components}
         con.execute("CREATE TABLE meta (key VARCHAR PRIMARY KEY, value VARCHAR NOT NULL)")
         con.executemany("INSERT INTO meta VALUES (?, ?)", [
             ("build_id", manifest.build_id(text)),
