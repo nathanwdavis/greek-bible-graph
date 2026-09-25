@@ -1,0 +1,112 @@
+{
+  "anomalies": {
+    "frame_arg.empty_role": 2,
+    "frame_arg.implicit": 1891,
+    "frame_arg.self_reference": 12,
+    "has_subject.self_reference": 1,
+    "input_not_nfc.lemma": 102,
+    "input_not_nfc.text": 31,
+    "refers_to.first_target_cycles": 4,
+    "refers_to.implicit": 6,
+    "refers_to.self_reference": 4,
+    "tsv_lowfat_mismatch.after": 7,
+    "tsv_lowfat_mismatch.frame": 3,
+    "tsv_lowfat_mismatch.gloss": 1,
+    "tsv_lowfat_mismatch.role": 1,
+    "tsv_lowfat_mismatch.text": 7
+  },
+  "edition": "sblgnt",
+  "excluded_fields": [
+    "domain",
+    "ln"
+  ],
+  "generated_by": "gbg build",
+  "ignored_fields": [],
+  "sources": {
+    "macula-greek": {
+      "commit": "8423afe47b9e8f24b7772e808af45c7159a6fe7e",
+      "files": {
+        "SBLGNT/lowfat/01-matthew.xml": "83082bb2a094f06a4f9fd03e1f5a4b2af3977622a5c705ab65ab15ba74986de5",
+        "SBLGNT/lowfat/02-mark.xml": "1906a855c55c00c4048de8d919caa81a35ebb7726a82b9031830e3dd9c266db8",
+        "SBLGNT/lowfat/03-luke.xml": "10efdbb0415c1020cc288e25496496683c54ec884eb1cdee3f0ea47a0409e81b",
+        "SBLGNT/lowfat/04-john.xml": "071d44e5a0e6c4b9c7e65944d924aed47d2b53c1774ed3ea9043b2651057715c",
+        "SBLGNT/lowfat/05-acts.xml": "8b3093174e5cdf8d6846c316e1dc76e4dfd9d3599d6044b3419d692bcd5df37d",
+        "SBLGNT/lowfat/06-romans.xml": "b4553cdfab04484617196657a82d596fb135ac82b252b0b55e0a3655513b7134",
+        "SBLGNT/lowfat/07-1corinthians.xml": "701972e038bfb04c262a59e27ac73b9948800c6b67ac17e09cf3238dd41ecba2",
+        "SBLGNT/lowfat/08-2corinthians.xml": "b675686f0a69744be1ff4057994860ee59c923fbd662bf2435841cf93ea71522",
+        "SBLGNT/lowfat/09-galatians.xml": "33b390ff9f22fda1d7d27b9d234bc7f7cdd111efff9e72398da763cfce3b772b",
+        "SBLGNT/lowfat/10-ephesians.xml": "0ad9968729285b856f5a8b0e51a3845a7d7256ab03abe31a47b827bf3b078824",
+        "SBLGNT/lowfat/11-philippians.xml": "59d5843599152524b66b43ece2364b91b8155c92fadd832860086e71066f5daa",
+        "SBLGNT/lowfat/12-colossians.xml": "10646a85185273b4df4d8e2f9019ca5748cced50fbe3348d5fffb0dd83ae0035",
+        "SBLGNT/lowfat/13-1thessalonians.xml": "71baa51b9f4e90d63cef7a7dba05c31d08359ce7349f03afaa7745ffab12a467",
+        "SBLGNT/lowfat/14-2thessalonians.xml": "d4546f7b670aa74bdc171497ea97f44c3b59fb89b5d2d529b1c6791d77018186",
+        "SBLGNT/lowfat/15-1timothy.xml": "968be311bf38e20dbb74ca56f78bd81fe3490066aec524ed328b0c45f057c86b",
+        "SBLGNT/lowfat/16-2timothy.xml": "ac85240a120687404dc192fed630b81ddf906a5aa9b3e27d465fce66c9d3ff2d",
+        "SBLGNT/lowfat/17-titus.xml": "7a9af3c04636e2d558b06e7685a289cdd7982f920a946f96417e252e3fc8f708",
+        "SBLGNT/lowfat/18-philemon.xml": "3782b340f3946192829fe07c229c2201390790bef2536d0223180f28bfaa756d",
+        "SBLGNT/lowfat/19-hebrews.xml": "d993eed41dc40e2b920021735853499ddaa136b5a373c7be294a87cf383fe077",
+        "SBLGNT/lowfat/20-james.xml": "b65a8516c3f263ad907ba3c6061ca9b524ced71ae7c2cbc753ba58e4a2cac6ef",
+        "SBLGNT/lowfat/21-1peter.xml": "5884b7c028e716535ac6a23b454cd23b19dbcc9519416f2f7f128f38de978cd2",
+        "SBLGNT/lowfat/22-2peter.xml": "d382f7cf9151419ce68cf8250a33436b5aba09ea6109b3bbf202271a0a1a99fc",
+        "SBLGNT/lowfat/23-1john.xml": "cd7e151003667ceaec07b2276b2a75f8dbc6f2c57d5e5e5f09149ceffdf86b5e",
+        "SBLGNT/lowfat/24-2john.xml": "de822aa64dc6374ba1a0920fe85e44639b26d6a74e671c49b167334c17291a47",
+        "SBLGNT/lowfat/25-3john.xml": "bf5737c05c54083f315d777e7b8f0056c893fff8632a82d6186258872b07f579",
+        "SBLGNT/lowfat/26-jude.xml": "096aaad13159b9354399e640344c07f4ba52ea28e14e26db4d17c4050ee63e80",
+        "SBLGNT/lowfat/27-revelation.xml": "21d60a5eefce0b30a0c9d9426b07faa659a2a59953cdabb11b84964068715df5",
+        "SBLGNT/tsv/macula-greek-SBLGNT.tsv": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5"
+      }
+    }
+  },
+  "tables": {
+    "book": {
+      "content_sha256": "cf5b96088f54b2480b9fa33eb482a0cff4ab9de2fa5e4a1f3ad128ef52f8f0fb",
+      "rows": 27,
+      "schema_sha256": "77addf77feed67235f5143b87dd90e7472e5f868226c8ee35da25a1649d03410"
+    },
+    "dominance": {
+      "content_sha256": "61f42331911abad79b1efa0521442651303283925da021661787c2d1ab4b2226",
+      "rows": 714350,
+      "schema_sha256": "029160afed0668eab68b10d76782fd3892345659c5df7db73cf2399154f22459"
+    },
+    "frame_arg": {
+      "content_sha256": "ca3d6d81d49aa7350175a4335ca7fae5a4c2c5f2ef1c18c3401d5ceefbd585be",
+      "rows": 43662,
+      "schema_sha256": "8b3950a7233dc9a52172df8deace6fbe9b4b717478399866241593541db2eaa8"
+    },
+    "has_subject": {
+      "content_sha256": "5229092eb2aca866763250aab6b51c6d4f22065984324b260dfac7eac1d2dd18",
+      "rows": 20372,
+      "schema_sha256": "50b3999c588cf5f8e302666a79bf591ddc9b9c24d05cce90e262ac320503279d"
+    },
+    "lemma": {
+      "content_sha256": "701e0b7a5ab1b61368dea1b391e20c28edf8cf049167ae2a1e2f03c355e6ab78",
+      "rows": 5468,
+      "schema_sha256": "992ea53594f62ffbf0ac2a4867d580f57d13db151fbfa193a755fba8fb2959ca"
+    },
+    "refers_to": {
+      "content_sha256": "8386494c55e4430bafccbdb662a945b968a2048b05f92a65f1ce301fd91143a1",
+      "rows": 18213,
+      "schema_sha256": "50b3999c588cf5f8e302666a79bf591ddc9b9c24d05cce90e262ac320503279d"
+    },
+    "sentence": {
+      "content_sha256": "0c29197f6443af40553443718040a6124b11b131af3de13c971b6a6223a1fa7e",
+      "rows": 8010,
+      "schema_sha256": "3c5af932cff2e9d837001118b58cf80fc6ce6bf3a0b55c92146c4e438c09fd36"
+    },
+    "token": {
+      "content_sha256": "d02de7523087b20d616bd8aa6f78a393b471f9b43183054161c06375022d421d",
+      "rows": 137741,
+      "schema_sha256": "832f54aec4b379d271be9558d7166edddc244b783bbac72559ab61c0c5f3d3f6"
+    },
+    "verse": {
+      "content_sha256": "23fdb89c01d15f47ecaef808e1b91f33885068cd07778481e8f329c02eb4a38e",
+      "rows": 7939,
+      "schema_sha256": "2127e56b91bb6d561f13ba5a645443f3d606fb1fa7206ed04d3e9c5eb459ef17"
+    },
+    "wg": {
+      "content_sha256": "5b04840dac240e331055c31029d30ad87bc39221e1a4cdf8b2df0bab6777f565",
+      "rows": 101170,
+      "schema_sha256": "18fbd361f826546e04a49ea4a3e78aee55457fc9bd1dbd4ff193499aefa07e69"
+    }
+  }
+}

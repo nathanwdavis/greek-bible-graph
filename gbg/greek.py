@@ -6,7 +6,7 @@ the bug this module exists to prevent:
 * **Identity** -- is this the same lemma? -- uses :func:`nfc`. Accents and
   case are meaningful: τίς (who?) and τις (someone) are different words, as
   are εἰς (into) and εἷς (one). Upstream is not even consistent about the
-  code points: 102 lemma values and 32 surface forms in MACULA's SBLGNT use
+  code points: 102 lemma values and 31 surface forms in MACULA's SBLGNT use
   oxia (U+1F71...) where the rest use tonos (U+03AC...). NFC folds those.
 
 * **Lookup** -- what did the person typing without polytonic input mean? --

@@ -28,6 +28,7 @@ EXIT_USAGE = 2
 #: ``add_arguments(parser)`` and ``run(args) -> int``.
 COMMANDS: list[tuple[str, str, str]] = [
     ("fetch", "gbg.sources", "download the pinned upstream files into the cache"),
+    ("build", "gbg.store", "build the corpus graph (Parquet + DuckDB) from the pinned sources"),
 ]
 
 
