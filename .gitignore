@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[codz]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.venv/
+venv/
+dist/
+
+# Derived, never committed: the build is a pure function of sources.lock.json
+# and this code, and build-manifest.json is what proves it (see docs/DESIGN.md).
+build/
+cache/
+
+# Secrets -- never commit credentials (carried over from auto-zettel-skill NFR-4)
+.env
+*.token
+*.pem
+.netrc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "greek-bible-graph"
+version = "0.1.0"
+description = "Open Greek interlinear Bible data as a deterministic, queryable corpus graph (DuckDB)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# duckdb is pinned EXACTLY: the optional DuckPGQ extension is built per DuckDB
+# release and lags behind PyPI (1.5.4 has builds; 1.5.5 did not when this was
+# written). Bumping it is a deliberate act -- see docs/DESIGN.md, D-4.
+dependencies = ["duckdb==1.5.4", "pyyaml>=6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+gbg = "gbg.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["gbg*"]
