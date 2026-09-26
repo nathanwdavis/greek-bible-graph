@@ -129,7 +129,8 @@ def dangling_edges(con):
 def implicit_target(con):
     out = []
     for t in graphdef.TABLES:
-        if t.kind == "edge":
+        # Only relations that can name an unexpressed participant carry `implicit`.
+        if t.kind == "edge" and any(c.name == "implicit" for c in t.columns):
             out += _v(t.name, "implicit-target", _rows(con, f"""
                 SELECT src FROM "{t.name}" WHERE implicit <> (dst IS NULL) ORDER BY src"""),
                 "edges where implicit and a NULL target disagree")

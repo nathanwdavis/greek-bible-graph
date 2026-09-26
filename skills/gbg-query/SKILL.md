@@ -1,6 +1,6 @@
 ---
 name: gbg-query
-description: Answers questions about the Greek New Testament (SBLGNT) from the greek-bible-graph corpus graph - word occurrences and distributions, morphology, grammatical subjects and objects, who a pronoun refers to, semantic-frame agents and patients, shared wording between passages, and interlinear views - by writing read-only SQL against the built DuckDB graph and citing verse and token ids for every claim. Use when the user asks what the Greek text says or where a Greek word occurs, how often, in what forms, who does what in a passage, what a pronoun refers to, or wants an interlinear. Do not use for theological interpretation beyond what the rows show, for Louw-Nida semantic domains, textual variants or the Septuagint, which this build does not contain.
+description: Answers questions about the Greek New Testament (SBLGNT) from the greek-bible-graph corpus graph - word occurrences and distributions, morphology, grammatical subjects and objects, who a pronoun refers to, semantic-frame agents and patients, shared wording between passages, which Greek words express an English concept, and interlinear views - by writing read-only SQL against the built DuckDB graph and citing verse and token ids for every claim. Use when the user asks what the Greek text says or where a Greek word occurs, how often, in what forms, who does what in a passage, what a pronoun refers to, or wants an interlinear. Do not use for theological interpretation beyond what the rows show, for Louw-Nida semantic domains, textual variants or the Septuagint, which this build does not contain.
 license: MIT
 allowed-tools: Bash, Read
 metadata:
@@ -45,6 +45,21 @@ gbg query lemma_occurrences --param lemma=θεός --param scope="Phlm" --json
 
 Saved queries are tested against independently computed answers; a
 hand-written query is not. Use one whenever it fits the question.
+
+**Which Greek words express a concept?** There are no semantic domains, so use
+both open meaning layers and say which one found each word:
+
+```sh
+gbg query lemmas_by_gloss --param words="know, knowledge, hide"   # translator glosses
+gbg query similar_lemmas --param lemma=γινώσκω                     # Clear synonym distance
+```
+
+Type plain English (knew/known/knowing all match `know`); name derivations
+separately (`knowledge`). A low `share` means the lemma only sometimes carries
+the concept -- check its occurrences before counting all of them. Glosses miss
+what a translator worded differently (ἀγαπητός is "beloved", not "love");
+proximity catches some of that. Neither finds a passage that is about a concept
+without using a word for it -- say so.
 
 ## Step 3 -- otherwise, write ONE SELECT
 

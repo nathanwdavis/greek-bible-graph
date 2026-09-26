@@ -38,12 +38,15 @@ from pathlib import Path
 
 import duckdb
 
-from . import books, cli, graphdef, greek, ids, licenses, manifest, parse_lowfat, parse_tsv, rows
+from . import (books, cli, english, graphdef, greek, ids, licenses, manifest, parse_lowfat,
+               parse_tsv, rows)
 from .sources import Lock, load_lock, verify_files
 
 SOURCE = "macula-greek"
 TSV_PATH = "SBLGNT/tsv/macula-greek-SBLGNT.tsv"
 LOWFAT_PREFIX = "SBLGNT/lowfat/"
+PROXIMITY_PATH = "sources/Clear/synonyms/Proximity.tsv"
+PROXIMITY_HEADER = ["StrongNumberX1", "StrongNumberX2", "Distance"]
 #: The only things a build directory may contain; anything else means --out
 #: points somewhere it should not, and the build refuses to replace it.
 BUILD_ENTRIES = {"gbg.duckdb", "gbg.duckdb.wal", "parquet", "manifest.json", "staging"}
@@ -177,7 +180,9 @@ TEXT_AGG = ("rtrim(string_agg(surface || CASE WHEN after = ' ' THEN ' ' ELSE aft
             "'' ORDER BY ord))")
 
 
-def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> None:
+def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult,
+         proximity: Path) -> Counter:
+    """Load every table; returns the anomalies only the loaded data can count."""
     V, I, B = "VARCHAR", "INTEGER", "BOOLEAN"
     stage(con, staging, "_tok", rw.tokens, {
         "id": V, "xml_id": V, "ref": V, "book": V, "chapter": I, "verse": I, "word": I,
@@ -199,6 +204,14 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
     stage(con, staging, "_refers_to", rw.refers_to, edge_cols)
     stage(con, staging, "_has_subject", rw.has_subject, edge_cols)
     stage(con, staging, "_frame_arg", rw.frame_arg, {**edge_cols, "arg_role": V})
+    # Gloss terms once per distinct gloss (about 9k in the NT), joined back to
+    # tokens -- gbg.english is the one definition, so it runs in Python.
+    glosses = sorted({t["english"] for t in rw.tokens if t["english"] is not None})
+    eng_rows = []
+    for g in glosses:
+        terms, negated = english.gloss_terms(g)
+        eng_rows.append({"english": g, "terms": "|".join(terms), "negated": negated})
+    stage(con, staging, "_eng", eng_rows, {"english": V, "terms": V, "negated": B})
     present = sorted({t["book"] for t in rw.tokens}, key=lambda c: books.BY_CODE[c].num)
     stage(con, staging, "_book", [{"code": c, "num": books.BY_CODE[c].num,
                                    "name": books.BY_CODE[c].name, "sbl": books.BY_CODE[c].sbl}
@@ -220,7 +233,12 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
         "depth": "tr.depth", "child_ord": "tr.child_ord", "tree_ord": "tr.tree_ord",
         "surface_key": "gbg_key(t.surface)", "lemma_key": "gbg_key(t.lemma)",
         "rule": "tr.rule", "junction": "tr.junction", "discontinuous": "tr.discontinuous",
-    }, "FROM _tok t JOIN _tree tr ON tr.xml_id = t.xml_id")
+        "english_terms": "CASE WHEN t.english IS NULL THEN NULL "
+                         "WHEN coalesce(e.terms, '') = '' THEN []::VARCHAR[] "
+                         "ELSE string_split(e.terms, '|') END",
+        "english_negated": "CASE WHEN t.english IS NULL THEN NULL ELSE e.negated END",
+    }, """FROM _tok t JOIN _tree tr ON tr.xml_id = t.xml_id
+         LEFT JOIN _eng e ON e.english = t.english""")
 
     insert(con, "lemma", {
         "id": "lemma_id", "lemma": "lemma", "key": "gbg_key(lemma)", "n_tokens": "count(*)",
@@ -272,6 +290,52 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
         cols = [c.name for c in graphdef.BY_NAME[name].columns]
         insert(con, name, {c: c for c in cols}, f'FROM "_{name}"')
 
+    return load_proximity(con, proximity)
+
+
+def load_proximity(con, path: Path) -> Counter:
+    """Clear's Strong's-keyed proximity -> lemma_proximity, via lemma.strongs.
+
+    Upstream pairs are Strong's numbers across Greek, Hebrew and Aramaic, and
+    a number can belong to several lemmas (G1492: οἶδα and ὁράω). Only
+    Greek-Greek rows whose numbers some lemma carries can become edges; every
+    other row is counted, never silently dropped, and never "repaired" (a
+    suffixed G4894a is not guessed to be 4894).
+    """
+    with open(path, encoding="utf-8") as fh:
+        header = fh.readline().rstrip("\n").split("\t")
+    if header != PROXIMITY_HEADER:
+        raise BuildError([f"{path}: header {header}, expected {PROXIMITY_HEADER}"])
+    con.execute(f"""CREATE TEMP TABLE _prox AS SELECT StrongNumberX1 AS a,
+        StrongNumberX2 AS b, Distance AS d FROM read_csv('{path}', delim='\t', header=true,
+        quote='', columns={{'StrongNumberX1': 'VARCHAR', 'StrongNumberX2': 'VARCHAR',
+        'Distance': 'DOUBLE'}}, auto_detect=false, parallel=false)""")
+    con.execute("CREATE TEMP TABLE _lemma_strong AS "
+                "SELECT id AS lemma_id, 'G' || unnest(strongs) AS strong FROM lemma")
+    insert(con, "lemma_proximity", {
+        "src": "s.lemma_id", "dst": "d.lemma_id", "src_strong": "p.a", "dst_strong": "p.b",
+        "distance": "p.d", "tier": "'data'", "confidence": "NULL",
+        "source": f"'{SOURCE}'",
+    }, """FROM _prox p JOIN _lemma_strong s ON s.strong = p.a
+         JOIN _lemma_strong d ON d.strong = p.b""")
+    counts = con.execute("""SELECT
+        count(*) FILTER (WHERE a NOT LIKE 'G%' OR b NOT LIKE 'G%'),
+        count(*) FILTER (WHERE a LIKE 'G%' AND b LIKE 'G%'
+            AND (a NOT IN (SELECT strong FROM _lemma_strong)
+                 OR b NOT IN (SELECT strong FROM _lemma_strong))),
+        count(*) FILTER (WHERE a IN (SELECT strong FROM _lemma_strong)
+            AND b IN (SELECT strong FROM _lemma_strong))
+        FROM _prox""").fetchone()
+    edges, selfs = con.execute("SELECT count(*), count(*) FILTER (WHERE src = dst) "
+                               "FROM lemma_proximity").fetchone()
+    return Counter({
+        "lemma_proximity.rows_not_greek": counts[0],
+        "lemma_proximity.rows_greek_unmapped": counts[1],
+        # one upstream row becomes several edges when a number has several lemmas
+        "lemma_proximity.edges_beyond_rows": edges - counts[2],
+        "lemma_proximity.self_pairs": selfs,
+    })
+
 
 # --- the build ------------------------------------------------------------------
 
@@ -320,7 +384,8 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
         for t in graphdef.TABLES:
             con.execute(graphdef.ddl(t))
         log("loading")
-        load(con, staging, rw, lf)
+        # update(), not +=: a Counter sum drops zero counts, and a pinned zero is a finding
+        anomalies.update(load(con, staging, rw, lf, base / PROXIMITY_PATH))
         con.execute(graphdef.edge_view_sql())
 
         log("fingerprinting")

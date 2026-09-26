@@ -82,6 +82,8 @@ The rule is **open licenses only**: CC BY, CC0 or public domain, anything a user
 | Clear (MACULA) | ids, morphology, lemma, Strong's, trees, roles, frames, referents | CC BY 4.0 | yes |
 | Berean Interlinear | `gloss` | public domain (2023-04-30) | yes |
 | Cherith Glosses | `english` | CC BY 4.0 | yes |
+| Clear synonyms | `sources/Clear/synonyms/Proximity.tsv`: Strong's-to-Strong's distance | CC BY 4.0 | yes (§4, meaning) |
+| Clear word senses | `sources/Clear/wordsense/greek-wordsenses.tsv` | CC BY 4.0 | **not loaded** (§4: ids do not align) |
 | UBS MARBLE | `domain`, `ln` (Louw–Nida) | "used with permission" | **excluded** |
 
 The lock declares every component with its real license. The exclusion list is *derived* from those licenses and never hand-maintained. It is enforced at three points:
@@ -135,7 +137,7 @@ Verse membership therefore comes from each word's own `ref`. The `<milestone>` e
 | Kind | Tables |
 |---|---|
 | Nodes | `book` (27), `verse` (7,939), `sentence` (8,010), `wg` (101,170), `token` (137,741), `lemma` (5,468) |
-| Relations | `refers_to` (18,213), `has_subject` (20,372), `frame_arg` (43,662) |
+| Relations | `refers_to` (18,213), `has_subject` (20,372), `frame_arg` (43,662), `lemma_proximity` (29,721) |
 | Index | `dominance` (714,350: the transitive closure of the trees) |
 | View | `edge` (every relation, typed) |
 
@@ -177,6 +179,47 @@ Each finding below is pinned as an anomaly count in `build-manifest.json`. A new
   - Only 6% of verbs with an expressed subject do (523 of 8,812).
 
   So the edge is named `has_subject`, and the pitfalls section of the schema and the skill both lead with it. `subject_lemma_tree` and `subject_lemma_subjref` are separate saved queries: they answer different questions. "Every verb whose subject is Paul" needs both, plus `refers_to` from pronoun subjects. The second end-to-end eval run found this (`evals/runs/2026-09-25-gbg-query-full.yaml`).
+
+### Meaning without Louw–Nida
+
+Thematic questions ("every passage about God's knowledge") need words grouped
+by meaning, and the one ready-made layer, MARBLE's Louw–Nida domains, is not
+open (D-2). Two open layers stand in for it, and they fail differently, which
+is why both are loaded (D-13, D-14):
+
+- **Gloss terms.** Cherith's `english` is short and dictionary-like, one
+  contextual gloss per word (γινώσκω → know / understand / find out / "had
+  sexual relations with"), so it works as a per-word sense label.
+  `gbg/english.py` turns each gloss into Snowball stems: bracketed insertions
+  and `~` dropped, stopwords dropped, irregular forms mapped first (the stemmer
+  leaves *knew* and *hidden* alone), a leading "not"/"without" recorded as
+  `english_negated` instead of becoming a term. The result is
+  `token.english_terms`, searched through `lemmas_by_gloss` with plain English.
+  A lemma's share of matching tokens exposes polysemy (ὁράω: 22 of 476 glossed
+  "know"). The limits are the translator's: derivations stay apart (*beloved* is
+  not *love*), and "predestined" was Berean's choice before it was a search term.
+- **Clear proximity.** MACULA ships a Strong's-to-Strong's distance table
+  (Greek, Hebrew and Aramaic numbers; lower = closer). Mapped to lemmas through
+  `lemma.strongs` it becomes `lemma_proximity`: γινώσκω's nearest neighbours are
+  ἐπιγινώσκω 0.26, οἶδα 0.26, ἐπίγνωσις 0.39, ἐπίσταμαι 0.40. It finds what the
+  glosses split (ἀγαπάω–ἀγαπητός). Only Greek–Greek rows whose numbers some lemma
+  carries become edges; the rest are pinned counts: 145,546 rows pair Greek with
+  Hebrew or Aramaic (kept upstream for the LXX phase), 1,550 name a Greek number
+  no lemma carries (suffixed forms like `G4894a`, never guessed to be `4894`),
+  1,993 extra edges arise where one number belongs to two lemmas (G1492: οἶδα and
+  ὁράω), and 273 pairs join two numbers of the same lemma (ἐγώ's forms carry
+  several), so they are self-pairs.
+- **Clear word senses are not loaded.** `greek-wordsenses.tsv` assigns an
+  unlabelled sense number per word (τίθημι sense 5 = appointed / destined). But it
+  is keyed by token id from an unstated, older MACULA release: 221 of its 60,574
+  ids are absent from this SBLGNT, 239 exist in neither edition, and 3,250 point at
+  words whose SBLGNT and Nestle1904 lemmas differ, with neither edition's words
+  fitting the senses. A sense attached to the wrong word is worse than none, so the
+  file waits until upstream states its alignment (D-15).
+
+Neither layer says what a passage is *about*: a verse can concern God's
+knowledge with no knowing word in it (Heb 4:13). That gap is for topical indexes
+(human curation) and, measured against them, embeddings; see §10.
 
 ## 5. Normalisation and references
 
@@ -336,7 +379,9 @@ corpus_refs:
 
 ## 10. Open questions
 
-- **MARBLE / Louw–Nida.** The data is the most-requested semantic layer, and it is "used with permission". Asking UBS for terms is the only honest route in.
+- **MARBLE / Louw–Nida.** The data is the most-requested semantic layer, and it is "used with permission". Asking UBS for terms is the only honest route in. Until then, gloss terms and Clear proximity stand in (§4, "Meaning without Louw–Nida").
+- **Topical indexes.** Passages about a topic with none of its words need human curation. OpenBible.info topics are CC BY but regenerated weekly (no git pin); the one structured Nave's (1896) with an explicit open license states no provenance and truncates its longest entry; CCEL-derived copies carry CCEL's non-commercial terms. Undecided.
+- **Clear word senses.** Load them once upstream states which MACULA release their ids follow (§4).
 - **lxx-morph provenance.** Its README cites an "Eliran Wong public-domain digital edition" for the base text, while eliranwong/LXX-Rahlfs-1935 on GitHub is CC BY-NC-SA and CATSS-derived. The Rahlfs 1935 *text* is public domain; confirm lxx-morph's surface text owes nothing to CATSS before building on it.
 - **LXX contextual glosses.** No open source exists, so the LXX will be an interlinear with lemma glosses only.
 - **DuckPGQ maturity.** It is research-grade and lags DuckDB releases.
@@ -361,3 +406,6 @@ corpus_refs:
 | D-10 | Stage through TSV + `read_csv` | ~100× faster than binding Python lists |
 | D-11 | Upstream anomalies are pinned as counts, not fixed or ignored | A changed count becomes a reviewed diff; rewriting upstream data would be a guess |
 | D-12 | `forest-parent` dropped from the lint set | Unrepresentable with one parent column; `forest-root` and `dangling-edge` cover it |
+| D-13 | Gloss terms are stems of Cherith's gloss, computed by `gbg/english.py`; snowballstemmer pinned exactly | A per-word sense label that is open; stems are stored, so a stemmer upgrade must be a reviewed manifest change |
+| D-14 | Semantic similarity comes from upstream (Clear proximity, tier `data`), not from a similarity this build computes | An upstream judgement is data with a source; a score we compute would be `computed`, belong in a `proposed_*` table, and need its own benchmark |
+| D-15 | Clear word senses are not loaded | Their ids follow an unstated MACULA release and demonstrably misalign for thousands of words |

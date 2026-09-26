@@ -18,7 +18,8 @@ MACULA Greek Linguistic Datasets, available at https://github.com/Clear-Bible/ma
 | SBLGNT text | surface text, `after`, `normalized` | CC BY 4.0 | SBL Greek New Testament (SBLGNT), copyright 2010 by the Society of Biblical Literature and Logos Bible Software, https://github.com/LogosBible/SBLGNT |
 | Clear (MACULA) | ids, morphology, lemmas, Strong's, syntax trees, roles, semantic frames, participant referents | CC BY 4.0 | MACULA Greek Linguistic Datasets, available at https://github.com/Clear-Bible/macula-greek/ |
 | Berean Interlinear | `gloss` | Public domain | Berean Interlinear Bible glosses, placed in the public domain on 2023-04-30, https://interlinearbible.com/ |
-| Cherith Glosses | `english` | CC BY 4.0 | Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics |
+| Cherith Glosses | `english` (and the search terms derived from it) | CC BY 4.0 | Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics |
+| Clear synonyms | Strong's-to-Strong's semantic proximity (`lemma_proximity`) | CC BY 4.0 | MACULA Greek Linguistic Datasets (Clear synonyms: Strong's-to-Strong's semantic proximity, sources/Clear/synonyms), available at https://github.com/Clear-Bible/macula-greek/ |
 
 **Excluded:** MACULA's Louw-Nida semantic domains (`domain`, `ln`) come from
 the United Bible Societies MARBLE project and are "used with permission", not

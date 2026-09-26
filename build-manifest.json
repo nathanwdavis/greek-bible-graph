@@ -6,6 +6,10 @@
     "has_subject.self_reference": 1,
     "input_not_nfc.lemma": 102,
     "input_not_nfc.text": 31,
+    "lemma_proximity.edges_beyond_rows": 1993,
+    "lemma_proximity.rows_greek_unmapped": 1550,
+    "lemma_proximity.rows_not_greek": 145546,
+    "lemma_proximity.self_pairs": 273,
     "refers_to.first_target_cycles": 4,
     "refers_to.implicit": 6,
     "refers_to.self_reference": 4,
@@ -54,7 +58,8 @@
         "SBLGNT/lowfat/25-3john.xml": "bf5737c05c54083f315d777e7b8f0056c893fff8632a82d6186258872b07f579",
         "SBLGNT/lowfat/26-jude.xml": "096aaad13159b9354399e640344c07f4ba52ea28e14e26db4d17c4050ee63e80",
         "SBLGNT/lowfat/27-revelation.xml": "21d60a5eefce0b30a0c9d9426b07faa659a2a59953cdabb11b84964068715df5",
-        "SBLGNT/tsv/macula-greek-SBLGNT.tsv": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5"
+        "SBLGNT/tsv/macula-greek-SBLGNT.tsv": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5",
+        "sources/Clear/synonyms/Proximity.tsv": "dd4faa737a91d98b77620f636520d763df60e51c44ed2a1207cc2e98643f586c"
       }
     }
   },
@@ -84,6 +89,11 @@
       "rows": 5468,
       "schema_sha256": "992ea53594f62ffbf0ac2a4867d580f57d13db151fbfa193a755fba8fb2959ca"
     },
+    "lemma_proximity": {
+      "content_sha256": "95d018d6a2b017389ab0b844aedb9bcafe75aaa1f0d2a78de8fd0a776b54cc5b",
+      "rows": 29721,
+      "schema_sha256": "657e7ba03a70ba61ad40cb11222e990e78482992e714325445ae259e047086a5"
+    },
     "refers_to": {
       "content_sha256": "8386494c55e4430bafccbdb662a945b968a2048b05f92a65f1ce301fd91143a1",
       "rows": 18213,
@@ -95,9 +105,9 @@
       "schema_sha256": "3c5af932cff2e9d837001118b58cf80fc6ce6bf3a0b55c92146c4e438c09fd36"
     },
     "token": {
-      "content_sha256": "d02de7523087b20d616bd8aa6f78a393b471f9b43183054161c06375022d421d",
+      "content_sha256": "c1959517e418a532a95a5fe4d8b17d0dd6c853c3604be53ef25202b3f96abf82",
       "rows": 137741,
-      "schema_sha256": "832f54aec4b379d271be9558d7166edddc244b783bbac72559ab61c0c5f3d3f6"
+      "schema_sha256": "d358b7dfc040277e337da44910a909cc2db702a55e8c8e782e33b5383db617e9"
     },
     "verse": {
       "content_sha256": "23fdb89c01d15f47ecaef808e1b91f33885068cd07778481e8f329c02eb4a38e",

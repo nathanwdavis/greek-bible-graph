@@ -16,6 +16,12 @@ to: ``lemma`` is NFC-normalised (so an oxia-typed ἀγάπη still matches);
 (absent and optional means the whole edition). ``optional=VALUE`` gives a
 default. Everything then runs through the same sandbox as ``gbg sql``.
 
+List types take comma-separated values and bind as a DuckDB list (use
+``list_contains($name, x)``): ``lemmas`` (each NFC'd, like ``lemma``),
+``tokens`` (each like ``token``, so hits from one query can feed the next),
+and ``english`` -- plain English words put through ``gbg.english``'s gloss
+normalisation, so ``know, hide`` matches the stored ``token.english_terms``.
+
 Twins under ``queries/pgq/`` express the same question in SQL/PGQ; a test
 holds each to the same rows as its SQL original.
 """
@@ -26,11 +32,12 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import cli, db as dbmod, ids, refs
+from . import cli, db as dbmod, english, ids, refs
 from .greek import nfc
 from .resolve import resolve
 
-TYPES = ("lemma", "text", "int", "token", "passage")
+TYPES = ("lemma", "lemmas", "text", "int", "float", "token", "tokens", "passage",
+         "english")
 
 
 @dataclass
@@ -111,24 +118,21 @@ def bind(saved: Saved, raw: dict[str, str], db: Path) -> dict:
                                    [res.first_token, res.last_token]).fetchone()
                 out[f"{p.name}_first"], out[f"{p.name}_last"] = f, l
             elif p.type == "lemma":
-                v = str(value)
-                out[p.name] = nfc(v[len("lemma:"):] if v.startswith("lemma:") else v)
+                out[p.name] = _lemma(str(value))
+            elif p.type == "lemmas":
+                out[p.name] = [_lemma(v) for v in _split(p.name, value)]
             elif p.type == "token":
-                v = str(value)
-                if ids.kind_of(v) != "token":
-                    try:
-                        span = refs.parse(v).spans[0]
-                    except refs.RefError as exc:
-                        raise cli.UsageError(f"{p.name}: {exc}") from None
-                    if span.w1 is None:
-                        raise cli.UsageError(f"{p.name}: {v!r} is not a single word "
-                                             "(use an id or BOOK C:V!W)")
-                    row = con.execute("SELECT id FROM token WHERE ref = ?",
-                                      [f"{span.book} {span.c1}:{span.v1}!{span.w1}"]).fetchone()
-                    if not row:
-                        raise cli.UsageError(f"{p.name}: {v!r} is not in this edition")
-                    v = row[0]
-                out[p.name] = v
+                out[p.name] = _token(con, p.name, str(value))
+            elif p.type == "tokens":
+                out[p.name] = [_token(con, p.name, v) for v in _split(p.name, value)]
+            elif p.type == "english":
+                terms = english.query_terms(str(value))
+                if not terms:
+                    raise cli.UsageError(f"{p.name}: {value!r} has no content words "
+                                         "(only stopwords)")
+                out[p.name] = terms
+            elif p.type == "float":
+                out[p.name] = float(value) if value is not None else None
             elif p.type == "int":
                 out[p.name] = int(value) if value is not None else None
             else:
@@ -136,6 +140,34 @@ def bind(saved: Saved, raw: dict[str, str], db: Path) -> dict:
     finally:
         con.close()
     return out
+
+
+def _lemma(v: str) -> str:
+    return nfc(v[len("lemma:"):] if v.startswith("lemma:") else v)
+
+
+def _split(name: str, value) -> list[str]:
+    items = [v.strip() for v in str(value).split(",") if v.strip()]
+    if not items:
+        raise cli.UsageError(f"{name}: expected one or more comma-separated values")
+    return items
+
+
+def _token(con, name: str, v: str) -> str:
+    """A token id, from an id or a MACULA ref (BOOK C:V!W)."""
+    if ids.kind_of(v) == "token":
+        return v
+    try:
+        span = refs.parse(v).spans[0]
+    except refs.RefError as exc:
+        raise cli.UsageError(f"{name}: {exc}") from None
+    if span.w1 is None:
+        raise cli.UsageError(f"{name}: {v!r} is not a single word (use an id or BOOK C:V!W)")
+    row = con.execute("SELECT id FROM token WHERE ref = ?",
+                      [f"{span.book} {span.c1}:{span.v1}!{span.w1}"]).fetchone()
+    if not row:
+        raise cli.UsageError(f"{name}: {v!r} is not in this edition")
+    return row[0]
 
 
 def run_saved(root: Path, db: Path, name: str, raw: dict, *, pgq: bool = False,

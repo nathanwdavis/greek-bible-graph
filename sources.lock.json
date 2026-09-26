@@ -152,6 +152,11 @@
           "path": "SBLGNT/lowfat/27-revelation.xml",
           "sha256": "21d60a5eefce0b30a0c9d9426b07faa659a2a59953cdabb11b84964068715df5",
           "bytes": 8186163
+        },
+        {
+          "path": "sources/Clear/synonyms/Proximity.tsv",
+          "sha256": "dd4faa737a91d98b77620f636520d763df60e51c44ed2a1207cc2e98643f586c",
+          "bytes": 5197715
         }
       ],
       "components": {
@@ -214,6 +219,15 @@
           ],
           "license": "CC-BY-4.0",
           "attribution": "Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics"
+        },
+        "clear-synonyms": {
+          "fields": [
+            "StrongNumberX1",
+            "StrongNumberX2",
+            "Distance"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "MACULA Greek Linguistic Datasets (Clear synonyms: Strong's-to-Strong's semantic proximity, sources/Clear/synonyms), available at https://github.com/Clear-Bible/macula-greek/"
         },
         "marble": {
           "fields": [

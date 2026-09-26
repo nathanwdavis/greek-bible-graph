@@ -232,6 +232,12 @@ TABLES: tuple[Table, ...] = (
           MC, nullable=False),
         C("gloss", "VARCHAR", "Berean Interlinear contextual gloss (public domain).", "berean"),
         C("english", "VARCHAR", "Cherith English gloss (CC BY 4.0).", "cherith"),
+        C("english_terms", "VARCHAR[]", "Search stems of the Cherith gloss (gbg/english.py): "
+          "knew/known/knowing -> know; stopwords and [insertions] dropped. NULL when there "
+          "is no gloss. Match with list_has_any(english_terms, [...]) or the saved query "
+          "lemmas_by_gloss; never type stems by hand.", "cherith"),
+        C("english_negated", "BOOLEAN", "True when the gloss negates its content (\"not "
+          "know\", \"without knowing\"): the word is ABOUT the terms, negatively.", "cherith"),
     ), ("id",)),
 
     Table("lemma", "node", "One dictionary form. Shared across corpora by NFC string.", (
@@ -285,6 +291,27 @@ TABLES: tuple[Table, ...] = (
         *EDGE_COLS,
     ), ("src", "ord")),
 
+    Table("lemma_proximity", "edge",
+          "Semantic proximity between two lemmas, from MACULA's Clear synonyms data "
+          "(sources/Clear/synonyms/Proximity.tsv), which is keyed by Strong's number and "
+          "mapped here to every lemma carrying that number. LOWER distance = CLOSER "
+          "(γινώσκω-οἶδα 0.26). Each pair is listed once, in upstream's direction: treat "
+          "the relation as undirected and query both columns. Upstream also pairs Greek with "
+          "Hebrew/Aramaic numbers; those rows, and Greek numbers no lemma carries (e.g. "
+          "suffixed G4894a), are counted in the manifest, not loaded.", (
+        C("src", "VARCHAR", "Lemma (upstream StrongNumberX1).", ref="lemma",
+          label="PROXIMATE_TO", nullable=False),
+        C("dst", "VARCHAR", "Lemma (upstream StrongNumberX2).", ref="lemma",
+          label="PROXIMATE_TO", nullable=False),
+        C("src_strong", "VARCHAR", "Upstream Strong's number of src, e.g. G1097.",
+          "clear-synonyms", nullable=False),
+        C("dst_strong", "VARCHAR", "Upstream Strong's number of dst.", "clear-synonyms",
+          nullable=False),
+        C("distance", "DOUBLE", "Upstream distance in [0, 1]; lower is closer.",
+          "clear-synonyms", nullable=False),
+        *EDGE_COLS,
+    ), ("src", "dst", "src_strong", "dst_strong")),
+
     Table("dominance", "index",
           "Transitive closure of the tree: every word group and every token it dominates. "
           "Turns tree questions into plain joins.", (
@@ -325,9 +352,9 @@ def edge_view_sql() -> str:
                      f"FROM \"{t.name}\" WHERE \"{c.name}\" IS NOT NULL")
     for t in TABLES:
         if t.kind == "edge":
-            dst = t.column("dst")
+            src, dst = t.column("src"), t.column("dst")
             parts.append(f"SELECT src, dst, '{dst.label}' AS label, tier, "
-                         f"'token' AS src_table, '{dst.ref}' AS dst_table "
+                         f"'{src.ref}' AS src_table, '{dst.ref}' AS dst_table "
                          f"FROM \"{t.name}\" WHERE dst IS NOT NULL")
     return "CREATE VIEW edge AS\n" + "\nUNION ALL\n".join(parts)
 
