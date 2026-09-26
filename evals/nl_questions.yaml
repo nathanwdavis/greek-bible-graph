@@ -98,3 +98,26 @@ questions:
     scope: any
     question: Which Hebrew word does the Septuagint translate with ἀγάπη?
     golden: {refusal: [Septuagint, LXX]}
+
+  # Thematic: no exact answer set. The golden is Nave's Topical Bible (1896, public
+  # domain), topic "GOD, KNOWLEDGE OF", NT references only -- a human index made
+  # without this graph. Rom 16:27 is on Nave's list but not in this edition (gbg
+  # resolve: exit 1), so it is left out. Several listed verses contain no word for
+  # knowing (Mt 6:4 "sees in secret", Mt 10:29-30 sparrows and hairs, Heb 4:13
+  # "laid bare to his eyes"): the minimum measures whether an answer looked past
+  # vocabulary, and it is a floor -- Nave's list is not the whole truth, so
+  # precision is not scored.
+  - id: god-knowledge
+    scope: nt
+    question: Which New Testament passages speak of God's knowledge -- what God knows?
+    golden:
+      recall:
+        min: 0.5
+        ids: [sblgnt:MAT.6.4, sblgnt:MAT.6.8, sblgnt:MAT.6.18, sblgnt:MAT.6.32,
+              sblgnt:MAT.10.29, sblgnt:MAT.10.30, sblgnt:MAT.24.36, sblgnt:MRK.13.32,
+              sblgnt:LUK.16.15, sblgnt:ACT.1.24, sblgnt:ACT.2.23, sblgnt:ACT.15.8,
+              sblgnt:ACT.15.18, sblgnt:ROM.8.27, sblgnt:ROM.8.29, sblgnt:ROM.11.33,
+              sblgnt:ROM.11.34, sblgnt:1CO.1.25, sblgnt:1CO.2.7, sblgnt:1CO.3.20,
+              sblgnt:1CO.8.3, sblgnt:GAL.4.9, sblgnt:EPH.1.8, sblgnt:EPH.3.10,
+              sblgnt:1TH.2.4, sblgnt:1TI.1.17, sblgnt:2TI.2.19, sblgnt:HEB.4.13,
+              sblgnt:1PE.1.2, sblgnt:1JN.1.5, sblgnt:1JN.3.20, sblgnt:JUD.1.25]

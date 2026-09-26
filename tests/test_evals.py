@@ -14,8 +14,12 @@ def test_every_question_is_well_formed():
     for q in qs:
         assert q["scope"] in ("fixture", "nt", "any")
         g = q["golden"]
-        assert len(g) == 1 and next(iter(g)) in ("ids", "rows", "value", "refusal")
-        if "refusal" not in g:
+        assert len(g) == 1 and next(iter(g)) in ("ids", "rows", "value", "refusal", "recall")
+        if "recall" in g:
+            # a thematic golden: an independent verse list and a floor, no reference needed
+            assert 0 < g["recall"]["min"] <= 1 and g["recall"]["ids"], q["id"]
+            assert ("query" in q) + ("sql" in q) <= 1, q["id"]
+        elif "refusal" not in g:
             assert ("query" in q) != ("sql" in q), q["id"]
 
 
@@ -83,3 +87,27 @@ def test_number_words_stop_at_twenty(fixture_db):
     # The contract is digits, or a number word up to twenty -- not compound phrases.
     rows, _ = evals.score(ROOT, fixture_db, {"agape-nt": "It occurs one hundred sixteen times."})
     assert not rows[0]["ok"]
+
+
+RECALL_Q = {"id": "love-2jn", "scope": "fixture", "question": "Where is love spoken of in 2 John?",
+            "golden": {"recall": {"min": 0.5, "ids": [
+                "sblgnt:2JN.1.1", "sblgnt:2JN.1.3", "sblgnt:2JN.1.5", "sblgnt:2JN.1.6"]}}}
+
+
+@pytest.mark.parametrize("answer,ok,fabricated", [
+    # a word id counts for its verse: n63001001011 is in 2 John 1
+    ("2 John 1 (sblgnt:n63001001011) and 5 (sblgnt:2JN.1.5).", True, False),
+    ("Only 2 John 1: sblgnt:2JN.1.1.", False, False),                        # 1/4 < 0.5
+    ("sblgnt:2JN.1.1, sblgnt:2JN.1.5, sblgnt:2JN.1.99", False, True),         # fabricated
+])
+def test_scoring_recall(fixture_db, monkeypatch, answer, ok, fabricated):
+    monkeypatch.setattr(evals, "load", lambda root: [RECALL_Q])
+    rows, hallucinated = evals.score(ROOT, fixture_db, {"love-2jn": answer})
+    assert rows[0]["ok"] is ok and hallucinated is fabricated
+
+
+def test_recall_golden_naming_a_missing_verse_is_invalid(fixture_db, monkeypatch):
+    q = {**RECALL_Q, "golden": {"recall": {"min": 0.5, "ids": ["sblgnt:2JN.1.99"]}}}
+    monkeypatch.setattr(evals, "load", lambda root: [q])
+    [v] = evals.check_goldens(ROOT, fixture_db)
+    assert v.rule == "golden-invalid" and "2JN.1.99" in v.reason

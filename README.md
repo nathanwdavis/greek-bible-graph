@@ -60,8 +60,9 @@ $ gbg sql --pgq "FROM GRAPH_TABLE (gbg_graph
 | `gbg ref PASSAGE [--tree \| --tsv \| --json]` | interlinear, syntax trees, or rows with ids |
 | `gbg resolve REF [--json]` | reference ↔ ids; exit 0 found, 1 not in this edition, 2 malformed |
 | `gbg sql "SELECT…" [--json] [--pgq]` | one read-only SELECT, sandboxed (no files, no writes, timeout, row cap) |
-| `gbg query [--list] NAME --param k=v` | 10 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
+| `gbg query [--list] NAME --param k=v` | 13 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
 | `gbg eval --check-goldens \| --answers F` | the natural-language eval harness |
+| `gbg analysis FILE --check \| --render` | check a thematic analysis (ids, cites, labels, funnel), or render it as Markdown |
 
 ## Asking in plain English
 
@@ -75,7 +76,18 @@ Then ask questions like "In Philemon 12, who is αὐτόν?", "Which verbs in
 Philemon have ἐγώ as their grammatical subject?" or "Which Greek words mean
 knowing or hiding?" -- concept questions go through the open glosses
 (`lemmas_by_gloss`) and Clear's synonym distances (`similar_lemmas`), since
-the semantic domains are not openly licensed. The skill reads the schema,
+the semantic domains are not openly licensed.
+
+Thematic questions go further: "find every passage about God's knowledge and
+classify each against this taxonomy". The skill runs a recorded funnel:
+vocabulary (`lemmas_by_gloss`, `similar_lemmas`), then who does what
+(`predicate_participants`, which combines the syntax tree, coreference and
+semantic frames, and also catches "no one knows ... except the Father"), then
+constructions (`contrary_to_fact`), then context (`hits_in_context`). It writes
+the classification to an analysis file that `gbg analysis --check` holds to the
+build. Every id must exist, every label must be in your taxonomy, subset rules
+like F ⊆ A must hold, and every candidate must be kept or rejected with a
+reason. The rows and the reading placed on them stay separate. The skill reads the schema,
 prefers saved queries, cites a row id for every claim, and declines what the
 build does not contain: Louw–Nida domains, textual variants, and the LXX.
 `evals/runs/` records its first end-to-end run: 5/5 answered, with no fabricated ids.

@@ -1,6 +1,6 @@
 ---
 name: gbg-query
-description: Answers questions about the Greek New Testament (SBLGNT) from the greek-bible-graph corpus graph - word occurrences and distributions, morphology, grammatical subjects and objects, who a pronoun refers to, semantic-frame agents and patients, shared wording between passages, which Greek words express an English concept, and interlinear views - by writing read-only SQL against the built DuckDB graph and citing verse and token ids for every claim. Use when the user asks what the Greek text says or where a Greek word occurs, how often, in what forms, who does what in a passage, what a pronoun refers to, or wants an interlinear. Do not use for theological interpretation beyond what the rows show, for Louw-Nida semantic domains, textual variants or the Septuagint, which this build does not contain.
+description: Answers questions about the Greek New Testament (SBLGNT) from the greek-bible-graph corpus graph - word occurrences and distributions, morphology, grammatical subjects and objects, who a pronoun refers to, semantic-frame agents and patients, shared wording between passages, which Greek words express an English concept, interlinear views, and thematic questions (every passage about a topic, optionally classified against a taxonomy the user supplies, recorded and checked with gbg analysis) - by writing read-only SQL against the built DuckDB graph and citing verse and token ids for every claim. Use when the user asks what the Greek text says, where or how often a word occurs, who does what in a passage, what a pronoun refers to, which passages concern a theme, or wants an interlinear. Interpretation is allowed only labelled and kept apart from what the rows show. Not for Louw-Nida semantic domains, textual variants or the Septuagint, which this build does not contain.
 license: MIT
 allowed-tools: Bash, Read
 metadata:
@@ -97,3 +97,61 @@ answer depends on the others.
   in this edition (exit 1, e.g. Acts 8:37), say that plainly and stop.
 - Keep interpretation separate from data: "the rows show X" first, then any
   reading of it, labelled as yours.
+
+## Thematic questions -- find, filter, classify
+
+"Find every passage about X (and classify each against my taxonomy)" is a
+funnel, not one query. Each step is a recorded retrieval, so the answer's
+recall can be rerun and checked. Work through it in order:
+
+1. **Vocabulary.** `lemmas_by_gloss` with the concept's English words,
+   derivations and near-synonyms (know, knowledge, foreknow; hide, hidden,
+   secret, mystery, reveal), then `similar_lemmas` on the central lemmas. Keep
+   a lemma only after looking at its `glosses` and `share`; note why you
+   dropped the rest.
+2. **Participants.** When the theme has a subject ("God knows", "hidden from
+   people"), run `predicate_participants` with those lemmas and a `referents`
+   filter (θεός, πατήρ, κύριος, πνεῦμα, υἱός, Ἰησοῦς, Χριστός as the
+   question needs). Read every signal. `exception` finds "no one knows ...
+   except the Father". `negated` finds "no one knows". `implicit` rows are
+   unexpressed agents, often divine passives. `genitive` catches nouns
+   (πρόγνωσις θεοῦ). Use `role=patient` for "hidden from whom".
+3. **Constructions.** Some categories are grammar, not words: things that
+   could have happened but did not are `contrary_to_fact`.
+4. **Plain occurrences** (`lemma_occurrences`) for nouns and adjectives where
+   the agent is not the point (μυστήριον, ἀνεξιχνίαστος).
+5. **Context.** `hits_in_context --param tokens=...` with the candidate ids,
+   and `gbg ref` for anything unclear. A referent is a **word**, not a person:
+   πνεῦμα may be an unclean spirit (Acts 19:15), πατήρ "our fathers" (Acts
+   7:40), κύριοι human masters (Eph 6:9). Upstream bracketing can hide a
+   participant (Luke 10:22), so read the context of every negated predicate.
+6. **Passages you already know** that the funnel missed may be added, but only
+   through their own retrieval step (an SQL selecting those verse ids, with
+   `id: known-passages`), and say so in `basis`. That keeps the funnel's recall
+   honest.
+
+**Record the answer as an analysis file** and check it until it is clean. The
+format is in `gbg analysis --help` and in `gbg/analysis.py`.
+
+- Copy the user's taxonomy verbatim into `taxonomy.labels`, criteria included
+  ("knowing or allowing is not enough for D"). Turn subset statements (F ⊆ A)
+  into `implies: {F: [A]}`. A union (K = S ∪ A ∪ P) needs no rule.
+- Record each step in `retrieval`, with its `rows`. For steps whose hits must
+  all be triaged, add `candidates: <id column>`.
+- Every candidate verse is either a **passage**, with `labels`, `evidence`
+  (token ids from the rows), `basis` (what the rows show) and `reading` (your
+  interpretation), or a **rejected** entry with a `reason`. Write `ids` with
+  `gbg resolve`.
+
+```sh
+gbg analysis answer.yaml --check                 # exit 0 or it is not done
+gbg analysis answer.yaml --render --out answer.md
+```
+
+In the reply, give the funnel counts (lemmas, candidates, kept, rejected), the
+passages by label, and **what the analysis cannot see**: no semantic domains;
+passages about the theme that use none of its words; referents are words, not
+entities; and the Septuagint is absent. Name the Old Testament texts the
+question needs (for "possible but not actual", 1 Sam 23:11-13) instead of
+quoting them. Classifying is interpretation: give the rows first, then the
+reading, labelled as yours.

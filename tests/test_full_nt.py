@@ -89,3 +89,32 @@ def test_proximity_neighbours_of_ginosko(nt_build):
     # G1492 is carried by οἶδα and ὁράω, so seven numbers give eight lemmas.
     assert {r[res.columns.index("lemma")] for r in res.rows} == {
         "ἐπιγινώσκω", "οἶδα", "ὁράω", "ἐπίγνωσις", "ἐπίσταμαι", "ἀγνοέω", "προγινώσκω", "νοέω"}
+
+
+def test_contrary_to_fact_textbook_cases(nt_build):
+    # Anchors from the grammars, not from the query: second-class conditionals
+    # every NT grammar cites. Plus the two shapes the query documents it misses.
+    from gbg import queries
+    res = queries.run_saved(ROOT, nt_build[0] / "gbg.duckdb", "contrary_to_fact", {},
+                            limit=10_000)
+    verses = {r[res.columns.index("verse_id")] for r in res.rows}
+    assert {f"sblgnt:{v}" for v in (
+        "MAT.11.21", "MAT.11.23", "MRK.13.20", "LUK.7.39", "JHN.5.46", "JHN.8.42",
+        "JHN.11.21", "JHN.18.36", "1CO.2.8", "GAL.1.10", "HEB.4.8", "HEB.11.15")} <= verses
+    assert "sblgnt:JHN.14.2" not in verses   # elided protasis (εἰ δὲ μή)
+    assert "sblgnt:LUK.17.6" not in verses   # mixed: present protasis
+
+
+def test_exception_signal_on_the_no_one_knows_texts(nt_build):
+    from gbg import queries
+    res = queries.run_saved(ROOT, nt_build[0] / "gbg.duckdb", "predicate_participants",
+                            {"lemmas": "οἶδα, γινώσκω, ἐπιγινώσκω"}, limit=10_000)
+    rows = [dict(zip(res.columns, r)) for r in res.rows]
+    exc = {(r["predicate_ref"], r["referent_lemma"]) for r in rows if r["signal"] == "exception"}
+    # "no one knows ... except the Father / the Son / the Spirit of God" -- read off the text
+    assert {("MRK 13:32!10", "πατήρ"), ("MAT 24:36!9", "πατήρ"), ("MAT 11:27!10", "πατήρ"),
+            ("MAT 11:27!21", "υἱός"), ("1CO 2:11!23", "πνεῦμα")} <= exc
+    assert any(r["predicate_ref"] == "MRK 13:32!10" and r["negated"] for r in rows)
+    # Known miss, documented in the query: upstream attaches Luke 10:22's εἰ μή clause
+    # inside the object clause. If this starts passing, update the query's header.
+    assert not any(ref.startswith("LUK 10:22") for ref, _ in exc)

@@ -103,6 +103,10 @@ def bind(saved: Saved, raw: dict[str, str], db: Path) -> dict:
             if value is None and not p.optional:
                 raise cli.UsageError(f"{saved.name}: --param {p.name}=... is required "
                                      f"({p.type}: {p.doc})")
+            if value is None and p.type != "passage":
+                # absent and optional with no default: bind NULL, never the string "None"
+                out[p.name] = None
+                continue
             if p.type == "passage":
                 if value is None:
                     out[f"{p.name}_first"], out[f"{p.name}_last"] = 1, max_ord

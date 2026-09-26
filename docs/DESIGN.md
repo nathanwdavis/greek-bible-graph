@@ -302,6 +302,41 @@ A golden that is the query's own earlier output can be regenerated to match anyt
 - `--check-goldens` runs in CI.
 - `--answers` scores a set of Claude's answers offline. A fabricated `sblgnt:` id is a hard failure, because a made-up citation is worse than no answer.
 
+### Thematic questions: a checked funnel
+
+"Find every passage about X, then classify each against my taxonomy" has no
+single query, no exact golden, and ends in judgement. It is handled as a
+funnel, where each step is data and only the last is interpretation:
+
+1. **Vocabulary**: `lemmas_by_gloss` and `similar_lemmas` (§4, meaning).
+2. **Participants**: `predicate_participants` joins every "who does it" signal
+   the graph has. These are the tree subject/object, `has_subject`, frame A0/A1,
+   a noun's genitive dependents, and the subject of an elided εἰ μή clause
+   ("no one knows ... except the Father", which MACULA marks with
+   `predication = elided`). Each is followed through `refers_to` to the word it
+   ends at, with `agree` counting the signals that concur. It ends at a word,
+   not a person: resolving πνεῦμα or πατήρ to an entity is per-row review
+   (§10, named entities).
+3. **Constructions**: `contrary_to_fact` finds second-class conditionals, the
+   grammar of "possible but not actual". Its known misses are named in its
+   header.
+4. **Context**: `hits_in_context` turns hit tokens into sentences, cited by
+   verse.
+5. **Classification**: an analysis file (`gbg analysis`) records the taxonomy,
+   every retrieval step and its row count, and each candidate as a kept
+   passage (labels, evidence, basis, reading) or a rejection (reason).
+   `--check` is auto-zettel-skill's "refuse at write time" applied to
+   interpretation. Ids must exist, cites must resolve to their ids, evidence
+   must lie inside its passage, labels must obey the taxonomy's subset rules,
+   retrieval must reproduce its row counts, and no candidate may be dropped
+   silently. Whether a passage really belongs under a label is left to a
+   person, and `basis` versus `reading` keeps that line visible.
+
+The eval for this shape is `recall` (D-16). The golden is an independent human
+index: Nave's (1896) "GOD, KNOWLEDGE OF", NT references only. An answer must
+cite at least a stated share of it. Precision is not scored, because the index
+is a floor and not the whole truth. A fabricated id still fails the run.
+
 ## 7. Citing the corpus from zettel notes
 
 This is a future PR to auto-zettel-skill, not part of this repo. Today a literature note carries `locator: "p. 12"`, which the gates check only for being present. The proposal adds a structured field beside it:
@@ -409,3 +444,4 @@ corpus_refs:
 | D-13 | Gloss terms are stems of Cherith's gloss, computed by `gbg/english.py`; snowballstemmer pinned exactly | A per-word sense label that is open; stems are stored, so a stemmer upgrade must be a reviewed manifest change |
 | D-14 | Semantic similarity comes from upstream (Clear proximity, tier `data`), not from a similarity this build computes | An upstream judgement is data with a source; a score we compute would be `computed`, belong in a `proposed_*` table, and need its own benchmark |
 | D-15 | Clear word senses are not loaded | Their ids follow an unstated MACULA release and demonstrably misalign for thousands of words |
+| D-16 | Thematic answers are an analysis file checked by `gbg analysis`, scored by `recall` against an independent index | Classification is interpretation; what can be gated (ids, cites, taxonomy rules, funnel reproducibility, no silent drops) is, and the rest is labelled |
