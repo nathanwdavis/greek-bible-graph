@@ -3,7 +3,10 @@
 -- description: (lemma_proximity; Strong's-keyed, CC BY). Lower distance = closer. Upstream
 -- description: lists each pair once, so both directions are read. A lemma whose forms carry
 -- description: several Strong's numbers can be paired with itself; those rows are left out
--- description: here. top_glosses shows how each neighbour is usually glossed.
+-- description: here. top_glosses shows how each neighbour is usually glossed. The key is Strong's,
+-- description: so lemmas sharing a number arrive together: G1492 is carried by οἶδα AND by ὁράω
+-- description: (whose εἰδώς/εἶδον forms upstream files under it), so ὁράω looks as close to
+-- description: γινώσκω as οἶδα does -- check strong_pairs before calling two lemmas synonyms.
 -- param: lemma lemma -- e.g. γινώσκω
 -- param: max_distance float optional=0.8 -- keep neighbours at or below this distance
 -- cites: lemma

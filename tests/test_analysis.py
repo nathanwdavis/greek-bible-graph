@@ -121,3 +121,33 @@ def test_render_shows_text_labels_and_rejections(tmp_path, fixture_db):
     p.write_text(yaml.safe_dump(a, allow_unicode=True), encoding="utf-8")
     md2 = analysis.render(p, fixture_db, ROOT)
     assert md2.index("### 2 John 1") < md2.index("### 3 John 1")
+
+
+def test_the_template_is_a_clean_analysis(tmp_path, fixture_db):
+    # A worked example nobody runs goes stale; this one must pass --check.
+    import re
+    text = re.sub(r"^build: \S+", f"build: {fixture_build_id(fixture_db)}", analysis.TEMPLATE,
+                  flags=re.M)
+    p = tmp_path / "t.yaml"
+    p.write_text(text, encoding="utf-8")
+    assert analysis.check(p, fixture_db, ROOT) == []
+
+
+def test_related_ids_may_lie_outside_but_must_exist(tmp_path, fixture_db):
+    a = clean(fixture_db)
+    a["passages"][0]["related"] = ["sblgnt:n63001005018"]          # 2 John 5: fine
+    assert rules(tmp_path, fixture_db, a) == set()
+    a["passages"][0]["related"] = ["sblgnt:n63001005099"]          # does not exist
+    assert rules(tmp_path, fixture_db, a) == {"id-fabricated"}
+
+
+def test_added_labels_are_marked_in_the_render(tmp_path, fixture_db):
+    a = clean(fixture_db)
+    a["taxonomy"]["labels"]["H"] = "extra"
+    a["taxonomy"]["added"] = ["H"]
+    p = tmp_path / "a.yaml"
+    p.write_text(yaml.safe_dump(a, allow_unicode=True), encoding="utf-8")
+    assert analysis.check(p, fixture_db, ROOT) == []
+    assert "added by the analyst" in analysis.render(p, fixture_db, ROOT)
+    a["taxonomy"]["added"] = ["Q"]
+    assert rules(tmp_path, fixture_db, a) == {"label-unknown"}

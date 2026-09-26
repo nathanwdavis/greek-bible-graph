@@ -19,7 +19,9 @@ default. Everything then runs through the same sandbox as ``gbg sql``.
 List types take comma-separated values and bind as a DuckDB list (use
 ``list_contains($name, x)``): ``lemmas`` (each NFC'd, like ``lemma``),
 ``tokens`` (each like ``token``, so hits from one query can feed the next),
-and ``english`` -- plain English words put through ``gbg.english``'s gloss
+``verses`` (references separated by ``;``, since one reference can hold commas --
+"Rom 3:21-26, 28; Heb 4:13" -- each resolved to its verse ids), and
+``english`` -- plain English words put through ``gbg.english``'s gloss
 normalisation, so ``know, hide`` matches the stored ``token.english_terms``.
 
 Twins under ``queries/pgq/`` express the same question in SQL/PGQ; a test
@@ -37,7 +39,7 @@ from .greek import nfc
 from .resolve import resolve
 
 TYPES = ("lemma", "lemmas", "text", "int", "float", "token", "tokens", "passage",
-         "english")
+         "verses", "english")
 
 
 @dataclass
@@ -129,6 +131,19 @@ def bind(saved: Saved, raw: dict[str, str], db: Path) -> dict:
                 out[p.name] = _token(con, p.name, str(value))
             elif p.type == "tokens":
                 out[p.name] = [_token(con, p.name, v) for v in _split(p.name, value)]
+            elif p.type == "verses":
+                got: list[str] = []
+                for ref in [r.strip() for r in str(value).split(";") if r.strip()]:
+                    try:
+                        res = resolve(con, ref)
+                    except refs.RefError as exc:
+                        raise cli.UsageError(f"{p.name}: {exc}") from None
+                    if not res.found:
+                        raise cli.UsageError(f"{p.name}: {'; '.join(res.missing)}")
+                    got += [v for v in res.verses if v not in got]
+                if not got:
+                    raise cli.UsageError(f"{p.name}: expected one or more references")
+                out[p.name] = got
             elif p.type == "english":
                 terms = english.query_terms(str(value))
                 if not terms:

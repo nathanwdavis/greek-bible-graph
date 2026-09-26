@@ -118,3 +118,31 @@ def test_exception_signal_on_the_no_one_knows_texts(nt_build):
     # Known miss, documented in the query: upstream attaches Luke 10:22's εἰ μή clause
     # inside the object clause. If this starts passing, update the query's header.
     assert not any(ref.startswith("LUK 10:22") for ref, _ in exc)
+
+
+def test_voice_decides_agent_and_patient(nt_build):
+    # From the text: "known by God" -- God is the agent, in the ὑπό phrase.
+    from gbg import queries
+    db = nt_build[0] / "gbg.duckdb"
+
+    def rows(**params):
+        res = queries.run_saved(ROOT, db, "predicate_participants", params, limit=10_000)
+        return [dict(zip(res.columns, r)) for r in res.rows]
+    assert {(r["signal"], r["referent_lemma"]) for r in rows(lemmas="γινώσκω",
+            scope="1 Cor 8:3")} == {("by", "θεός")}
+    assert ("by", "θεός") in {(r["signal"], r["referent_lemma"])
+                              for r in rows(lemmas="γινώσκω", scope="Gal 4:9")}
+    # 1 Pet 1:20 προεγνωσμένου (passive): Christ is the one foreknown, not the knower.
+    assert not any(r["referent_lemma"] == "Χριστός" and r["signal"] != "frame"
+                   for r in rows(lemmas="προγινώσκω", scope="1 Pet 1:20"))
+    assert any(r["referent_lemma"] == "Χριστός"
+               for r in rows(lemmas="προγινώσκω", scope="1 Pet 1:20", role="patient"))
+    # Rom 11:34 "who has known the mind of the Lord?" -- a denial in question form
+    assert all(r["question"] for r in rows(lemmas="γινώσκω", scope="Rom 11:34"))
+    assert not any(r["question"] for r in rows(lemmas="γινώσκω", scope="1 Cor 8:3"))
+    # Rev 19:12 "a name no one knows except he himself": a lone-word exception
+    assert any(r["signal"] == "exception" for r in rows(lemmas="οἶδα", scope="Rev 19:12"))
+    # εἰδώς is lemmatised under ὁράω; the gloss filter takes only its "know" sense
+    know = rows(lemmas="ὁράω", words="know", scope="John 13")
+    assert {r["predicate_ref"] for r in know} >= {"JHN 13:1!7", "JHN 13:3!1"}
+    assert all(r["predicate"].startswith("εἰδ") for r in know)

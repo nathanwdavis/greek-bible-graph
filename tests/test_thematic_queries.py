@@ -2,6 +2,7 @@
 computed WITHOUT them: by walking the fixture's lowfat XML directly.
 """
 
+import re
 import xml.etree.ElementTree as ET
 
 import duckdb
@@ -64,17 +65,28 @@ class Trees:
         return self.parent[w]
 
     def agents(self, w) -> set[tuple[str, str | None]]:
-        """(signal, terminal referent xml:id or None for implicit), agent role."""
+        """(signal, terminal referent xml:id or None for implicit), agent role.
+
+        A passive verb's grammatical subject is its patient, so it is not an agent.
+        """
         out = set()
         cl = self.clause(w)
+        # passive in meaning: voice passive AND Robinson voice letter P (not a deponent)
+        m = re.match(r"V-2?[A-Z]([A-Z])", w.get("morph") or "")
+        active = not (w.get("voice") == "passive" and m and m.group(1) == "P")
         for ch in cl:
-            if ch.tag == "wg" and ch.get("role") == "s":
+            if active and ch.tag == "wg" and ch.get("role") == "s":
                 for x, _ in self.descendants(ch):
                     if x.get("case") == "nominative" and x.get("class") != "det":
                         out.add(("tree", self.terminal(x.get(XML_ID))))
-            elif ch.tag == "w" and ch.get("role") == "s":
+            elif active and ch.tag == "w" and ch.get("role") == "s":
                 out.add(("tree", self.terminal(ch.get(XML_ID))))
-        for t in (w.get("subjref") or "").split():
+            elif not active and ch.tag == "wg" and ch.get("role") == "adv" and any(
+                    x.tag == "w" and x.get("lemma") == "ὑπό" for x in ch):
+                for x, _ in self.descendants(ch):
+                    if x.get("case") == "genitive" and x.get("class") in ("noun", "pron"):
+                        out.add(("by", self.terminal(x.get(XML_ID))))
+        for t in (w.get("subjref") or "").split() if active else []:
             out.add(("subjref", None if t == IMPLICIT else self.terminal(t)))
         for part in (w.get("frame") or "").split():
             role, _, targets = part.partition(":")

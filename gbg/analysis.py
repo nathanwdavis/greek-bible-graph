@@ -19,34 +19,8 @@ that everything a gate *can* check is checked:
 
 What no gate can check -- whether a passage is really D rather than merely A --
 stays in ``basis`` (what the rows show) and ``reading`` (the interpretation,
-labelled as such), for a person to review. The file::
-
-    question: Which NT passages concern God's knowledge ...?
-    build: a5bc19c489d1460e            # meta.build_id the rows came from
-    taxonomy:
-      labels: {S: God knows himself, A: ..., F: ...}
-      implies: {F: [A]}                # optional subset rules
-    retrieval:                         # every recall step, rerunnable
-      - id: knowing-verbs
-        query: predicate_participants  # a saved query ...
-        params: {lemmas: "οἶδα, γινώσκω", referents: "θεός, πατήρ"}
-        rows: 86
-        candidates: predicate_id       # this column's words must all be accounted for
-      - id: counterfactuals
-        sql: SELECT ...                # ... or one SELECT
-        rows: 33
-    passages:
-      - cite: Rom 8:29
-        ids: [sblgnt:ROM.8.29]
-        evidence: [sblgnt:n45008029003]
-        labels: [A, F, D]
-        basis: προέγνω has θεός as subject (subjref and frame agree).
-        reading: Foreknowledge of persons, joined to predestination.
-    rejected:
-      - cite: Acts 19:15
-        ids: [sblgnt:ACT.19.15]
-        reason: the knower is an unclean spirit, not God.
-    blind_spots: [The LXX is not in this build ...]
+labelled as such), for a person to review. `gbg analysis --template` prints
+the file format (TEMPLATE below).
 
 Exit codes follow the lint contract: 0 clean, 1 violations
 (``FILE\\tRULE\\tREASON``), 2 a file that is not an analysis at all.
@@ -61,6 +35,51 @@ import yaml
 
 from . import cli, db as dbmod, ids, queries, refs
 from .resolve import resolve
+
+#: The format, printed by ``gbg analysis --template``. The example is deliberately
+#: unrelated to any eval question, so reading it cannot anchor an answer.
+TEMPLATE = """\
+# A thematic analysis: gbg analysis FILE --check, then --render --out FILE.md
+title: Who loves in 2 and 3 John          # optional
+question: Where in 2 and 3 John is the Elder the one who loves?   # the user's words
+build: 0bc4e52ebae67568                   # meta.build_id the rows came from (gbg sql envelope)
+taxonomy:
+  labels:                                 # the user's labels, verbatim, criteria included
+    L: love is spoken of
+    E: the Elder is the lover
+    C: the analyst's own extra label       # say so -- and list it under `added`
+  implies: {E: [L]}                       # subset rules: E ⊆ L (optional)
+  added: [C]                              # labels the analyst added (optional)
+retrieval:                                # every recall step, rerunnable on this build
+  - id: love-verbs
+    query: predicate_participants         # a saved query ...
+    params: {lemmas: ἀγαπάω}
+    rows: 19                              # must match on rerun
+    candidates: predicate_id              # every verse in this column must be kept or rejected
+  - id: known-passages
+    sql: SELECT id FROM verse WHERE id IN ('sblgnt:3JN.1.1')   # ... or one SELECT
+    rows: 1
+    candidates: id
+passages:
+  - cite: 2 John 1                        # as a reader writes it
+    ids: [sblgnt:2JN.1.1]                 # exactly what `gbg resolve` gives for cite
+    evidence: [sblgnt:n63001001011]       # words INSIDE the passage the claim rests on
+    related: [sblgnt:n63001001002]        # optional: supporting words elsewhere (a referent)
+    labels: [E, L]
+    basis: ἀγαπῶ has ἐγώ as subject (tree, frame agree), referring to πρεσβύτερος.
+    reading: The Elder's own love for the elect lady.   # interpretation, labelled as such
+  - cite: 3 John 1
+    ids: [sblgnt:3JN.1.1]
+    evidence: [sblgnt:n64001001008]
+    labels: [E, L]
+    basis: ἀγαπῶ with ἐγώ written out; tree and frame both reach πρεσβύτερος.
+rejected:
+  - cite: 2 John 5
+    ids: [sblgnt:2JN.1.5]
+    reason: 'we love one another: the community, not the Elder alone.'
+blind_spots:
+  - Only ἀγαπάω was searched; φιλέω and ἀγάπη were not.
+"""
 
 REQUIRED = (("question", str), ("build", str), ("taxonomy", dict), ("retrieval", list),
             ("passages", list))
@@ -152,6 +171,9 @@ def check(path: Path, db: Path, root: Path) -> list[cli.Violation]:
 
         labels = set(a["taxonomy"]["labels"])
         implies = a["taxonomy"].get("implies") or {}
+        for lab in a["taxonomy"].get("added") or []:
+            if lab not in labels:
+                v("label-unknown", f"taxonomy.added names {lab!r}, not a taxonomy label")
         for sub, supers in implies.items():
             for lab in [sub, *(supers or [])]:
                 if lab not in labels:
@@ -166,7 +188,8 @@ def check(path: Path, db: Path, root: Path) -> list[cli.Violation]:
                 where = _where(e, n, kind)
                 own = [str(i) for i in e.get("ids") or []]
                 evidence = [str(i) for i in e.get("evidence") or []]
-                for i in own + evidence:
+                related = [str(i) for i in e.get("related") or []]
+                for i in own + evidence + related:
                     if not exists(i):
                         v("id-fabricated", f"{where}: {i} is not in this build")
                 r = resolved(e.get("cite"))
@@ -246,16 +269,19 @@ def render(path: Path, db: Path, root: Path) -> str:
                "ids from that build; `gbg analysis --check` verified them. What the rows "
                "show is kept apart from the reading placed on them.", "",
                "## Taxonomy", "", "| label | meaning |", "|---|---|"]
-        out += [f"| **{k}** | {' '.join(str(m).split())} |" for k, m in labels.items()]
+        added = set(a["taxonomy"].get("added") or [])
+        out += [f"| **{k}** | {' '.join(str(m).split())}"
+                + (" *(added by the analyst, not in the question)*" if k in added else "") + " |"
+                for k, m in labels.items()]
         for sub, supers in (a["taxonomy"].get("implies") or {}).items():
             out.append(f"\n{sub} ⊆ {', '.join(supers)}: every passage labelled {sub} also "
                        f"carries {', '.join(supers)}.")
         out += ["", "## How the passages were found", "",
                 "| step | how | rows |", "|---|---|---|"]
         for n, s in enumerate(a["retrieval"], 1):
-            how = (f"saved query `{s['query']}` " + ", ".join(
-                f"{k}={v}" for k, v in (s.get("params") or {}).items())) if "query" in s \
-                else "SQL"
+            how = (f"saved query `{s['query']}`" + "".join(
+                f" {k}={v}" for k, v in (s.get("params") or {}).items())) if "query" in s \
+                else f"SQL `{' '.join(str(s.get('sql', '')).split())[:160]}`"
             cand = f" (candidates: `{s['candidates']}`)" if s.get("candidates") else ""
             out.append(f"| {s.get('id') or n} | {how}{cand} | {s.get('rows')} |")
         counts = {k: sum(k in (p.get("labels") or []) for p in passages) for k in labels}
@@ -273,7 +299,14 @@ def render(path: Path, db: Path, root: Path) -> str:
             if p.get("reading"):
                 out += [f"**Reading (interpretation):** {' '.join(str(p['reading']).split())}",
                         ""]
-            out += ["Evidence: " + ", ".join(f"`{i}`" for i in p.get("evidence") or []), ""]
+            for name in ("evidence", "related"):
+                got = [str(i) for i in p.get(name) or []]
+                if got:
+                    words = dict((i, f"{r} {w}") for i, r, w in con.execute(
+                        "SELECT id, ref, surface FROM token WHERE list_contains(?, id)",
+                        [got]).fetchall())
+                    out += [f"{name.capitalize()}: " + ", ".join(
+                        f"{words.get(i, '')} (`{i}`)".strip() for i in got), ""]
         out += ["## Label index", ""]
         for k in labels:
             cites = [str(p.get("cite")) for p in passages if k in (p.get("labels") or [])]
@@ -292,8 +325,10 @@ def render(path: Path, db: Path, root: Path) -> str:
 
 def add_arguments(p) -> None:
     cli.add_db(p)
-    p.add_argument("file", type=Path, help="analysis YAML (format: see the module docstring)")
+    p.add_argument("file", type=Path, nargs="?", help="analysis YAML (see --template)")
     mode = p.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--template", action="store_true",
+                      help="print the analysis file format, with a worked example")
     mode.add_argument("--check", action="store_true",
                       help="verify ids, cites, evidence, labels and the retrieval funnel")
     mode.add_argument("--render", action="store_true", help="write the analysis as Markdown")
@@ -302,6 +337,11 @@ def add_arguments(p) -> None:
 
 def run(args) -> int:
     root, db = cli.root_of(args), cli.db_of(args)
+    if args.template:
+        sys.stdout.write(TEMPLATE)
+        return cli.EXIT_OK
+    if args.file is None:
+        raise cli.UsageError("an analysis FILE is required with --check and --render")
     if args.check:
         return cli.report(check(args.file, db, root), "gbg analysis --check")
     text = render(args.file, db, root)
