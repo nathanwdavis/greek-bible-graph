@@ -312,6 +312,59 @@ TABLES: tuple[Table, ...] = (
         *EDGE_COLS,
     ), ("src", "dst", "src_strong", "dst_strong")),
 
+    Table("naves_topic", "node",
+          "A topic or subtopic of Nave's Topical Bible (1896): human curation that finds "
+          "passages about a subject whatever their wording. Subtopics nest under their "
+          "subject (GOD > KNOWLEDGE OF). Keyed to the KJV: a reference can point at a verse "
+          "whose SBLGNT wording lacks the point (1 Tim 1:17 'wise' is a variant).", (
+        C("id", "VARCHAR", "Topic id: topic:naves:<subject slug>, or .../<line> for a "
+          "subtopic (its line in the upstream entry).", nullable=False),
+        C("title", "VARCHAR", "The subject, or the subtopic's own words.", "naves",
+          nullable=False),
+        C("parent_id", "VARCHAR", "The enclosing topic; NULL for a subject.", ref="naves_topic",
+          label="SUBTOPIC_OF"),
+        C("depth", "INTEGER", "0 for a subject, 1.. for nested subtopics.", nullable=False),
+        C("path", "VARCHAR", "Titles from the subject down, joined by ' > '. Search this.",
+          "naves", nullable=False),
+        C("n_verses", "INTEGER", "Verses of this edition the topic itself cites (not its "
+          "subtopics).", nullable=False),
+    ), ("id",)),
+
+    Table("naves_topic_verse", "edge",
+          "A verse Nave's cites under a topic. Only references this edition contains; Old "
+          "Testament, absent and malformed references are counted in the manifest.", (
+        C("src", "VARCHAR", "Topic.", ref="naves_topic", label="CITES", nullable=False),
+        C("dst", "VARCHAR", "Verse.", ref="verse", label="CITES", nullable=False),
+        C("ord", "INTEGER", "Position of the reference in the upstream line.", nullable=False),
+        C("ref", "VARCHAR", "The reference as upstream wrote it (book carried over).",
+          "naves", nullable=False),
+        *EDGE_COLS,
+    ), ("src", "ord", "dst")),
+
+    Table("openbible_topic", "node",
+          "A topic of OpenBible.info's topical Bible: flat, built from readers' votes on "
+          "which passages answer a search. Broad and noisy -- weigh each verse by its votes.", (
+        C("id", "VARCHAR", "Topic id: topic:openbible:<title slug>.", nullable=False),
+        C("title", "VARCHAR", "The topic as searched, e.g. 'omniscience of god'.",
+          "openbible", nullable=False),
+        C("n_verses", "INTEGER", "Verses of this edition linked to the topic.",
+          nullable=False),
+    ), ("id",)),
+
+    Table("openbible_topic_verse", "edge",
+          "A verse linked to an OpenBible topic, with its vote score. A range is expanded to "
+          "its verses, each carrying the range's score.", (
+        C("src", "VARCHAR", "Topic.", ref="openbible_topic", label="CITES", nullable=False),
+        C("dst", "VARCHAR", "Verse.", ref="verse", label="CITES", nullable=False),
+        C("ord", "INTEGER", "Position of the range among the topic's upstream rows.",
+          nullable=False),
+        C("ref", "VARCHAR", "The OSIS range as upstream wrote it.", "openbible",
+          nullable=False),
+        C("votes", "INTEGER", "Upstream quality score (share of readers' votes); higher is "
+          "better supported.", "openbible", nullable=False),
+        *EDGE_COLS,
+    ), ("src", "ord", "dst")),
+
     Table("dominance", "index",
           "Transitive closure of the tree: every word group and every token it dominates. "
           "Turns tree questions into plain joins.", (

@@ -146,3 +146,17 @@ def test_voice_decides_agent_and_patient(nt_build):
     know = rows(lemmas="ὁράω", words="know", scope="John 13")
     assert {r["predicate_ref"] for r in know} >= {"JHN 13:1!7", "JHN 13:3!1"}
     assert all(r["predicate"].startswith("εἰδ") for r in know)
+
+
+def test_naves_god_knowledge_matches_the_independent_reading(nt_build):
+    # The eval golden (evals/nl_questions.yaml, god-knowledge) was read off the
+    # upstream CSV by hand, before the parser existed; the parser must agree.
+    import yaml
+    from gbg import queries
+    q = next(q for q in yaml.safe_load((ROOT / "evals" / "nl_questions.yaml").read_text(
+        encoding="utf-8"))["questions"] if q["id"] == "god-knowledge")
+    [t] = [r for r in queries.run_saved(ROOT, nt_build[0] / "gbg.duckdb", "topics_matching",
+                                        {"pattern": "^GOD > KNOWLEDGE OF$"}).rows]
+    res = queries.run_saved(ROOT, nt_build[0] / "gbg.duckdb", "topic_verses",
+                            {"topics": t[0]}, limit=10_000)
+    assert {r[0] for r in res.rows} == set(q["golden"]["recall"]["ids"])

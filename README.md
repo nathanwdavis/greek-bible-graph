@@ -60,7 +60,7 @@ $ gbg sql --pgq "FROM GRAPH_TABLE (gbg_graph
 | `gbg ref PASSAGE [--tree \| --tsv \| --json]` | interlinear, syntax trees, or rows with ids |
 | `gbg resolve REF [--json]` | reference ↔ ids; exit 0 found, 1 not in this edition, 2 malformed |
 | `gbg sql "SELECT…" [--json] [--pgq]` | one read-only SELECT, sandboxed (no files, no writes, timeout, row cap) |
-| `gbg query [--list] NAME --param k=v` | 13 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
+| `gbg query [--list] NAME --param k=v` | 17 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
 | `gbg eval --check-goldens \| --answers F` | the natural-language eval harness |
 | `gbg analysis FILE --check \| --render` | check a thematic analysis (ids, cites, labels, funnel), or render it as Markdown |
 
@@ -76,7 +76,9 @@ Then ask questions like "In Philemon 12, who is αὐτόν?", "Which verbs in
 Philemon have ἐγώ as their grammatical subject?" or "Which Greek words mean
 knowing or hiding?" -- concept questions go through the open glosses
 (`lemmas_by_gloss`) and Clear's synonym distances (`similar_lemmas`), since
-the semantic domains are not openly licensed.
+the semantic domains are not openly licensed. Two human topical indexes, Nave's
+Topical Bible and OpenBible.info (`topics_matching`, `topic_verses`,
+`verse_topics`), find passages about a subject in any wording.
 
 Thematic questions go further: "find every passage about God's knowledge and
 classify each against this taxonomy". The skill runs a recorded funnel:
@@ -109,6 +111,8 @@ them. See `.claude/CLAUDE.md`.
 The code is MIT. The data is licensed by its owners and checked **per field**:
 the SBLGNT text is CC BY 4.0, MACULA's annotations are CC BY 4.0, the Berean
 glosses are public domain, the Cherith glosses are CC BY 4.0, and Clear's synonym
-proximities (part of MACULA) are CC BY 4.0. MACULA's
+proximities (part of MACULA) are CC BY 4.0. The topical indexes are CC BY: Nave's
+Topical Bible (1896) as BibleData's CSV, and a dated OpenBible.info snapshot under
+`vendor/openbible/`. MACULA's
 Louw–Nida domains (UBS MARBLE, "used with permission") are excluded from the
 build, the fixtures and every artifact. See [`NOTICE.md`](NOTICE.md).

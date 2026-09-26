@@ -27,14 +27,16 @@ def copy_fixture(dest: Path, mutate=None) -> Path:
     the effect of the mutation -- auto-zettel-skill's "clean repo with exactly
     one thing broken" pattern, applied to source data.
     """
-    shutil.copytree(FIXTURES / "macula", dest / "macula")
     lock = json.loads(FIXTURE_LOCK.read_text(encoding="utf-8"))
+    for src in lock["sources"].values():
+        shutil.copytree(FIXTURES / src["local_dir"], dest / src["local_dir"])
     if mutate:
         mutate(dest / "macula")
-    for f in lock["sources"]["macula-greek"]["files"]:
-        data = (dest / "macula" / f["path"]).read_bytes()
-        f["sha256"] = hashlib.sha256(data).hexdigest()
-        f["bytes"] = len(data)
+    for src in lock["sources"].values():
+        for f in src["files"]:
+            data = (dest / src["local_dir"] / f["path"]).read_bytes()
+            f["sha256"] = hashlib.sha256(data).hexdigest()
+            f["bytes"] = len(data)
     (dest / "fixture.lock.json").write_text(json.dumps(lock, ensure_ascii=False))
     return dest / "fixture.lock.json"
 

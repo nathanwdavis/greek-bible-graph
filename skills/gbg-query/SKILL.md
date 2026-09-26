@@ -132,12 +132,18 @@ recall can be rerun and checked. Work through it in order:
    taxonomy or `blind_spots`. Knowledge of *when* ("you do not know the day")
    has a clause, not a noun, as its object, so no participant row names the
    time. Find it through the vocabulary (ἡμέρα, ὥρα, καιρός) and context.
-3. **Constructions.** Some categories are grammar, not words: things that
+3. **Topics.** `topics_matching --param pattern="knowledge of|omnisci"`, then
+   `topic_verses` with the ids you keep. This finds passages about the theme
+   that use none of its words (Heb 4:13, Matt 10:30). Nave's is editorial but
+   KJV-keyed: check that each verse's Greek carries the point. OpenBible is vote-
+   driven: weigh `votes`, and drop the noise ("cameras") with a reason.
+   `verse_topics` shows what indexers thought a candidate is about.
+4. **Constructions.** Some categories are grammar, not words: things that
    could have happened but did not are `contrary_to_fact`.
-4. **Plain occurrences** (`lemma_occurrences`) for nouns and adjectives where
+5. **Plain occurrences** (`lemma_occurrences`) for nouns and adjectives where
    the agent is not the point (μυστήριον, ἀνεξιχνίαστος). The `genitive`
    signal misses coordinated genitives (Rom 11:33 σοφίας καὶ γνώσεως θεοῦ).
-5. **Context.** Use `hits_in_context --param tokens=...` for hit words,
+6. **Context.** Use `hits_in_context --param tokens=...` for hit words,
    `verse_texts --param verses="Heb 4:13; Rom 11:33-34"` for a batch of
    verses, and `gbg ref` for anything unclear. Never open the database
    directly; everything goes through `gbg`. A referent is a **word**, not a
@@ -145,7 +151,7 @@ recall can be rerun and checked. Work through it in order:
    (Acts 7:40), κύριοι human masters (Eph 6:9). Upstream bracketing can hide
    a participant (Luke 10:22), so read the context of every negated
    predicate.
-6. **Passages you already know** that the funnel missed may be added, but only
+7. **Passages you already know** that the funnel missed may be added, but only
    through their own retrieval step (an SQL selecting those verse ids, with
    `id: known-passages`), and say so in `basis`. That keeps the funnel's recall
    honest.
@@ -177,7 +183,8 @@ without ids cannot be checked, and it is scored as if the passages were
 missing. Give the funnel counts (lemmas, candidates, kept, rejected), the
 passages by label, and **what the analysis cannot see**:
 - there are no semantic domains;
-- passages about the theme may use none of its words;
+- passages about the theme may use none of its words and appear in neither
+  topical index;
 - referents are words, not entities;
 - the Septuagint is absent.
 

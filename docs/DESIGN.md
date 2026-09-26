@@ -69,6 +69,8 @@ The rule is **open licenses only**: CC BY, CC0 or public domain, anything a user
 | LXX | [OpenScriptorium/lxx-morph](https://github.com/OpenScriptorium/lxx-morph): Rahlfs 1935, 59 books, ~623k tokens | Data CC BY 4.0 | Designed (§8) |
 | Crosswalk | [STEPBible-Data](https://github.com/STEPBible/STEPBible-Data): TAGNT (NT variants, disambiguated Strong's), TBESG/TFLSJ (lexicons covering NT + LXX) | CC BY 4.0 | Designed |
 | Benchmark | OpenBible.info cross-references | CC BY | Designed |
+| Topics | Nave's Topical Bible (1896) as BibleData's CSV (BradyStephenson/bible-data, pinned by commit) | CC BY 4.0 (text public domain) | Built (§4) |
+| Topics | OpenBible.info topics, a dated snapshot vendored in `vendor/openbible/` | CC BY | Built (§4) |
 
 **Rejected**:
 - CATSS-derived LXX morphology. eliranwong/LXX-Rahlfs-1935 is CC BY-NC-SA.
@@ -138,6 +140,7 @@ Verse membership therefore comes from each word's own `ref`. The `<milestone>` e
 |---|---|
 | Nodes | `book` (27), `verse` (7,939), `sentence` (8,010), `wg` (101,170), `token` (137,741), `lemma` (5,468) |
 | Relations | `refers_to` (18,213), `has_subject` (20,372), `frame_arg` (43,662), `lemma_proximity` (29,721) |
+| Topics | `naves_topic` (29,867) + `naves_topic_verse` (56,966); `openbible_topic` (6,713) + `openbible_topic_verse` (137,347) |
 | Index | `dominance` (714,350: the transitive closure of the trees) |
 | View | `edge` (every relation, typed) |
 
@@ -218,8 +221,30 @@ is why both are loaded (D-13, D-14):
   file waits until upstream states its alignment (D-15).
 
 Neither layer says what a passage is *about*: a verse can concern God's
-knowledge with no knowing word in it (Heb 4:13). That gap is for topical indexes
-(human curation) and, measured against them, embeddings; see §10.
+knowledge with no knowing word in it (Heb 4:13). Human topical indexes do, so
+two are loaded (D-17). They fail in opposite ways, so neither is the index:
+
+- **Nave's Topical Bible (1896)** is editorial and nested (GOD > KNOWLEDGE OF,
+  32 NT verses in this edition), but it is keyed to the KJV. It cites verses for
+  wording the SBLGNT lacks (1 Tim 1:17 "wise"), and it cannot place 73 NT
+  references at all (Rom 16:25-27, Acts 8:37 and the like). Its only structured,
+  openly licensed copy is BibleData's CSV. That repository does not say how the
+  text was digitised, and a spreadsheet cut its longest cell at 32,767
+  characters, which loses the later subtopics of "JESUS, THE CHRIST" (counted:
+  `naves.entries_truncated`). Parsing it taught three upstream spellings that are
+  now named, not guessed: `Jude`/`So` for JUD/SNG, "with" between references,
+  and ". " as a separator. The rest is counted: 5 malformed references, 4,458
+  "See ..." cross-references.
+- **OpenBible.info** is broad and current but flat and noisy. Its topics come
+  from readers' votes on search results (Heb 4:13 sits under "omniscient", and
+  also under "cameras"), so each edge keeps its vote score. It is regenerated
+  weekly with no history, so a dated snapshot is vendored and pinned by sha256.
+  `gbg fetch --update` refuses it: re-pinning means committing a new snapshot.
+
+Each source has its own tables, because licensing is enforced per column and a
+column names one component. Old Testament spans (51,673 and 26,231) and verses
+this edition lacks are counted per source, not dropped. Embeddings stay deferred
+until they can be measured against these indexes (§10).
 
 ## 5. Normalisation and references
 
@@ -335,7 +360,11 @@ funnel, where each step is data and only the last is interpretation:
 The eval for this shape is `recall` (D-16). The golden is an independent human
 index: Nave's (1896) "GOD, KNOWLEDGE OF", NT references only. An answer must
 cite at least a stated share of it. Precision is not scored, because the index
-is a floor and not the whole truth. A fabricated id still fails the run.
+is a floor and not the whole truth. A fabricated id still fails the run. Since
+D-17 put Nave's in the graph, an answer can reach that golden by reading the
+topic, so the golden now tests whether the topical layer was used. The first
+end-to-end run, made before topics existed, measured the vocabulary funnel
+alone: 0.81 (`evals/runs/2026-09-26-god-knowledge/`).
 
 ## 7. Citing the corpus from zettel notes
 
@@ -415,7 +444,8 @@ corpus_refs:
 ## 10. Open questions
 
 - **MARBLE / Louw–Nida.** The data is the most-requested semantic layer, and it is "used with permission". Asking UBS for terms is the only honest route in. Until then, gloss terms and Clear proximity stand in (§4, "Meaning without Louw–Nida").
-- **Topical indexes.** Passages about a topic with none of its words need human curation. OpenBible.info topics are CC BY but regenerated weekly (no git pin); the one structured Nave's (1896) with an explicit open license states no provenance and truncates its longest entry; CCEL-derived copies carry CCEL's non-commercial terms. Undecided.
+- **Topical indexes: provenance.** BibleData's Nave's CSV is explicitly CC BY 4.0 but does not say how it was digitised; CCEL-derived copies carry CCEL's non-commercial terms and are not used. Torrey's has no clean structured copy.
+- **Embeddings.** Admit only as `proposed_*` with a pinned open model, and only if they add recall over the gloss, proximity and topical layers, measured against a held-out topical index.
 - **Clear word senses.** Load them once upstream states which MACULA release their ids follow (§4).
 - **lxx-morph provenance.** Its README cites an "Eliran Wong public-domain digital edition" for the base text, while eliranwong/LXX-Rahlfs-1935 on GitHub is CC BY-NC-SA and CATSS-derived. The Rahlfs 1935 *text* is public domain; confirm lxx-morph's surface text owes nothing to CATSS before building on it.
 - **LXX contextual glosses.** No open source exists, so the LXX will be an interlinear with lemma glosses only.
@@ -445,3 +475,4 @@ corpus_refs:
 | D-14 | Semantic similarity comes from upstream (Clear proximity, tier `data`), not from a similarity this build computes | An upstream judgement is data with a source; a score we compute would be `computed`, belong in a `proposed_*` table, and need its own benchmark |
 | D-15 | Clear word senses are not loaded | Their ids follow an unstated MACULA release and demonstrably misalign for thousands of words |
 | D-16 | Thematic answers are an analysis file checked by `gbg analysis`, scored by `recall` against an independent index | Classification is interpretation; what can be gated (ids, cites, taxonomy rules, funnel reproducibility, no silent drops) is, and the rest is labelled |
+| D-17 | Load two topical indexes, Nave's (pinned by commit) and OpenBible (vendored dated snapshot), each in its own tables | They fail oppositely (editorial but KJV-keyed and dated; broad but vote-driven); per-field licensing needs one component per column |

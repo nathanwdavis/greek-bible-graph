@@ -10,6 +10,15 @@
     "lemma_proximity.rows_greek_unmapped": 1550,
     "lemma_proximity.rows_not_greek": 145546,
     "lemma_proximity.self_pairs": 273,
+    "naves.entries_truncated": 1,
+    "naves.indent_skips": 15,
+    "naves.refs_malformed": 5,
+    "naves.see_lines": 4458,
+    "naves.spans_book_not_in_edition": 51673,
+    "naves.spans_verse_not_in_edition": 73,
+    "openbible.spans_book_not_in_edition": 26231,
+    "openbible.spans_verse_not_in_edition": 16,
+    "openbible.title_slug_collisions": 12,
     "refers_to.first_target_cycles": 4,
     "refers_to.implicit": 6,
     "refers_to.self_reference": 4,
@@ -61,6 +70,18 @@
         "SBLGNT/tsv/macula-greek-SBLGNT.tsv": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5",
         "sources/Clear/synonyms/Proximity.tsv": "dd4faa737a91d98b77620f636520d763df60e51c44ed2a1207cc2e98643f586c"
       }
+    },
+    "naves": {
+      "commit": "8799b409c82a5d4acebba3be5107d6eff7c85d78",
+      "files": {
+        "NavesTopicalDictionary.csv": "84f54e0c90293ed0674589cb417fa11a7dab572716735e5d626cc58645f1d49b"
+      }
+    },
+    "openbible-topics": {
+      "commit": "2026-09-21",
+      "files": {
+        "topic-scores.zip": "db301bfc4f9e2e27ec9bb098e86acfe11cf0dbefe3009df3e1c1532ac8281a9a"
+      }
     }
   },
   "tables": {
@@ -93,6 +114,26 @@
       "content_sha256": "95d018d6a2b017389ab0b844aedb9bcafe75aaa1f0d2a78de8fd0a776b54cc5b",
       "rows": 29721,
       "schema_sha256": "657e7ba03a70ba61ad40cb11222e990e78482992e714325445ae259e047086a5"
+    },
+    "naves_topic": {
+      "content_sha256": "ce00f27326030ba642a1304a7a476f6be3b5eec9676a25d20b2298c940299063",
+      "rows": 29867,
+      "schema_sha256": "2b6d40e8bf6cad77d3226ec237bce480c4a979c580660c2be880993e28d07f57"
+    },
+    "naves_topic_verse": {
+      "content_sha256": "6d54c3711e890d8358a6f48d68de9b94945364b51bbd45f0989b55d7b7608094",
+      "rows": 56966,
+      "schema_sha256": "aa33d28a03898b8262d9122197ffb136ed71498d66ae88d4cb0aaf1f7a43522b"
+    },
+    "openbible_topic": {
+      "content_sha256": "4aa6cbb2608dbb67138a4b47c4dce0e7f3c152829171963f8d6031cccfc11778",
+      "rows": 6713,
+      "schema_sha256": "7d0c89c4f426aab90787a64b488ad4bf10be9cf3ec3a760d73df43e854b11cdc"
+    },
+    "openbible_topic_verse": {
+      "content_sha256": "415e06e9e937f2eba9b2435f495ae94acbb656d53d405d73720ee654edfdffbe",
+      "rows": 137347,
+      "schema_sha256": "dd7a7fe8fb57a023ded61f655ad9723f1bc9ef6cc65667716e43cfe2f23b0045"
     },
     "refers_to": {
       "content_sha256": "8386494c55e4430bafccbdb662a945b968a2048b05f92a65f1ce301fd91143a1",

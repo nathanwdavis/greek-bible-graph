@@ -3,7 +3,9 @@
     "Pinned upstream inputs. 'commit', 'sha256' and 'bytes' are written by `gbg fetch --update`;",
     "everything else is curated. Each component maps upstream field names (TSV columns / XML",
     "attributes) to a license. A component whose license is not open is DECLARED here so its",
-    "fields are excluded at parse time -- see gbg/licenses.py and docs/DESIGN.md."
+    "fields are excluded at parse time -- see gbg/licenses.py and docs/DESIGN.md.",
+    "openbible-topics is VENDORED (local_dir): upstream regenerates it weekly with no version",
+    "history, so a dated snapshot is committed and its 'commit' is the snapshot date."
   ],
   "sources": {
     "macula-greek": {
@@ -236,6 +238,57 @@
           ],
           "license": "LicenseRef-UsedWithPermission",
           "attribution": "Word sense data from the United Bible Societies MARBLE project, used by MACULA with permission -- EXCLUDED from this build"
+        }
+      }
+    },
+    "naves": {
+      "repo": "https://github.com/BradyStephenson/bible-data",
+      "raw_url": "https://raw.githubusercontent.com/BradyStephenson/bible-data/{commit}/{path}",
+      "commit": "8799b409c82a5d4acebba3be5107d6eff7c85d78",
+      "license": "CC-BY-4.0",
+      "attribution": "Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0)",
+      "files": [
+        {
+          "path": "NavesTopicalDictionary.csv",
+          "sha256": "84f54e0c90293ed0674589cb417fa11a7dab572716735e5d626cc58645f1d49b",
+          "bytes": 1461993
+        }
+      ],
+      "components": {
+        "naves": {
+          "fields": [
+            "section",
+            "subject",
+            "entry"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0)"
+        }
+      }
+    },
+    "openbible-topics": {
+      "repo": "https://www.openbible.info/topics",
+      "raw_url": "https://a.openbible.info/data/{path}",
+      "commit": "2026-09-21",
+      "license": "CC-BY-4.0",
+      "attribution": "Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY)",
+      "local_dir": "vendor/openbible/2026-09-21",
+      "files": [
+        {
+          "path": "topic-scores.zip",
+          "sha256": "db301bfc4f9e2e27ec9bb098e86acfe11cf0dbefe3009df3e1c1532ac8281a9a",
+          "bytes": 418478
+        }
+      ],
+      "components": {
+        "openbible": {
+          "fields": [
+            "Topic",
+            "OSIS",
+            "Quality Score"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY)"
         }
       }
     }

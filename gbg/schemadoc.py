@@ -51,6 +51,12 @@ PITFALLS = [
     "listed once in one direction (saved query `similar_lemmas`). Neither is a semantic "
     "domain: a passage can be about knowing without any knowing word. Say which layer found "
     "what.",
+    "**Topical indexes are human judgements, in two different styles.** `naves_topic` "
+    "(Nave's, 1896) is editorial and nested -- search its `path` -- but keyed to the KJV, so "
+    "it can cite a verse for wording the SBLGNT lacks. `openbible_topic` comes from readers' "
+    "votes: broad and noisy, so weigh `openbible_topic_verse.votes`. Topic ids are not "
+    "citable; cite the verses. Saved queries `topics_matching`, `topic_verses`, "
+    "`verse_topics`.",
     "**`gcase`, not `case`** (CASE is an SQL keyword).",
     "**Order:** surface order is `token.ord`; constituent order is `tree_ord` within a "
     "sentence. `surface` never includes punctuation -- that is in `after`.",

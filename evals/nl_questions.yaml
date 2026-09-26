@@ -107,6 +107,10 @@ questions:
   # "laid bare to his eyes"): the minimum measures whether an answer looked past
   # vocabulary, and it is a floor -- Nave's list is not the whole truth, so
   # precision is not scored.
+  # Since the topical indexes were loaded (DESIGN D-17) this list is also IN the
+  # graph (naves_topic GOD > KNOWLEDGE OF), so an answer can reach it by reading
+  # the topic: the golden now checks that the topical layer is used. The funnel
+  # without topics scored 0.81 (evals/runs/2026-09-26-god-knowledge/).
   - id: god-knowledge
     scope: nt
     question: Which New Testament passages speak of God's knowledge -- what God knows?

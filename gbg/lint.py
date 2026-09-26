@@ -30,6 +30,7 @@ MAX_SHOWN = 20
 ID_PATTERNS = {
     "token": ids.TOKEN_RE.pattern, "verse": ids.VERSE_RE.pattern, "book": ids.BOOK_RE.pattern,
     "sentence": ids.SENTENCE_RE.pattern, "wg": ids.WG_RE.pattern, "lemma": ids.LEMMA_RE.pattern,
+    "naves_topic": ids.TOPIC_RE.pattern, "openbible_topic": ids.TOPIC_RE.pattern,
 }
 
 

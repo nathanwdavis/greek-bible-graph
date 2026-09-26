@@ -61,7 +61,9 @@ PLANTS = {
            'fields', ['text']), 'berean', json_object('license', 'LicenseRef-PublicDomain',
            'fields', ['gloss']), 'cherith', json_object('license', 'LicenseRef-UsedWithPermission',
            'fields', ['english']), 'clear-synonyms', json_object('license', 'CC-BY-4.0',
-           'fields', ['Distance'])) WHERE key = 'components'"""],
+           'fields', ['Distance']), 'naves', json_object('license', 'CC-BY-4.0', 'fields',
+           ['entry']), 'openbible', json_object('license', 'CC-BY-4.0', 'fields', ['OSIS']))
+           WHERE key = 'components'"""],
     "license-unmapped": ["ALTER TABLE token ADD COLUMN mystery VARCHAR"],
     "schema-mismatch": ["ALTER TABLE token DROP COLUMN english"],
 }

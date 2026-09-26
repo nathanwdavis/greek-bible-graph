@@ -12,3 +12,9 @@ removed (domain, ln).
 - `cherith` (CC-BY-4.0): Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics
 - `clear-synonyms` (CC-BY-4.0): MACULA Greek Linguistic Datasets (Clear synonyms: Strong's-to-Strong's semantic proximity, sources/Clear/synonyms), available at https://github.com/Clear-Bible/macula-greek/
 - `marble` (excluded): Word sense data from the United Bible Societies MARBLE project, used by MACULA with permission -- EXCLUDED from this build
+
+`naves/` and `openbible/` are subsets of the topical indexes: the Nave's entries
+and the OpenBible topics that cite Philemon, 2 John or 3 John.
+
+- Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0) (CC-BY-4.0), naves @ 8799b409c82a5d4acebba3be5107d6eff7c85d78
+- Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY) (CC-BY-4.0), openbible-topics @ 2026-09-21

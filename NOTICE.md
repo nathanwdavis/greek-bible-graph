@@ -26,6 +26,18 @@ the United Bible Societies MARBLE project and are "used with permission", not
 under an open license. They are removed at parse time and from the test
 fixtures, and no built artifact contains them.
 
+## Topical indexes -- CC BY
+
+| Source | What | License | Attribution |
+|---|---|---|---|
+| Nave's Topical Bible | topics, subtopics and the verses they cite (`naves_topic`, `naves_topic_verse`) | CC BY 4.0 | Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0) |
+| OpenBible.info topics | topics and the verses readers voted for (`openbible_topic`, `openbible_topic_verse`) | CC BY | Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY) |
+
+Nave's 1896 text is in the public domain; the structured CSV is licensed CC BY 4.0
+by its repository, which does not say how it was digitised. The OpenBible data is
+regenerated weekly without version history, so a dated snapshot is committed under
+`vendor/openbible/` and pinned by sha256.
+
 The fixture under `tests/fixtures/macula/` is a subset of the above (Philemon,
 2 John, 3 John) with the excluded fields removed; see
 `tests/fixtures/ATTRIBUTION.md`.
