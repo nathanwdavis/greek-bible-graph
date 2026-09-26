@@ -36,6 +36,7 @@ COMMANDS: list[tuple[str, str, str]] = [
     ("sql", "gbg.db", "run one read-only SELECT against the built graph"),
     ("query", "gbg.queries", "run a saved query from queries/"),
     ("eval", "gbg.evals", "check the NL eval goldens, or score a set of answers"),
+    ("analysis", "gbg.analysis", "check or render a thematic analysis (classified passages)"),
 ]
 
 

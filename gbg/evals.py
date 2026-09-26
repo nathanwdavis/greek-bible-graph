@@ -14,6 +14,12 @@ CI cannot run Claude, so the eval splits:
   word up to twenty -- compound phrases like "one hundred sixteen" are not
   parsed), or a proper refusal: a decline phrase plus the topic, with any
   cited ids real.
+
+Open-ended, thematic questions ("which passages speak of God's knowledge?")
+have no exact answer set, so their golden is ``recall``: an independent list of
+verses (a human topical index, not a query) and the share an answer must cite.
+Word ids count for the verse they are in. Precision is not scored -- the list is
+a floor, not the whole truth -- but a fabricated id still fails the run.
 """
 
 from __future__ import annotations
@@ -24,7 +30,7 @@ from pathlib import Path
 
 import yaml
 
-from . import cli, db as dbmod, ids, queries
+from . import books, cli, db as dbmod, ids, queries
 
 #: A decline must say it cannot answer -- naming the topic alone is not enough
 #: ("ἀγάπη is in domain 25.43" names the topic and answers anyway).
@@ -59,6 +65,19 @@ def reference(root: Path, db: Path, q: dict):
     return dbmod.run_query(db, q["sql"], limit=dbmod.MAX_LIMIT)
 
 
+def as_verse(i: str) -> str:
+    """A token id counts for its verse; anything else stands for itself."""
+    if ids.kind_of(i) != "token":
+        return i
+    num, c, v, _ = ids.token_parts(i)
+    return ids.verse_id(books.NT_BY_NUM[num].code, c, v)
+
+
+def recall(cited, golden: dict) -> float:
+    gold = set(golden["recall"]["ids"])
+    return len(gold & {as_verse(i) for i in cited}) / len(gold)
+
+
 def check_golden(res, golden: dict) -> str | None:
     """None if the reference result matches the golden, else a reason."""
     if "rows" in golden:
@@ -71,6 +90,10 @@ def check_golden(res, golden: dict) -> str | None:
         found = {v for r in res.rows for v in r if isinstance(v, str) and ids.kind_of(v)}
         missing = set(golden["ids"]) - found
         return None if not missing else f"golden ids not returned: {sorted(missing)}"
+    if "recall" in golden:
+        found = [v for r in res.rows for v in r if isinstance(v, str) and ids.kind_of(v)]
+        got, want = recall(found, golden), golden["recall"]["min"]
+        return None if got >= want else f"recall {got:.2f}, golden minimum {want}"
     return f"unknown golden {golden}"
 
 
@@ -79,6 +102,19 @@ def check_goldens(root: Path, db: Path) -> list[cli.Violation]:
     out = []
     for q in load(root):
         if "refusal" in q["golden"] or q["scope"] not in (scope, "any"):
+            continue
+        if "recall" in q["golden"] and "query" not in q and "sql" not in q:
+            # No single query answers a thematic question; what CI can hold is
+            # that the hand-entered golden names verses this edition has.
+            con = dbmod.connect(db)
+            try:
+                bad = [i for i in q["golden"]["recall"]["ids"] if not con.execute(
+                    "SELECT 1 FROM verse WHERE id = ?", [i]).fetchone()]
+            finally:
+                con.close()
+            if bad:
+                out.append(cli.Violation(f"evals/{q['id']}", "golden-invalid",
+                                         f"not verses of this edition: {bad}"))
             continue
         why = check_golden(reference(root, db, q), q["golden"])
         if why:
@@ -111,6 +147,10 @@ def score(root: Path, db: Path, answers: dict[str, str]) -> tuple[list[dict], bo
                 rec = len(hit) / len(gold)
                 verdict = f"precision {prec:.2f} recall {rec:.2f}"
                 ok = rec == 1.0 and not fake
+            elif "recall" in g:
+                got = recall(cited, g)
+                ok = got >= g["recall"]["min"] and not fake
+                verdict = f"recall {got:.2f} (minimum {g['recall']['min']})"
             elif "rows" in g or "value" in g:
                 want = str(g.get("rows", g.get("value")))
                 # "1,307" and "1 307" state the same number as "1307"; "Four" states 4.

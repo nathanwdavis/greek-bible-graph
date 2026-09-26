@@ -212,6 +212,11 @@ def update(lock_path: Path, name: str, root: Path, *, commit: str | None = None,
     """
     data = json.loads(Path(lock_path).read_text(encoding="utf-8"))
     s = data["sources"][name]
+    if s.get("local_dir"):
+        # A vendored snapshot (OpenBible regenerates its data weekly, with no
+        # history) is re-pinned by committing a new dated copy, in a reviewed diff.
+        raise LockError(f"{name} is vendored in {s['local_dir']}; re-pin it by committing "
+                        "a new snapshot, not with --update")
     new = commit or ls_remote_head(s["repo"])
     for f in s["files"]:
         url = s["raw_url"].format(commit=new, path=f["path"])

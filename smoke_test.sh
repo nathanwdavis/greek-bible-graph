@@ -52,7 +52,8 @@ OUT="$("${GBG[@]}" build --check --lock "$FXLOCK" 2>&1)" || fail "build --check 
 pass "committed fixture manifest reproduces"
 BAD="$WORK/badfix"
 mkdir -p "$BAD"
-cp -r "$ROOT/tests/fixtures/macula" "$BAD/"
+cp -r "$ROOT/tests/fixtures/macula" "$ROOT/tests/fixtures/naves" \
+      "$ROOT/tests/fixtures/openbible" "$BAD/"
 cp "$FXLOCK" "$BAD/"
 "$PY" - "$BAD" <<'PYEOF'
 import hashlib, json, sys

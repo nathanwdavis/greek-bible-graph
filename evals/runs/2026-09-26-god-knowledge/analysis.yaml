@@ -1,0 +1,2321 @@
+title: God's knowledge and knowledge hidden from humans in the Greek NT
+question: Find all passages in the NT that pertain to God's knowledge and what knowledge is hidden from
+  humans, and describe each with the taxonomy S, A, P, D, F (K = S ∪ A ∪ P). H is the analyst's added
+  label for knowledge hidden from humans.
+build: a5bc19c489d1460e
+taxonomy:
+  labels:
+    S: God knows himself.
+    A: 'God knows all things actual. Grudem explains this as "all things that exist and all things that
+      happen." So: everything that is real, and everything that really happens.'
+    P: 'God knows all things possible. Grudem explains this as "events that might happen but that do not
+      actually come to pass." So: things that could happen but never do.'
+    D: the things God ordains. Ordains is Grudem's word. In this guide it means God decides ahead of time
+      that something will happen and makes it certain. God knowing about something, or allowing it, is
+      not enough to put it in D.
+    F: 'people''s future free choices. This is the part everybody argues about. Grudem describes the kind
+      of freedom Arminians want as choices that are "undetermined or uncaused" -- meaning nothing outside
+      the person makes the choice happen. F is part of A, because your future choices are things that
+      really happen: F ⊆ A (your future free choices are part of "all things actual").'
+    H: '[ANALYST''S ADDITION, not in the user''s taxonomy] knowledge hidden from humans: passages saying
+      something is hidden from, unknown to, or unknowable by people (including knowledge withheld and
+      later disclosed). Added because the question asks for it and the user''s labels have no slot for
+      it.'
+  implies:
+    F:
+    - A
+retrieval:
+- id: vocab-gloss
+  query: lemmas_by_gloss
+  params:
+    words: know, knowledge, foreknow, foreknowledge, understand, search, omniscient, hide, hidden, secret,
+      mystery, reveal, conceal, unknown, unsearchable, inscrutable, wisdom
+  rows: 65
+- id: vocab-near-ginosko
+  query: similar_lemmas
+  params:
+    lemma: γινώσκω
+    max_distance: '0.6'
+  rows: 14
+- id: vocab-near-oida
+  query: similar_lemmas
+  params:
+    lemma: οἶδα
+    max_distance: '0.6'
+  rows: 15
+- id: vocab-near-kryptos
+  query: similar_lemmas
+  params:
+    lemma: κρυπτός
+  rows: 11
+- id: vocab-near-mysterion
+  query: similar_lemmas
+  params:
+    lemma: μυστήριον
+  rows: 3
+- id: divine-knowers
+  query: predicate_participants
+  params:
+    lemmas: οἶδα, γινώσκω, ἐπιγινώσκω, ἐπίσταμαι, προγινώσκω, πρόγνωσις, γνῶσις, ἐραυνάω, γνωστός, σοφία
+    referents: θεός, πατήρ, κύριος, πνεῦμα, υἱός, Ἰησοῦς, Χριστός
+  rows: 199
+  candidates: predicate_id
+- id: revelation-knowers
+  query: predicate_participants
+  params:
+    lemmas: οἶδα, γινώσκω, ἐπιγινώσκω, ἐπίσταμαι
+    scope: Rev
+  rows: 32
+  candidates: predicate_id
+- id: known-by-passives
+  sql: SELECT t.id, t.ref, t.surface, t.lemma FROM token t WHERE t.lemma IN ('γινώσκω','ἐπιγινώσκω','οἶδα','προγινώσκω')
+    AND t.voice = 'passive' ORDER BY t.ord
+  rows: 16
+  candidates: id
+- id: eidos-under-horao
+  sql: SELECT t.id, t.ref, t.surface, t.english FROM token t WHERE t.lemma = 'ὁράω' AND list_has_any(t.english_terms,
+    ['know']) ORDER BY t.ord
+  rows: 22
+  candidates: id
+- id: unknown-times
+  sql: SELECT t.id, t.ref, t.surface FROM token t WHERE t.lemma IN ('οἶδα','γινώσκω','ἐπιγινώσκω') AND
+    EXISTS (SELECT 1 FROM token n WHERE n.verse_id = t.verse_id AND n.ord BETWEEN t.ord - 3 AND t.ord
+    - 1 AND n.lemma IN ('οὐ','μή','οὐδείς','οὐδέ')) AND EXISTS (SELECT 1 FROM token w WHERE w.verse_id
+    = t.verse_id AND w.lemma IN ('ἡμέρα','ὥρα','καιρός','χρόνος','πότε')) ORDER BY t.ord
+  rows: 20
+  candidates: id
+- id: hidden-vocab
+  sql: SELECT t.id, t.ref, t.surface, t.lemma FROM token t WHERE t.lemma IN ('κρύπτω','ἀποκρύπτω','ἐγκρύπτω','παρακαλύπτομαι','κρυπτός','ἀπόκρυφος','κρυφαῖος','κρυφῇ','μυστήριον','ἀνεξιχνίαστος','ἀνεξεραύνητος','ἀφανής','ἄγνωστος','καρδιογνώστης')
+    ORDER BY t.ord
+  rows: 81
+  candidates: id
+- id: counterfactuals
+  query: contrary_to_fact
+  params: {}
+  rows: 33
+  candidates: verse_id
+- id: known-passages
+  sql: SELECT v.id, v.text FROM verse v WHERE v.id IN ('sblgnt:MAT.10.29','sblgnt:MAT.10.30','sblgnt:MAT.26.34','sblgnt:JHN.13.19','sblgnt:ACT.15.18','sblgnt:ROM.11.34','sblgnt:1CO.2.16','sblgnt:1TH.2.4','sblgnt:HEB.4.12','sblgnt:LUK.10.22')
+    ORDER BY v.ord
+  rows: 10
+  candidates: id
+passages:
+- cite: Matt 6:4
+  ids:
+  - sblgnt:MAT.6.4
+  evidence:
+  - sblgnt:n40006004008
+  - sblgnt:n40006004017
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: κρυπτῷ (κρυπτός, MAT 6:4!8), κρυπτῷ (κρυπτός, MAT 6:4!17). ὁ πατήρ ... ὁ
+    βλέπων ἐν τῷ κρυπτῷ: the Father is the one who sees in the hidden place.'
+  reading: 'The Father sees what is done in secret: knowledge of acts hidden from other people.'
+- cite: Matt 6:6
+  ids:
+  - sblgnt:MAT.6.6
+  evidence:
+  - sblgnt:n40006006022
+  - sblgnt:n40006006031
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: κρυπτῷ (κρυπτός, MAT 6:6!22), κρυπτῷ (κρυπτός, MAT 6:6!31). ὁ πατήρ σου
+    ὁ βλέπων ἐν τῷ κρυπτῷ.'
+  reading: 'As 6:4: the Father sees secret prayer.'
+- cite: Matt 6:8
+  ids:
+  - sblgnt:MAT.6.8
+  evidence:
+  - sblgnt:n40006008005
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (MAT 6:8!5) agent πατὴρ (MAT 6:8!8) by frame, οἶδεν (MAT 6:8!5)
+    agent πατὴρ (MAT 6:8!8) by tree.'
+  reading: 'The Father knows needs before they are asked: knowledge of what is actual, ahead of its being
+    spoken.'
+- cite: Matt 6:18
+  ids:
+  - sblgnt:MAT.6.18
+  evidence:
+  - sblgnt:n40006018014
+  - sblgnt:n40006018023
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: κρυφαίῳ (κρυφαῖος, MAT 6:18!14), κρυφαίῳ (κρυφαῖος, MAT 6:18!23). ὁ πατήρ
+    σου ὁ βλέπων ἐν τῷ κρυφαίῳ.'
+  reading: 'As 6:4: the Father sees secret fasting.'
+- cite: Matt 6:32
+  ids:
+  - sblgnt:MAT.6.32
+  evidence:
+  - sblgnt:n40006032007
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (MAT 6:32!7) agent πατὴρ (MAT 6:32!10) by frame, οἶδεν (MAT 6:32!7)
+    agent πατὴρ (MAT 6:32!10) by tree.'
+  reading: 'The heavenly Father knows every need: knowledge of what is actual.'
+- cite: Matt 7:23
+  ids:
+  - sblgnt:MAT.7.23
+  evidence:
+  - sblgnt:n40007023007
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἔγνων (MAT 7:23!7, negated) agent Ἰησοῦς (MAT 4:17!5) by frame, ἔγνων
+    (MAT 7:23!7, negated) agent Ἰησοῦς (MAT 4:17!5) by subjref.'
+  reading: A negated knowing ('I never knew you'). The sense is relational non-recognition, not a gap
+    in what is known; kept because it concerns the divine knower's knowing of persons. Treating Jesus'
+    knowledge as God's knowledge is a theological step the rows do not take.
+- cite: Matt 10:26
+  ids:
+  - sblgnt:MAT.10.26
+  evidence:
+  - sblgnt:n40010026016
+  - sblgnt:n40010026013
+  labels:
+  - H
+  basis: 'Rows: known-by-passives: γνωσθήσεται (γινώσκω, MAT 10:26!16); hidden-vocab: κρυπτὸν (κρυπτός,
+    MAT 10:26!13). κρυπτὸν ὃ οὐ γνωσθήσεται: passive of γινώσκω, no agent expressed.'
+  reading: 'Things now hidden (κρυπτόν) will be made known (divine passive γνωσθήσεται): hiddenness from
+    people is temporary.'
+- cite: Matt 10:29
+  ids:
+  - sblgnt:MAT.10.29
+  evidence:
+  - sblgnt:n40010029011
+  - sblgnt:n40010029017
+  labels:
+  - A
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): ἄνευ τοῦ πατρὸς ὑμῶν with πεσεῖται.'
+  reading: Not one sparrow falls 'without your Father'. Whether this is knowledge (A) or will (D) depends
+    on how ἄνευ τοῦ πατρός is filled; the text supplies no noun, so only A is claimed.
+- cite: Matt 10:30
+  ids:
+  - sblgnt:MAT.10.30
+  evidence:
+  - sblgnt:n40010030005
+  - sblgnt:n40010030009
+  labels:
+  - A
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): αἱ τρίχες ... πᾶσαι ἠριθμημέναι εἰσίν.'
+  reading: 'Every hair numbered (divine passive ἠριθμημέναι): exhaustive knowledge of the actual.'
+- cite: Matt 11:21
+  ids:
+  - sblgnt:MAT.11.21
+  evidence:
+  - sblgnt:n40011021008
+  - sblgnt:n40011021013
+  - sblgnt:n40011021021
+  labels:
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἐγένοντο (V-2ADI-3P) with ἄν (MAT 11:21!21).'
+  reading: 'Jesus states what Tyre and Sidon would have done (repented) had the miracles happened there:
+    knowledge of a possible-but-not-actual free response, Grudem''s P. Not F, which is part of A (what
+    actually happens). Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do
+    not take.'
+- cite: Matt 11:23
+  ids:
+  - sblgnt:MAT.11.23
+  evidence:
+  - sblgnt:n40011023012
+  - sblgnt:n40011023015
+  - sblgnt:n40011023023
+  labels:
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἐγενήθησαν (V-AOI-3P) with ἄν (MAT 11:23!23).'
+  reading: 'As 11:21: Sodom ''would have remained until today''. A counterfactual known and asserted by
+    Jesus. Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Matt 11:25
+  ids:
+  - sblgnt:MAT.11.25
+  evidence:
+  - sblgnt:n40011025019
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: ἔκρυψας (κρύπτω, MAT 11:25!19). ἔκρυψας: second person singular addressed
+    to πάτερ, so God is the one who hides.'
+  reading: 'The Father hid (ἔκρυψας) these things from the wise and revealed them to infants: knowledge
+    hidden from people by God''s own act. D because the hiding is God''s decision (Luke 10:21 adds εὐδοκία),
+    not mere permission.'
+- cite: Matt 11:27
+  ids:
+  - sblgnt:MAT.11.27
+  evidence:
+  - sblgnt:n40011027010
+  - sblgnt:n40011027021
+  labels:
+  - S
+  - H
+  basis: 'Rows: divine-knowers: ἐπιγινώσκει (MAT 11:27!10, negated) agent πατήρ (MAT 11:27!16) by exception,
+    ἐπιγινώσκει (MAT 11:27!21) agent υἱὸς (MAT 11:27!25) by exception, ἐπιγινώσκει (MAT 11:27!21) agent
+    υἱὸς (MAT 11:27!31) by exception.'
+  reading: Father and Son know each other exclusively; no one else knows the Father except by the Son's
+    revealing. Mutual knowledge within the Godhead (S) and knowledge closed to all others (H).
+- cite: Matt 12:7
+  ids:
+  - sblgnt:MAT.12.7
+  evidence:
+  - sblgnt:n40012007001
+  - sblgnt:n40012007003
+  - sblgnt:n40012007012
+  labels:
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἐγνώκειτε (V-LAI-2P) with ἄν (MAT 12:7!12).'
+  reading: 'Jesus states what the Pharisees would not have done (condemned the innocent) had they understood
+    Hos 6:6: a non-actual free choice asserted by Jesus, the same shape as John 4:10. Treating Jesus''
+    knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Matt 12:25
+  ids:
+  - sblgnt:MAT.12.25
+  evidence:
+  - sblgnt:n40012025001
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, MAT 12:25!1). εἰδώς is lemmatized under ὁράω upstream
+    (Strong''s G1492); its has_subject edge ends at Ἰησοῦς.'
+  reading: 'Jesus knows their unspoken thoughts (ἐνθυμήσεις): knowledge of what is hidden in people. Treating
+    Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Matt 13:11
+  ids:
+  - sblgnt:MAT.13.11
+  evidence:
+  - sblgnt:n40013011009
+  - sblgnt:n40013011011
+  labels:
+  - H
+  - D
+  basis: 'Rows: divine-knowers: γνῶναι (MAT 13:11!9) agent implicit by frame; hidden-vocab: μυστήρια (μυστήριον,
+    MAT 13:11!11).'
+  reading: 'Knowing the mysteries of the kingdom ''has been given'' to the disciples and ''not given''
+    to others: knowledge withheld from some people. D reads the divine passive δέδοται as God''s giving;
+    that is an interpretation.'
+- cite: Matt 13:35
+  ids:
+  - sblgnt:MAT.13.35
+  evidence:
+  - sblgnt:n40013035016
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: κεκρυμμένα (κρύπτω, MAT 13:35!16).'
+  reading: 'Things hidden since the foundation of the world, now uttered in parables: knowledge withheld
+    from people until disclosed.'
+- cite: Matt 22:18
+  ids:
+  - sblgnt:MAT.22.18
+  evidence:
+  - sblgnt:n40022018001
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γνοὺς (MAT 22:18!1) agent Ἰησοῦς (MAT 22:18!4) by frame, γνοὺς (MAT 22:18!1)
+    agent Ἰησοῦς (MAT 22:18!4) by subjref.'
+  reading: Jesus knows their hidden malice (πονηρία) behind the question. Treating Jesus' knowledge as
+    God's knowledge is a theological step the rows do not take.
+- cite: Matt 24:22
+  ids:
+  - sblgnt:MAT.24.22
+  evidence:
+  - sblgnt:n40024022002
+  - sblgnt:n40024022004
+  - sblgnt:n40024022009
+  labels:
+  - P
+  - D
+  basis: 'Rows: counterfactuals: εἰ + ἐκολοβώθησαν (V-API-3P) with ἄν (MAT 24:22!9).'
+  reading: 'If those days had not been cut short, no one would be saved: a stated non-actual outcome (P).
+    They will be cut short for the elect (divine passive κολοβωθήσονται): God decides the length ahead
+    of time (D).'
+- cite: Matt 24:36
+  ids:
+  - sblgnt:MAT.24.36
+  evidence:
+  - sblgnt:n40024036009
+  labels:
+  - A
+  - H
+  basis: 'Rows: divine-knowers: οἶδεν (MAT 24:36!9, negated) agent πατὴρ (MAT 24:36!21) by exception;
+    unknown-times: οἶδεν (οἶδα, MAT 24:36!9).'
+  reading: 'No one knows the day and hour, not the angels, not the Son, only the Father: the Father''s
+    knowledge of a future actual event (A), withheld from every creature and from the Son (H).'
+- cite: Matt 24:39
+  ids:
+  - sblgnt:MAT.24.39
+  evidence:
+  - sblgnt:n40024039003
+  labels:
+  - H
+  basis: 'Rows: divine-knowers: ἔγνωσαν (MAT 24:39!3, negated) agent implicit by frame.'
+  reading: 'Noah''s generation ''did not know'' until the flood came: the coming of the Son of Man will
+    be likewise unknown beforehand.'
+- cite: Matt 24:42
+  ids:
+  - sblgnt:MAT.24.42
+  evidence:
+  - sblgnt:n40024042005
+  labels:
+  - H
+  basis: 'Rows: unknown-times: οἴδατε (οἶδα, MAT 24:42!5).'
+  reading: 'You do not know on what day your Lord comes: the time is hidden from people.'
+- cite: Matt 24:43
+  ids:
+  - sblgnt:MAT.24.43
+  evidence:
+  - sblgnt:n40024043005
+  - sblgnt:n40024043006
+  - sblgnt:n40024043015
+  labels:
+  - H
+  basis: 'Rows: counterfactuals: εἰ + ᾔδει (V-2LAI-3S) with ἄν (MAT 24:43!15).'
+  reading: The householder's counterfactual (had he known the watch...) illustrates that the hour is unknown.
+    A human counterfactual, so not P.
+- cite: Matt 24:50
+  ids:
+  - sblgnt:MAT.24.50
+  evidence:
+  - sblgnt:n40024050017
+  labels:
+  - H
+  basis: 'Rows: unknown-times: γινώσκει (γινώσκω, MAT 24:50!17).'
+  reading: The master comes at an hour the servant does not know.
+- cite: Matt 25:13
+  ids:
+  - sblgnt:MAT.25.13
+  evidence:
+  - sblgnt:n40025013005
+  labels:
+  - H
+  basis: 'Rows: unknown-times: οἴδατε (οἶδα, MAT 25:13!5).'
+  reading: You know neither the day nor the hour.
+- cite: Matt 26:34
+  ids:
+  - sblgnt:MAT.26.34
+  evidence:
+  - sblgnt:n40026034006
+  - sblgnt:n40026034017
+  labels:
+  - A
+  - F
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): λέγω σοι ... τρὶς ἀπαρνήσῃ με (future indicative).'
+  reading: 'Jesus foretells that Peter will deny him three times that night: knowledge of a future free
+    choice (F, so also A). Treating Jesus'' knowledge as God''s knowledge is a theological step the rows
+    do not take.'
+- cite: Mark 2:8
+  ids:
+  - sblgnt:MRK.2.8
+  evidence:
+  - sblgnt:n41002008003
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἐπιγνοὺς (MRK 2:8!3) agent Ἰησοῦς (MRK 2:8!5) by frame, ἐπιγνοὺς (MRK
+    2:8!3) agent Ἰησοῦς (MRK 2:8!5) by subjref.'
+  reading: 'Jesus knows ''in his spirit'' what they reason in their hearts: knowledge of hidden thoughts.
+    Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Mark 4:11
+  ids:
+  - sblgnt:MRK.4.11
+  evidence:
+  - sblgnt:n41004011006
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, MRK 4:11!6).'
+  reading: The mystery of the kingdom has been given (δέδοται) to the disciples; to outsiders everything
+    is in parables. D reads the divine passive as God's giving.
+- cite: Mark 4:22
+  ids:
+  - sblgnt:MRK.4.22
+  evidence:
+  - sblgnt:n41004022004
+  - sblgnt:n41004022011
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: κρυπτὸν (κρυπτός, MRK 4:22!4), ἀπόκρυφον (ἀπόκρυφος, MRK 4:22!11).'
+  reading: 'Nothing is hidden (κρυπτόν, ἀπόκρυφον) except to be made manifest: hiddenness is temporary.'
+- cite: Mark 12:15
+  ids:
+  - sblgnt:MRK.12.15
+  evidence:
+  - sblgnt:n41012015003
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, MRK 12:15!3). εἰδώς is lemmatized under ὁράω upstream;
+    has_subject ends at Ἰησοῦς.'
+  reading: 'Jesus knows their hypocrisy (ὑπόκρισις): hidden motive. Treating Jesus'' knowledge as God''s
+    knowledge is a theological step the rows do not take.'
+- cite: Mark 13:20
+  ids:
+  - sblgnt:MRK.13.20
+  evidence:
+  - sblgnt:n41013020002
+  - sblgnt:n41013020004
+  - sblgnt:n41013020009
+  labels:
+  - P
+  - D
+  basis: 'Rows: counterfactuals: εἰ + ἐκολόβωσεν (V-AAI-3S) with ἄν (MRK 13:20!9).'
+  reading: 'Had the Lord not shortened the days, no flesh would be saved (P). He shortened them for the
+    elect whom he chose (D: a decision made and carried out).'
+- cite: Mark 13:32
+  ids:
+  - sblgnt:MRK.13.32
+  evidence:
+  - sblgnt:n41013032010
+  labels:
+  - A
+  - H
+  basis: 'Rows: divine-knowers: οἶδεν (MRK 13:32!10, negated) agent πατήρ (MRK 13:32!22) by exception;
+    unknown-times: οἶδεν (οἶδα, MRK 13:32!10).'
+  reading: 'As Matt 24:36: only the Father knows the day or hour; not angels, not the Son.'
+- cite: Mark 13:33
+  ids:
+  - sblgnt:MRK.13.33
+  evidence:
+  - sblgnt:n41013033004
+  labels:
+  - H
+  basis: 'Rows: unknown-times: οἴδατε (οἶδα, MRK 13:33!4).'
+  reading: You do not know when the time is.
+- cite: Mark 13:35
+  ids:
+  - sblgnt:MRK.13.35
+  evidence:
+  - sblgnt:n41013035004
+  labels:
+  - H
+  basis: 'Rows: unknown-times: οἴδατε (οἶδα, MRK 13:35!4).'
+  reading: You do not know when the master of the house comes.
+- cite: Luke 5:22
+  ids:
+  - sblgnt:LUK.5.22
+  evidence:
+  - sblgnt:n42005022001
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἐπιγνοὺς (LUK 5:22!1) agent Ἰησοῦς (LUK 5:22!4) by frame, ἐπιγνοὺς (LUK
+    5:22!1) agent Ἰησοῦς (LUK 5:22!4) by subjref.'
+  reading: Jesus knows their reasonings (διαλογισμούς) in their hearts. Treating Jesus' knowledge as God's
+    knowledge is a theological step the rows do not take.
+- cite: Luke 6:8
+  ids:
+  - sblgnt:LUK.6.8
+  evidence:
+  - sblgnt:n42006008003
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ᾔδει (LUK 6:8!3) agent Ἰησοῦς (LUK 6:3!7) by frame, ᾔδει (LUK 6:8!3) agent
+    Ἰησοῦς (LUK 6:3!7) by tree.'
+  reading: Jesus knew their reasonings. Treating Jesus' knowledge as God's knowledge is a theological
+    step the rows do not take.
+- cite: Luke 8:10
+  ids:
+  - sblgnt:LUK.8.10
+  evidence:
+  - sblgnt:n42008010006
+  - sblgnt:n42008010008
+  labels:
+  - H
+  - D
+  basis: 'Rows: divine-knowers: γνῶναι (LUK 8:10!6) agent implicit by frame; hidden-vocab: μυστήρια (μυστήριον,
+    LUK 8:10!8).'
+  reading: 'As Mark 4:11: to know the mysteries has been given (δέδοται) to some; to others in parables,
+    so that seeing they do not see.'
+- cite: Luke 8:17
+  ids:
+  - sblgnt:LUK.8.17
+  evidence:
+  - sblgnt:n42008017014
+  - sblgnt:n42008017004
+  - sblgnt:n42008017010
+  labels:
+  - H
+  basis: 'Rows: known-by-passives: γνωσθῇ (γινώσκω, LUK 8:17!14); hidden-vocab: κρυπτὸν (κρυπτός, LUK
+    8:17!4), ἀπόκρυφον (ἀπόκρυφος, LUK 8:17!10).'
+  reading: Nothing hidden that will not be known (γνωσθῇ, divine passive).
+- cite: Luke 9:45
+  ids:
+  - sblgnt:LUK.9.45
+  evidence:
+  - sblgnt:n42009045009
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: παρακεκαλυμμένον (παρακαλύπτομαι, LUK 9:45!9).'
+  reading: 'The saying was concealed (παρακεκαλυμμένον) from them so that they might not perceive it:
+    understanding withheld from people. The agent is not named; a divine passive is a reading.'
+- cite: Luke 9:47
+  ids:
+  - sblgnt:LUK.9.47
+  evidence:
+  - sblgnt:n42009047004
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, LUK 9:47!4). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: Jesus knows the reasoning of their heart. Treating Jesus' knowledge as God's knowledge is a
+    theological step the rows do not take.
+- cite: Luke 10:13
+  ids:
+  - sblgnt:LUK.10.13
+  evidence:
+  - sblgnt:n42010013008
+  - sblgnt:n42010013013
+  - sblgnt:n42010013021
+  labels:
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἐγενήθησαν (V-AOI-3P) with ἄν (LUK 10:13!21).'
+  reading: 'As Matt 11:21: Tyre and Sidon would have repented. Treating Jesus'' knowledge as God''s knowledge
+    is a theological step the rows do not take.'
+- cite: Luke 10:21
+  ids:
+  - sblgnt:LUK.10.21
+  evidence:
+  - sblgnt:n42010021022
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: ἀπέκρυψας (ἀποκρύπτω, LUK 10:21!22).'
+  reading: 'As Matt 11:25, with εὐδοκία (''thus it was well-pleasing before you''): God''s own decision
+    to hide and reveal.'
+- cite: Luke 10:22
+  ids:
+  - sblgnt:LUK.10.22
+  evidence:
+  - sblgnt:n42010022009
+  - sblgnt:n42010022010
+  - sblgnt:n42010022018
+  - sblgnt:n42010022027
+  labels:
+  - S
+  - H
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage:
+    predicate_participants misses it because upstream attaches εἰ μή inside the object clause (the skill
+    names this case). οὐδεὶς γινώσκει ... εἰ μὴ ὁ πατήρ.'
+  reading: No one knows who the Son is except the Father, or who the Father is except the Son and those
+    to whom the Son wills to reveal him (S, H).
+- cite: Luke 11:17
+  ids:
+  - sblgnt:LUK.11.17
+  evidence:
+  - sblgnt:n42011017003
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, LUK 11:17!3). εἰδώς (lemma ὁράω) with subject κύριος.'
+  reading: Jesus knows their thoughts (διανοήματα). Treating Jesus' knowledge as God's knowledge is a
+    theological step the rows do not take.
+- cite: Luke 12:2
+  ids:
+  - sblgnt:LUK.12.2
+  evidence:
+  - sblgnt:n42012002012
+  - sblgnt:n42012002009
+  labels:
+  - H
+  basis: 'Rows: known-by-passives: γνωσθήσεται (γινώσκω, LUK 12:2!12); hidden-vocab: κρυπτὸν (κρυπτός,
+    LUK 12:2!9).'
+  reading: Nothing hidden that will not be known.
+- cite: Luke 12:30
+  ids:
+  - sblgnt:LUK.12.30
+  evidence:
+  - sblgnt:n42012030013
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (LUK 12:30!13) agent πατὴρ (LUK 12:30!12) by frame, οἶδεν (LUK 12:30!13)
+    agent πατὴρ (LUK 12:30!12) by tree.'
+  reading: Your Father knows that you need these things.
+- cite: Luke 12:39
+  ids:
+  - sblgnt:LUK.12.39
+  evidence:
+  - sblgnt:n42012039005
+  - sblgnt:n42012039006
+  - sblgnt:n42012039015
+  labels:
+  - H
+  basis: 'Rows: counterfactuals: εἰ + ᾔδει (V-2LAI-3S) with ἄν (LUK 12:39!15).'
+  reading: 'As Matt 24:43: the householder did not know the hour. A human counterfactual, so not P.'
+- cite: Luke 12:46
+  ids:
+  - sblgnt:LUK.12.46
+  evidence:
+  - sblgnt:n42012046017
+  labels:
+  - H
+  basis: 'Rows: unknown-times: γινώσκει (γινώσκω, LUK 12:46!17).'
+  reading: The master comes at an hour the servant does not know.
+- cite: Luke 16:15
+  ids:
+  - sblgnt:LUK.16.15
+  evidence:
+  - sblgnt:n42016015015
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκει (LUK 16:15!15) agent θεὸς (LUK 16:15!14) by frame, γινώσκει (LUK
+    16:15!15) agent θεὸς (LUK 16:15!14) by tree.'
+  reading: 'God knows your hearts: knowledge of the hidden person.'
+- cite: Luke 18:34
+  ids:
+  - sblgnt:LUK.18.34
+  evidence:
+  - sblgnt:n42018034011
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: κεκρυμμένον (κρύπτω, LUK 18:34!11).'
+  reading: The saying was hidden (κεκρυμμένον) from them and they did not know what was said.
+- cite: Luke 19:42
+  ids:
+  - sblgnt:LUK.19.42
+  evidence:
+  - sblgnt:n42019042016
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: ἐκρύβη (κρύπτω, LUK 19:42!16).'
+  reading: The things that make for peace are now hidden (ἐκρύβη, passive) from your eyes.
+- cite: Luke 19:44
+  ids:
+  - sblgnt:LUK.19.44
+  evidence:
+  - sblgnt:n42019044021
+  labels:
+  - H
+  basis: 'Rows: unknown-times: ἔγνως (γινώσκω, LUK 19:44!21).'
+  reading: Jerusalem did not know the time of its visitation; paired with 19:42's 'hidden from your eyes'.
+- cite: John 1:48
+  ids:
+  - sblgnt:JHN.1.48
+  evidence:
+  - sblgnt:n43001048006
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκεις (JHN 1:48!6) agent Ἰησοῦς (JHN 1:47!3) by frame, γινώσκεις (JHN
+    1:48!6) agent Ἰησοῦς (JHN 1:47!3) by subjref.'
+  reading: 'Nathanael asks ''how do you know me?''; Jesus saw him under the fig tree before Philip called
+    him: knowledge beyond ordinary means. Treating Jesus'' knowledge as God''s knowledge is a theological
+    step the rows do not take.'
+- cite: John 2:24
+  ids:
+  - sblgnt:JHN.2.24
+  evidence:
+  - sblgnt:n43002024011
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκειν (JHN 2:24!11) agent Ἰησοῦς (JHN 2:24!3) by frame, γινώσκειν
+    (JHN 2:24!11) agent Ἰησοῦς (JHN 2:24!3) by tree.'
+  reading: Jesus knew all people. Treating Jesus' knowledge as God's knowledge is a theological step the
+    rows do not take.
+- cite: John 2:25
+  ids:
+  - sblgnt:JHN.2.25
+  evidence:
+  - sblgnt:n43002025014
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἐγίνωσκεν (JHN 2:25!14) agent Ἰησοῦς (JHN 2:24!3) by frame, ἐγίνωσκεν
+    (JHN 2:25!14) agent Ἰησοῦς (JHN 2:24!3) by tree.'
+  reading: He needed no one to testify about man, for he himself knew what was in man. Treating Jesus'
+    knowledge as God's knowledge is a theological step the rows do not take.
+- cite: John 4:10
+  ids:
+  - sblgnt:JHN.4.10
+  evidence:
+  - sblgnt:n43004010006
+  - sblgnt:n43004010007
+  - sblgnt:n43004010022
+  labels:
+  - P
+  - H
+  basis: 'Rows: counterfactuals: εἰ + ᾔδεις (V-2LAI-2S) with ἄν (JHN 4:10!22).'
+  reading: 'Jesus states what the woman would have done had she known the gift of God (she would have
+    asked and he would have given): a non-actual free response (P); the gift is unknown to her (H). Treating
+    Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 5:6
+  ids:
+  - sblgnt:JHN.5.6
+  evidence:
+  - sblgnt:n43005006007
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γνοὺς (JHN 5:6!7) agent Ἰησοῦς (JHN 5:6!4) by frame, γνοὺς (JHN 5:6!7)
+    agent Ἰησοῦς (JHN 5:6!4) by subjref.'
+  reading: Jesus knows the man has been ill a long time. The text does not say how; kept narrowly because
+    it is often cited as supernatural knowledge. A reading, marked as such. Treating Jesus' knowledge
+    as God's knowledge is a theological step the rows do not take.
+- cite: John 5:32
+  ids:
+  - sblgnt:JHN.5.32
+  evidence:
+  - sblgnt:n43005032008
+  labels:
+  - S
+  basis: 'Rows: divine-knowers: οἶδα (JHN 5:32!8) agent Ἰησοῦς (JHN 5:19!4) by frame, οἶδα (JHN 5:32!8)
+    agent Ἰησοῦς (JHN 5:19!4) by subjref.'
+  reading: 'The Son knows that the Father''s testimony about him is true: knowledge within the Godhead.
+    Weak for S. Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 5:42
+  ids:
+  - sblgnt:JHN.5.42
+  evidence:
+  - sblgnt:n43005042002
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἔγνωκα (JHN 5:42!2) agent Ἰησοῦς (JHN 5:19!4) by frame, ἔγνωκα (JHN 5:42!2)
+    agent Ἰησοῦς (JHN 5:19!4) by subjref.'
+  reading: 'Jesus knows that they do not have the love of God in them: knowledge of the heart. Treating
+    Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 6:6
+  ids:
+  - sblgnt:JHN.6.6
+  evidence:
+  - sblgnt:n43006006008
+  labels:
+  - S
+  - A
+  basis: 'Rows: divine-knowers: ᾔδει (JHN 6:6!8) agent Ἰησοῦς (JHN 6:5!6) by frame, ᾔδει (JHN 6:6!8) agent
+    Ἰησοῦς (JHN 6:5!6) by tree.'
+  reading: 'He himself knew what he was going to do: the knower knows his own intention. Treating Jesus''
+    knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 6:15
+  ids:
+  - sblgnt:JHN.6.15
+  evidence:
+  - sblgnt:n43006015003
+  labels:
+  - A
+  - F
+  basis: 'Rows: divine-knowers: γνοὺς (JHN 6:15!3) agent Ἰησοῦς (JHN 6:15!1) by frame, γνοὺς (JHN 6:15!3)
+    agent Ἰησοῦς (JHN 6:15!1) by subjref.'
+  reading: 'Jesus knew they were about to come and seize him to make him king: knowledge of others'' imminent
+    choice. F is a reading: μέλλουσιν may describe an intention already formed. Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: John 6:61
+  ids:
+  - sblgnt:JHN.6.61
+  evidence:
+  - sblgnt:n43006061001
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, JHN 6:61!1). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: Knowing in himself that the disciples were grumbling. Treating Jesus' knowledge as God's knowledge
+    is a theological step the rows do not take.
+- cite: John 6:64
+  ids:
+  - sblgnt:JHN.6.64
+  evidence:
+  - sblgnt:n43006064009
+  labels:
+  - A
+  - F
+  basis: 'Rows: divine-knowers: ᾔδει (JHN 6:64!9) agent Ἰησοῦς (JHN 6:64!14) by frame, ᾔδει (JHN 6:64!9)
+    agent Ἰησοῦς (JHN 6:64!14) by tree.'
+  reading: 'Jesus knew from the beginning who did not believe and who would betray him: knowledge of a
+    future free choice (F). Treating Jesus'' knowledge as God''s knowledge is a theological step the rows
+    do not take.'
+- cite: John 7:29
+  ids:
+  - sblgnt:JHN.7.29
+  evidence:
+  - sblgnt:n43007029002
+  labels:
+  - S
+  basis: 'Rows: divine-knowers: οἶδα (JHN 7:29!2) agent Ἰησοῦς (JHN 7:28!8) by frame, οἶδα (JHN 7:29!2)
+    agent Ἰησοῦς (JHN 7:28!8) by tree.'
+  reading: '''I know him, because I am from him'': the Son''s knowledge of the Father. Treating Jesus''
+    knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 8:14
+  ids:
+  - sblgnt:JHN.8.14
+  evidence:
+  - sblgnt:n43008014017
+  labels:
+  - S
+  - H
+  basis: 'Rows: divine-knowers: οἶδα (JHN 8:14!17) agent Ἰησοῦς (JHN 8:14!2) by frame, οἶδα (JHN 8:14!17)
+    agent Ἰησοῦς (JHN 8:14!2) by subjref.'
+  reading: Jesus knows where he came from and where he is going; they do not know. Treating Jesus' knowledge
+    as God's knowledge is a theological step the rows do not take.
+- cite: John 8:19
+  ids:
+  - sblgnt:JHN.8.19
+  evidence:
+  - sblgnt:n43008019018
+  - sblgnt:n43008019020
+  - sblgnt:n43008019025
+  labels:
+  - H
+  basis: 'Rows: counterfactuals: εἰ + ᾔδειτε (V-2LAI-2P) with ἄν (JHN 8:19!25).'
+  reading: 'You know neither me nor my Father; had you known me you would know my Father: knowledge of
+    the Father closed to the hearers. A human-knowledge counterfactual, so not P.'
+- cite: John 8:55
+  ids:
+  - sblgnt:JHN.8.55
+  evidence:
+  - sblgnt:n43008055007
+  - sblgnt:n43008055013
+  - sblgnt:n43008055020
+  labels:
+  - S
+  - H
+  basis: 'Rows: divine-knowers: οἶδα (JHN 8:55!7) agent Ἰησοῦς (JHN 8:54!2) by frame, οἶδα (JHN 8:55!7)
+    agent Ἰησοῦς (JHN 8:54!2) by tree, οἶδα (JHN 8:55!13, negated) agent Ἰησοῦς (JHN 8:54!2) by frame,
+    οἶδα (JHN 8:55!13, negated) agent Ἰησοῦς (JHN 8:54!2) by subjref, οἶδα (JHN 8:55!20) agent Ἰησοῦς
+    (JHN 8:54!2) by frame, οἶδα (JHN 8:55!20) agent Ἰησοῦς (JHN 8:54!2) by subjref.'
+  reading: '''You have not known him, but I know him'': the Son''s knowledge of the Father, set against
+    the hearers'' ignorance. Treating Jesus'' knowledge as God''s knowledge is a theological step the
+    rows do not take.'
+- cite: John 10:14
+  ids:
+  - sblgnt:JHN.10.14
+  evidence:
+  - sblgnt:n43010014008
+  - sblgnt:n43010014012
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκω (JHN 10:14!8) agent Ἰησοῦς (JHN 10:7!6) by frame, γινώσκω (JHN
+    10:14!8) agent Ἰησοῦς (JHN 10:7!6) by subjref, γινώσκουσί (JHN 10:14!12) agent Ἰησοῦς (JHN 10:7!6)
+    by frame, γινώσκουσί (JHN 10:14!12) agent Ἰησοῦς (JHN 10:7!6) by tree.'
+  reading: The good shepherd knows his own. Treating Jesus' knowledge as God's knowledge is a theological
+    step the rows do not take.
+- cite: John 10:15
+  ids:
+  - sblgnt:JHN.10.15
+  evidence:
+  - sblgnt:n43010015002
+  - sblgnt:n43010015007
+  labels:
+  - S
+  basis: 'Rows: divine-knowers: γινώσκει (JHN 10:15!2) agent πατὴρ (JHN 10:15!5) by frame, γινώσκει (JHN
+    10:15!2) agent πατὴρ (JHN 10:15!5) by tree, γινώσκω (JHN 10:15!7) agent Ἰησοῦς (JHN 10:7!6) by frame,
+    γινώσκω (JHN 10:15!7) agent Ἰησοῦς (JHN 10:7!6) by tree.'
+  reading: 'The Father knows the Son and the Son knows the Father: mutual knowledge within the Godhead.'
+- cite: John 10:27
+  ids:
+  - sblgnt:JHN.10.27
+  evidence:
+  - sblgnt:n43010027010
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκω (JHN 10:27!10) agent Ἰησοῦς (JHN 10:25!4) by frame, γινώσκω (JHN
+    10:27!10) agent Ἰησοῦς (JHN 10:25!4) by tree.'
+  reading: '''I know them'': the shepherd knows his sheep. Treating Jesus'' knowledge as God''s knowledge
+    is a theological step the rows do not take.'
+- cite: John 11:42
+  ids:
+  - sblgnt:JHN.11.42
+  evidence:
+  - sblgnt:n43011042003
+  labels:
+  - S
+  basis: 'Rows: divine-knowers: ᾔδειν (JHN 11:42!3) agent Ἰησοῦς (JHN 11:41!7) by frame, ᾔδειν (JHN 11:42!3)
+    agent Ἰησοῦς (JHN 11:41!7) by tree.'
+  reading: '''I knew that you always hear me'': the Son''s knowledge of the Father. Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: John 12:50
+  ids:
+  - sblgnt:JHN.12.50
+  evidence:
+  - sblgnt:n43012050002
+  labels:
+  - S
+  basis: 'Rows: divine-knowers: οἶδα (JHN 12:50!2) agent Ἰησοῦς (JHN 12:44!1) by frame, οἶδα (JHN 12:50!2)
+    agent Ἰησοῦς (JHN 12:44!1) by subjref.'
+  reading: The Son knows that the Father's command is eternal life. Treating Jesus' knowledge as God's
+    knowledge is a theological step the rows do not take.
+- cite: John 13:1
+  ids:
+  - sblgnt:JHN.13.1
+  evidence:
+  - sblgnt:n43013001007
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, JHN 13:1!7). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: Jesus knew that his hour had come. Whether the hour is also ordained (D) is a reading beyond
+    this verse. Treating Jesus' knowledge as God's knowledge is a theological step the rows do not take.
+- cite: John 13:3
+  ids:
+  - sblgnt:JHN.13.3
+  evidence:
+  - sblgnt:n43013003001
+  labels:
+  - S
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, JHN 13:3!1). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: 'Knowing that the Father had given all into his hands, and that he came from God and was going
+    to God: the Son''s knowledge of his own origin and relation to the Father. Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: John 13:11
+  ids:
+  - sblgnt:JHN.13.11
+  evidence:
+  - sblgnt:n43013011001
+  labels:
+  - A
+  - F
+  basis: 'Rows: divine-knowers: ᾔδει (JHN 13:11!1) agent Ἰησοῦς (JHN 13:10!4) by frame, ᾔδει (JHN 13:11!1)
+    agent Ἰησοῦς (JHN 13:10!4) by subjref.'
+  reading: 'He knew who was betraying him: knowledge of Judas'' free choice. Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: John 13:18
+  ids:
+  - sblgnt:JHN.13.18
+  evidence:
+  - sblgnt:n43013018007
+  labels:
+  - A
+  - F
+  - D
+  basis: 'Rows: divine-knowers: οἶδα (JHN 13:18!7) agent κύριος (JHN 13:14!9) by frame, οἶδα (JHN 13:18!7)
+    agent κύριος (JHN 13:14!9) by tree.'
+  reading: '''I know whom I have chosen'', and the betrayal happens ''that the Scripture may be fulfilled'':
+    knowledge of the betrayer''s choice (F) joined to a purpose clause of fulfilment (D). How F and D
+    sit together here is exactly the contested point; the rows show only the words. Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: John 13:19
+  ids:
+  - sblgnt:JHN.13.19
+  evidence:
+  - sblgnt:n43013019003
+  - sblgnt:n43013019007
+  labels:
+  - A
+  - F
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): λέγω ὑμῖν πρὸ τοῦ γενέσθαι.'
+  reading: '''I tell you before it happens, so that when it happens you may believe'': foretelling the
+    betrayal (F). Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not
+    take.'
+- cite: John 14:7
+  ids:
+  - sblgnt:JHN.14.7
+  evidence:
+  - sblgnt:n43014007001
+  - sblgnt:n43014007002
+  - sblgnt:n43014007008
+  labels:
+  - H
+  basis: 'Rows: counterfactuals: εἰ + ἐγνώκειτέ (V-LAI-2P) with ἄν (JHN 14:7!8).'
+  reading: 'Had you known me, you would have known my Father: knowledge of the Father not yet had by the
+    disciples. A human-knowledge counterfactual, so not P.'
+- cite: John 16:19
+  ids:
+  - sblgnt:JHN.16.19
+  evidence:
+  - sblgnt:n43016019001
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἔγνω (JHN 16:19!1) agent Ἰησοῦς (JHN 16:19!2) by frame, ἔγνω (JHN 16:19!1)
+    agent Ἰησοῦς (JHN 16:19!2) by tree.'
+  reading: Jesus knew they wanted to ask him. Treating Jesus' knowledge as God's knowledge is a theological
+    step the rows do not take.
+- cite: John 16:30
+  ids:
+  - sblgnt:JHN.16.30
+  evidence:
+  - sblgnt:n43016030004
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδας (JHN 16:30!4) agent Ἰησοῦς (JHN 16:19!2) by frame, οἶδας (JHN 16:30!4)
+    agent Ἰησοῦς (JHN 16:19!2) by subjref.'
+  reading: '''Now we know that you know all things'': a confession of comprehensive knowledge. Treating
+    Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 17:25
+  ids:
+  - sblgnt:JHN.17.25
+  evidence:
+  - sblgnt:n43017025012
+  labels:
+  - S
+  - H
+  basis: 'Rows: divine-knowers: ἔγνων (JHN 17:25!12) agent Ἰησοῦς (JHN 17:1!3) by frame, ἔγνων (JHN 17:25!12)
+    agent Ἰησοῦς (JHN 17:1!3) by tree.'
+  reading: '''The world has not known you, but I have known you'': the Son knows the Father; the world
+    does not. Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 18:4
+  ids:
+  - sblgnt:JHN.18.4
+  evidence:
+  - sblgnt:n43018004003
+  labels:
+  - A
+  - F
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, JHN 18:4!3). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: 'Knowing all that was coming upon him: foreknowledge of events that include others'' free acts
+    (arrest). F is a reading. Treating Jesus'' knowledge as God''s knowledge is a theological step the
+    rows do not take.'
+- cite: John 18:36
+  ids:
+  - sblgnt:JHN.18.36
+  evidence:
+  - sblgnt:n43018036013
+  - sblgnt:n43018036018
+  - sblgnt:n43018036028
+  labels:
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἦν (V-IAI-3S) with ἄν (JHN 18:36!28).'
+  reading: 'If his kingdom were of this world, his servants would be fighting: Jesus states what would
+    happen in a non-actual case (P). Treating Jesus'' knowledge as God''s knowledge is a theological step
+    the rows do not take.'
+- cite: John 19:28
+  ids:
+  - sblgnt:JHN.19.28
+  evidence:
+  - sblgnt:n43019028003
+  labels:
+  - A
+  basis: 'Rows: eidos-under-horao: εἰδὼς (ὁράω, JHN 19:28!3). εἰδώς (lemma ὁράω) with subject Ἰησοῦς.'
+  reading: Knowing that all was now finished. The ἵνα-clause about Scripture's fulfilment may attach to
+    'I thirst', so no D is claimed. Treating Jesus' knowledge as God's knowledge is a theological step
+    the rows do not take.
+- cite: John 21:15
+  ids:
+  - sblgnt:JHN.21.15
+  evidence:
+  - sblgnt:n43021015021
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδας (JHN 21:15!21) agent κύριε (JHN 21:15!19) by frame, οἶδας (JHN 21:15!21)
+    agent κύριε (JHN 21:15!19) by tree.'
+  reading: '''Lord, you know that I love you'': knowledge of Peter''s heart (the referent κύριε is Jesus).
+    Treating Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: John 21:16
+  ids:
+  - sblgnt:JHN.21.16
+  evidence:
+  - sblgnt:n43021016014
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδας (JHN 21:16!14) agent κύριε (JHN 21:16!12) by frame, οἶδας (JHN 21:16!14)
+    agent κύριε (JHN 21:16!12) by tree.'
+  reading: As 21:15. Treating Jesus' knowledge as God's knowledge is a theological step the rows do not
+    take.
+- cite: John 21:17
+  ids:
+  - sblgnt:JHN.21.17
+  evidence:
+  - sblgnt:n43021017025
+  - sblgnt:n43021017027
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδας (JHN 21:17!25) agent Κύριε (JHN 21:17!22) by frame, οἶδας (JHN 21:17!25)
+    agent Κύριε (JHN 21:17!22) by tree, γινώσκεις (JHN 21:17!27) agent Κύριε (JHN 21:17!22) by frame,
+    γινώσκεις (JHN 21:17!27) agent Κύριε (JHN 21:17!22) by tree.'
+  reading: '''Lord, you know all things; you know that I love you''. Treating Jesus'' knowledge as God''s
+    knowledge is a theological step the rows do not take.'
+- cite: Acts 1:7
+  ids:
+  - sblgnt:ACT.1.7
+  evidence:
+  - sblgnt:n44001007008
+  labels:
+  - H
+  - D
+  basis: 'Rows: divine-knowers: γνῶναι (ACT 1:7!8) agent implicit by frame; unknown-times: γνῶναι (γινώσκω,
+    ACT 1:7!8).'
+  reading: 'It is not for you to know the times or seasons the Father has fixed (ἔθετο) by his own authority:
+    knowledge withheld (H) about times God has set (D).'
+- cite: Acts 1:24
+  ids:
+  - sblgnt:ACT.1.24
+  evidence:
+  - sblgnt:n44001024006
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: καρδιογνῶστα (καρδιογνώστης, ACT 1:24!6).'
+  reading: '''Lord, knower of the hearts of all'' (καρδιογνῶστα): knowledge of every heart.'
+- cite: Acts 2:23
+  ids:
+  - sblgnt:ACT.2.23
+  evidence:
+  - sblgnt:n44002023006
+  labels:
+  - A
+  - D
+  - F
+  basis: 'Rows: divine-knowers: προγνώσει (ACT 2:23!6) agent θεοῦ (ACT 2:23!8) by genitive.'
+  reading: 'Handed over by the fixed plan (ὡρισμένῃ βουλῇ) and foreknowledge (προγνώσει) of God, and killed
+    by lawless men: foreknowledge (A) with a fixed plan (D) of an act done by human agents (F). The verse
+    joins the two without saying how they relate.'
+- cite: Acts 15:8
+  ids:
+  - sblgnt:ACT.15.8
+  evidence:
+  - sblgnt:n44015008003
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: καρδιογνώστης (καρδιογνώστης, ACT 15:8!3).'
+  reading: God, the heart-knower (καρδιογνώστης), bore witness to them.
+- cite: Acts 15:18
+  ids:
+  - sblgnt:ACT.15.18
+  evidence:
+  - sblgnt:n44015018001
+  - sblgnt:n44015018003
+  labels:
+  - A
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage:
+    γνωστός has no agent, so predicate_participants could not reach it.'
+  reading: '''Known from of old'' (γνωστὰ ἀπ᾽ αἰῶνος), completing 15:17''s ''the Lord who does these things''.
+    Whether this is knowledge (A) or long-standing purpose (D) is interpretation; only A is claimed.'
+- cite: Acts 17:23
+  ids:
+  - sblgnt:ACT.17.23
+  evidence:
+  - sblgnt:n44017023014
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: Ἀγνώστῳ (ἄγνωστος, ACT 17:23!14).'
+  reading: 'The altar ''to an unknown god'' (Ἀγνώστῳ θεῷ): God unknown to the Athenians, whom Paul proclaims.'
+- cite: Acts 20:22
+  ids:
+  - sblgnt:ACT.20.22
+  evidence:
+  - sblgnt:n44020022017
+  labels:
+  - H
+  basis: 'Rows: eidos-under-horao: εἰδώς (ὁράω, ACT 20:22!17). εἰδώς (lemma ὁράω) negated, subject Παῦλος.'
+  reading: 'Paul goes to Jerusalem not knowing (μὴ εἰδώς) what will happen to him there: the future hidden
+    from a human, apart from what the Spirit testifies (20:23).'
+- cite: Rom 2:16
+  ids:
+  - sblgnt:ROM.2.16
+  evidence:
+  - sblgnt:n45002016008
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: κρυπτὰ (κρυπτός, ROM 2:16!8).'
+  reading: 'God judges the secrets (τὰ κρυπτά) of people: knowledge of what is hidden.'
+- cite: Rom 8:27
+  ids:
+  - sblgnt:ROM.8.27
+  evidence:
+  - sblgnt:n45008027003
+  labels:
+  - S
+  - A
+  basis: 'Rows: divine-knowers: ἐραυνῶν (ROM 8:27!3) agent θεοῦ (ROM 8:21!20) by frame, ἐραυνῶν (ROM 8:27!3)
+    agent θεοῦ (ROM 8:21!20) by subjref.'
+  reading: 'The one who searches hearts (God, by has_subject) knows the mind of the Spirit: knowledge
+    of hearts (A) and of the Spirit (S).'
+- cite: Rom 8:29
+  ids:
+  - sblgnt:ROM.8.29
+  evidence:
+  - sblgnt:n45008029003
+  labels:
+  - A
+  - D
+  basis: 'Rows: divine-knowers: προέγνω (ROM 8:29!3) agent θεὸν (ROM 8:28!7) by frame, προέγνω (ROM 8:29!3)
+    agent θεὸν (ROM 8:28!7) by subjref.'
+  reading: 'Those whom he foreknew he also predestined (προώρισεν): foreknowledge (A) followed by predestination
+    (D). Whether προέγνω is foreknowledge of persons or of their faith (F) is the contested point; the
+    rows show only the verb.'
+- cite: Rom 9:29
+  ids:
+  - sblgnt:ROM.9.29
+  evidence:
+  - sblgnt:n45009029005
+  - sblgnt:n45009029009
+  - sblgnt:n45009029014
+  labels:
+  - P
+  - D
+  basis: 'Rows: counterfactuals: εἰ + ἐγκατέλιπεν (V-2AAI-3S) with ἄν (ROM 9:29!14).'
+  reading: 'Unless the Lord had left us offspring, we would have become like Sodom: a non-actual outcome
+    (P) averted by God''s act of leaving a remnant (D).'
+- cite: Rom 11:2
+  ids:
+  - sblgnt:ROM.11.2
+  evidence:
+  - sblgnt:n45011002009
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: προέγνω (ROM 11:2!9) agent θεὸς (ROM 11:2!4) by frame, προέγνω (ROM 11:2!9)
+    agent θεὸς (ROM 11:2!4) by subjref.'
+  reading: God has not rejected his people whom he foreknew (προέγνω).
+- cite: Rom 11:25
+  ids:
+  - sblgnt:ROM.11.25
+  evidence:
+  - sblgnt:n45011025008
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, ROM 11:25!8).'
+  reading: 'Paul does not want them ignorant of this mystery: a partial hardening of Israel until the
+    fullness of the Gentiles comes in. A mystery = formerly hidden, now disclosed.'
+- cite: Rom 11:33
+  ids:
+  - sblgnt:ROM.11.33
+  evidence:
+  - sblgnt:n45011033010
+  - sblgnt:n45011033015
+  labels:
+  - A
+  - H
+  basis: 'Rows: hidden-vocab: ἀνεξεραύνητα (ἀνεξεραύνητος, ROM 11:33!10), ἀνεξιχνίαστοι (ἀνεξιχνίαστος,
+    ROM 11:33!15).'
+  reading: 'The depth of God''s wisdom and knowledge (γνώσεως θεοῦ); his judgments unsearchable (ἀνεξεραύνητα),
+    his ways inscrutable (ἀνεξιχνίαστοι): God''s knowledge (A) and its unsearchability for people (H).'
+- cite: Rom 11:34
+  ids:
+  - sblgnt:ROM.11.34
+  evidence:
+  - sblgnt:n45011034003
+  - sblgnt:n45011034004
+  - sblgnt:n45011034005
+  labels:
+  - H
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage:
+    the knower is τίς, so the divine-referent filter cannot reach it.'
+  reading: '''Who has known the mind of the Lord?'': a rhetorical question expecting ''no one''.'
+- cite: 1 Cor 1:21
+  ids:
+  - sblgnt:1CO.1.21
+  evidence:
+  - sblgnt:n46001021005
+  labels:
+  - H
+  basis: 'Rows: divine-knowers: σοφίᾳ (1CO 1:21!5) agent θεοῦ (1CO 1:21!7) by genitive.'
+  reading: 'In the wisdom of God the world did not know God through wisdom: knowledge of God closed to
+    the world''s wisdom.'
+- cite: 1 Cor 2:7
+  ids:
+  - sblgnt:1CO.2.7
+  evidence:
+  - sblgnt:n46002007006
+  - sblgnt:n46002007008
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: μυστηρίῳ (μυστήριον, 1CO 2:7!6), ἀποκεκρυμμένην (ἀποκρύπτω, 1CO 2:7!8).'
+  reading: 'God''s wisdom in a mystery, hidden (ἀποκεκρυμμένην), which God predestined (προώρισεν) before
+    the ages: knowledge hidden (H) and ordained beforehand (D).'
+- cite: 1 Cor 2:8
+  ids:
+  - sblgnt:1CO.2.8
+  evidence:
+  - sblgnt:n46002008009
+  - sblgnt:n46002008011
+  - sblgnt:n46002008013
+  labels:
+  - H
+  - P
+  basis: 'Rows: counterfactuals: εἰ + ἔγνωσαν (V-2AAI-3P) with ἄν (1CO 2:8!13).'
+  reading: 'None of the rulers of this age knew it; had they known, they would not have crucified the
+    Lord of glory: hidden wisdom (H) and a stated non-actual outcome (P).'
+- cite: 1 Cor 2:10
+  ids:
+  - sblgnt:1CO.2.10
+  evidence:
+  - sblgnt:n46002010013
+  labels:
+  - S
+  - A
+  basis: 'Rows: divine-knowers: ἐραυνᾷ (1CO 2:10!13) agent πνεῦμα (1CO 2:10!11) by frame, ἐραυνᾷ (1CO
+    2:10!13) agent πνεῦμα (1CO 2:10!11) by tree.'
+  reading: 'The Spirit searches all things, even the depths of God: the Spirit''s knowledge of God (S)
+    and of all things (A).'
+- cite: 1 Cor 2:11
+  ids:
+  - sblgnt:1CO.2.11
+  evidence:
+  - sblgnt:n46002011003
+  - sblgnt:n46002011023
+  labels:
+  - S
+  - H
+  basis: 'Rows: divine-knowers: οἶδεν (1CO 2:11!3) agent πνεῦμα (1CO 2:11!11) by exception, ἔγνωκεν (1CO
+    2:11!23, negated) agent πνεῦμα (1CO 2:11!27) by exception.'
+  reading: 'No one knows the things of God except the Spirit of God: God''s self-knowledge through the
+    Spirit (S), closed to everyone else (H).'
+- cite: 1 Cor 2:16
+  ids:
+  - sblgnt:1CO.2.16
+  evidence:
+  - sblgnt:n46002016003
+  - sblgnt:n46002016004
+  - sblgnt:n46002016005
+  labels:
+  - H
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage:
+    the knower is τίς.'
+  reading: '''Who has known the mind of the Lord?'' (quoting as Rom 11:34), then ''we have the mind of
+    Christ''.'
+- cite: 1 Cor 3:20
+  ids:
+  - sblgnt:1CO.3.20
+  evidence:
+  - sblgnt:n46003020004
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκει (1CO 3:20!4) agent Κύριος (1CO 3:20!3) by frame, γινώσκει (1CO
+    3:20!4) agent Κύριος (1CO 3:20!3) by tree.'
+  reading: The Lord knows the reasonings of the wise, that they are futile.
+- cite: 1 Cor 4:5
+  ids:
+  - sblgnt:1CO.4.5
+  evidence:
+  - sblgnt:n46004005016
+  labels:
+  - A
+  - H
+  basis: 'Rows: hidden-vocab: κρυπτὰ (κρυπτός, 1CO 4:5!16).'
+  reading: 'The Lord will bring to light the hidden things (τὰ κρυπτά) of darkness and disclose the purposes
+    of hearts: hidden now from human judges (H), known to the Lord (A).'
+- cite: 1 Cor 8:3
+  ids:
+  - sblgnt:1CO.8.3
+  evidence:
+  - sblgnt:n46008003008
+  labels:
+  - A
+  basis: 'Rows: known-by-passives: ἔγνωσται (γινώσκω, 1CO 8:3!8).'
+  reading: Whoever loves God is known by him (ἔγνωσται ὑπ᾽ αὐτοῦ). Relational knowing; kept because the
+    knower is God.
+- cite: 1 Cor 13:12
+  ids:
+  - sblgnt:1CO.13.12
+  evidence:
+  - sblgnt:n46013012022
+  labels:
+  - A
+  - H
+  basis: 'Rows: known-by-passives: ἐπεγνώσθην (ἐπιγινώσκω, 1CO 13:12!22).'
+  reading: 'Now I know in part; then I shall know fully, even as I have been fully known (ἐπεγνώσθην,
+    divine passive): God''s full knowledge of the person (A) and present human partiality (H).'
+- cite: 1 Cor 14:25
+  ids:
+  - sblgnt:1CO.14.25
+  evidence:
+  - sblgnt:n46014025002
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: κρυπτὰ (κρυπτός, 1CO 14:25!2).'
+  reading: 'The secrets (τὰ κρυπτά) of his heart are disclosed and he confesses ''God is truly among you'':
+    disclosure of hidden things attributed to God''s presence.'
+- cite: 2 Cor 11:11
+  ids:
+  - sblgnt:2CO.11.11
+  evidence:
+  - sblgnt:n47011011009
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (2CO 11:11!9) agent θεὸς (2CO 11:11!8) by frame, οἶδεν (2CO 11:11!9)
+    agent θεὸς (2CO 11:11!8) by tree.'
+  reading: '''God knows'' (that I love you): an oath appealing to God''s knowledge of Paul''s heart.'
+- cite: 2 Cor 11:31
+  ids:
+  - sblgnt:2CO.11.31
+  evidence:
+  - sblgnt:n47011031008
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (2CO 11:31!8) agent θεὸς (2CO 11:31!2) by frame, οἶδεν (2CO 11:31!8)
+    agent πατὴρ (2CO 11:31!4) by frame, οἶδεν (2CO 11:31!8) agent θεὸς (2CO 11:31!2) by tree, οἶδεν (2CO
+    11:31!8) agent πατὴρ (2CO 11:31!4) by tree.'
+  reading: The God and Father knows that I am not lying.
+- cite: 2 Cor 12:2
+  ids:
+  - sblgnt:2CO.12.2
+  evidence:
+  - sblgnt:n47012002021
+  labels:
+  - A
+  - H
+  basis: 'Rows: divine-knowers: οἶδεν (2CO 12:2!21) agent θεὸς (2CO 12:2!20) by frame, οἶδεν (2CO 12:2!21)
+    agent θεὸς (2CO 12:2!20) by tree.'
+  reading: Paul does not know whether in the body or out; God knows.
+- cite: 2 Cor 12:3
+  ids:
+  - sblgnt:2CO.12.3
+  evidence:
+  - sblgnt:n47012003017
+  labels:
+  - A
+  - H
+  basis: 'Rows: divine-knowers: οἶδεν (2CO 12:3!17) agent θεὸς (2CO 12:3!16) by frame, οἶδεν (2CO 12:3!17)
+    agent θεὸς (2CO 12:3!16) by tree.'
+  reading: 'As 12:2: ''I do not know, God knows''.'
+- cite: Gal 4:9
+  ids:
+  - sblgnt:GAL.4.9
+  evidence:
+  - sblgnt:n48004009007
+  labels:
+  - A
+  basis: 'Rows: known-by-passives: γνωσθέντες (γινώσκω, GAL 4:9!7).'
+  reading: 'Now that you know God, or rather are known by God (γνωσθέντες ὑπὸ θεοῦ): God''s knowing of
+    persons, relational.'
+- cite: Eph 1:9
+  ids:
+  - sblgnt:EPH.1.9
+  evidence:
+  - sblgnt:n49001009004
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, EPH 1:9!4).'
+  reading: 'Having made known to us the mystery of his will, according to the good pleasure he purposed
+    (προέθετο) in him: a hidden purpose disclosed (H), purposed beforehand (D).'
+- cite: Eph 3:3
+  ids:
+  - sblgnt:EPH.3.3
+  evidence:
+  - sblgnt:n49003003006
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, EPH 3:3!6).'
+  reading: 'The mystery made known to Paul by revelation: formerly hidden.'
+- cite: Eph 3:8
+  ids:
+  - sblgnt:EPH.3.8
+  evidence:
+  - sblgnt:n49003008014
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: ἀνεξιχνίαστον (ἀνεξιχνίαστος, EPH 3:8!14).'
+  reading: 'The unsearchable (ἀνεξιχνίαστον) riches of Christ: beyond human tracing.'
+- cite: Eph 3:9
+  ids:
+  - sblgnt:EPH.3.9
+  evidence:
+  - sblgnt:n49003009008
+  - sblgnt:n49003009010
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: μυστηρίου (μυστήριον, EPH 3:9!8), ἀποκεκρυμμένου (ἀποκρύπτω, EPH 3:9!10).'
+  reading: The mystery hidden for ages in God who created all things.
+- cite: Col 1:26
+  ids:
+  - sblgnt:COL.1.26
+  evidence:
+  - sblgnt:n51001026002
+  - sblgnt:n51001026004
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, COL 1:26!2), ἀποκεκρυμμένον (ἀποκρύπτω, COL 1:26!4).'
+  reading: The mystery hidden (ἀποκεκρυμμένον) from ages and generations, now manifested to his saints.
+- cite: Col 1:27
+  ids:
+  - sblgnt:COL.1.27
+  evidence:
+  - sblgnt:n51001027012
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: μυστηρίου (μυστήριον, COL 1:27!12).'
+  reading: 'God willed (ἠθέλησεν) to make known the riches of this mystery: disclosure by God''s decision.'
+- cite: Col 2:3
+  ids:
+  - sblgnt:COL.2.3
+  evidence:
+  - sblgnt:n51002003011
+  labels:
+  - H
+  basis: 'Rows: hidden-vocab: ἀπόκρυφοι (ἀπόκρυφος, COL 2:3!11).'
+  reading: In Christ are hidden (ἀπόκρυφοι) all the treasures of wisdom and knowledge.
+- cite: 1 Thess 2:4
+  ids:
+  - sblgnt:1TH.2.4
+  evidence:
+  - sblgnt:n52002004019
+  - sblgnt:n52002004021
+  labels:
+  - A
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): θεῷ τῷ δοκιμάζοντι τὰς καρδίας ἡμῶν.'
+  reading: 'God who tests (δοκιμάζοντι) our hearts: knowledge of hearts, expressed without a knowing word.'
+- cite: 2 Tim 2:19
+  ids:
+  - sblgnt:2TI.2.19
+  evidence:
+  - sblgnt:n55002019012
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: Ἔγνω (2TI 2:19!12) agent κύριος (2TI 2:19!13) by frame, Ἔγνω (2TI 2:19!12)
+    agent κύριος (2TI 2:19!13) by tree.'
+  reading: '''The Lord knows those who are his'': knowledge of persons (relational; often read as election,
+    which would be D).'
+- cite: Heb 4:12
+  ids:
+  - sblgnt:HEB.4.12
+  evidence:
+  - sblgnt:n58004012004
+  - sblgnt:n58004012027
+  - sblgnt:n58004012028
+  labels:
+  - A
+  basis: 'Rows: known-passages: selected by verse id (analyst''s known passage). Added as a known passage
+    (no knowing word): κριτικὸς ἐνθυμήσεων.'
+  reading: The word of God is a discerner (κριτικός) of the thoughts and intentions of the heart. The
+    agent is the word of God, read as God's own knowing with 4:13.
+- cite: Heb 4:13
+  ids:
+  - sblgnt:HEB.4.13
+  evidence:
+  - sblgnt:n58004013005
+  labels:
+  - A
+  basis: 'Rows: hidden-vocab: ἀφανὴς (ἀφανής, HEB 4:13!5).'
+  reading: 'No creature is hidden (ἀφανής) before him; all are naked and exposed to his eyes: exhaustive
+    knowledge of the actual.'
+- cite: 1 Pet 1:2
+  ids:
+  - sblgnt:1PE.1.2
+  evidence:
+  - sblgnt:n60001002002
+  labels:
+  - A
+  - D
+  basis: 'Rows: divine-knowers: πρόγνωσιν (1PE 1:2!2) agent θεοῦ (1PE 1:2!3) by genitive, πρόγνωσιν (1PE
+    1:2!2) agent πατρός (1PE 1:2!4) by genitive.'
+  reading: 'Elect according to the foreknowledge (πρόγνωσιν) of God the Father: foreknowledge (A) grounding
+    election (D).'
+- cite: 1 Pet 1:20
+  ids:
+  - sblgnt:1PE.1.20
+  evidence:
+  - sblgnt:n60001020001
+  labels:
+  - A
+  - D
+  basis: 'Rows: divine-knowers: προεγνωσμένου (1PE 1:20!1) agent Χριστοῦ (1PE 1:19!9) by subjref; known-by-passives:
+    προεγνωσμένου (προγινώσκω, 1PE 1:20!1).'
+  reading: 'Christ foreknown (προεγνωσμένου) before the foundation of the world, manifested at the end
+    of the times: foreknowledge before creation (A) of what God then brings about (D). Note has_subject
+    on this passive participle resolves to Χριστοῦ, the one foreknown, not the knower.'
+- cite: 2 Pet 2:9
+  ids:
+  - sblgnt:2PE.2.9
+  evidence:
+  - sblgnt:n61002009001
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: οἶδεν (2PE 2:9!1) agent κύριος (2PE 2:9!2) by frame, οἶδεν (2PE 2:9!1)
+    agent κύριος (2PE 2:9!2) by tree.'
+  reading: 'The Lord knows how to rescue the godly and keep the unrighteous for judgment: knowledge of
+    how to act.'
+- cite: 1 John 3:20
+  ids:
+  - sblgnt:1JN.3.20
+  evidence:
+  - sblgnt:n62003020016
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: γινώσκει (1JN 3:20!16) agent θεὸς (1JN 3:20!11) by frame, γινώσκει (1JN
+    3:20!16) agent θεὸς (1JN 3:20!11) by subjref.'
+  reading: God is greater than our heart and knows all things (γινώσκει πάντα).
+- cite: Rev 2:2
+  ids:
+  - sblgnt:REV.2.2
+  evidence:
+  - sblgnt:n66002002001
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδα (REV 2:2!1) agent κρατῶν (REV 2:1!11) by frame, Οἶδα (REV 2:2!1)
+    agent κρατῶν (REV 2:1!11) by subjref.'
+  reading: '''I know your works'' from the one who holds the seven stars (ὁ κρατῶν, 2:1). The referent
+    is a participle title, so the divine-referent filter missed it. Treating Jesus'' knowledge as God''s
+    knowledge is a theological step the rows do not take.'
+- cite: Rev 2:9
+  ids:
+  - sblgnt:REV.2.9
+  evidence:
+  - sblgnt:n66002009001
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδά (REV 2:9!1) agent πρῶτος (REV 2:8!12) by frame, Οἶδά (REV 2:9!1)
+    agent πρῶτος (REV 2:8!12) by subjref.'
+  reading: '''I know your tribulation and poverty'' from the First and the Last (2:8). Treating Jesus''
+    knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Rev 2:13
+  ids:
+  - sblgnt:REV.2.13
+  evidence:
+  - sblgnt:n66002013001
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδα (REV 2:13!1) agent ἔχων (REV 2:12!12) by frame, Οἶδα (REV 2:13!1)
+    agent ἔχων (REV 2:12!12) by subjref.'
+  reading: '''I know where you dwell'' from the one who has the sharp sword (2:12). Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: Rev 2:17
+  ids:
+  - sblgnt:REV.2.17
+  evidence:
+  - sblgnt:n66002017033
+  - sblgnt:n66002017018
+  labels:
+  - H
+  basis: 'Rows: revelation-knowers: οἶδεν (REV 2:17!33, negated) agent λαμβάνων (REV 2:17!37) by exception,
+    οἶδεν (REV 2:17!33, negated) agent οὐδεὶς (REV 2:17!32) by frame, οἶδεν (REV 2:17!33, negated) agent
+    οὐδεὶς (REV 2:17!32) by tree; hidden-vocab: κεκρυμμένου (κρύπτω, REV 2:17!18).'
+  reading: 'Hidden manna and a new name no one knows except the one receiving it: knowledge closed to
+    all but the recipient. The recipient is human (ὁ λαμβάνων), so this is H only.'
+- cite: Rev 2:19
+  ids:
+  - sblgnt:REV.2.19
+  evidence:
+  - sblgnt:n66002019001
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: Οἶδά (REV 2:19!1) agent υἱὸς (REV 2:18!12) by frame, Οἶδά (REV 2:19!1)
+    agent υἱὸς (REV 2:18!12) by subjref; revelation-knowers: Οἶδά (REV 2:19!1) agent υἱὸς (REV 2:18!12)
+    by frame, Οἶδά (REV 2:19!1) agent υἱὸς (REV 2:18!12) by subjref.'
+  reading: '''I know your works'' from the Son of God (2:18). Treating Jesus'' knowledge as God''s knowledge
+    is a theological step the rows do not take.'
+- cite: Rev 2:23
+  ids:
+  - sblgnt:REV.2.23
+  evidence:
+  - sblgnt:n66002023017
+  - sblgnt:n66002023009
+  labels:
+  - A
+  basis: 'Rows: divine-knowers: ἐραυνῶν (REV 2:23!17) agent implicit by frame; revelation-knowers: γνώσονται
+    (REV 2:23!9) agent ἐκκλησίαι (REV 2:23!12) by frame, γνώσονται (REV 2:23!9) agent πᾶσαι (REV 2:23!10)
+    by tree, γνώσονται (REV 2:23!9) agent ἐκκλησίαι (REV 2:23!12) by tree.'
+  reading: '''I am he who searches minds and hearts'' (ὁ ἐραυνῶν): knowledge of the inner person. Treating
+    Jesus'' knowledge as God''s knowledge is a theological step the rows do not take.'
+- cite: Rev 3:1
+  ids:
+  - sblgnt:REV.3.1
+  evidence:
+  - sblgnt:n66003001022
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδά (REV 3:1!22) agent ἔχων (REV 3:1!12) by frame, Οἶδά (REV 3:1!22)
+    agent ἔχων (REV 3:1!12) by subjref.'
+  reading: '''I know your works'' from the one who has the seven spirits (3:1). Treating Jesus'' knowledge
+    as God''s knowledge is a theological step the rows do not take.'
+- cite: Rev 3:3
+  ids:
+  - sblgnt:REV.3.3
+  evidence:
+  - sblgnt:n66003003021
+  labels:
+  - H
+  basis: 'Rows: revelation-knowers: γνῷς (REV 3:3!21, negated) agent ἐκκλησίας (REV 3:1!7) by frame, γνῷς
+    (REV 3:3!21, negated) agent ἐκκλησίας (REV 3:1!7) by subjref; unknown-times: γνῷς (γινώσκω, REV 3:3!21).'
+  reading: You will not know at what hour I will come.
+- cite: Rev 3:8
+  ids:
+  - sblgnt:REV.3.8
+  evidence:
+  - sblgnt:n66003008001
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδά (REV 3:8!1) agent ἅγιος (REV 3:7!12) by frame, Οἶδά (REV 3:8!1)
+    agent ἅγιος (REV 3:7!12) by subjref.'
+  reading: '''I know your works'' from the holy one (3:7). Treating Jesus'' knowledge as God''s knowledge
+    is a theological step the rows do not take.'
+- cite: Rev 3:15
+  ids:
+  - sblgnt:REV.3.15
+  evidence:
+  - sblgnt:n66003015001
+  labels:
+  - A
+  basis: 'Rows: revelation-knowers: Οἶδά (REV 3:15!1) agent Ἀμήν (REV 3:14!12) by frame, Οἶδά (REV 3:15!1)
+    agent Ἀμήν (REV 3:14!12) by subjref.'
+  reading: '''I know your works'' from the Amen (3:14). Treating Jesus'' knowledge as God''s knowledge
+    is a theological step the rows do not take.'
+- cite: Rev 10:7
+  ids:
+  - sblgnt:REV.10.7
+  evidence:
+  - sblgnt:n66010007016
+  labels:
+  - H
+  - D
+  basis: 'Rows: hidden-vocab: μυστήριον (μυστήριον, REV 10:7!16).'
+  reading: 'The mystery of God will be finished, as he announced to his servants the prophets: a hidden
+    purpose (H), fixed and announced beforehand (D).'
+- cite: Rev 19:12
+  ids:
+  - sblgnt:REV.19.12
+  evidence:
+  - sblgnt:n66019012019
+  labels:
+  - S
+  - H
+  basis: 'Rows: revelation-knowers: οἶδεν (REV 19:12!19, negated) agent οὐδεὶς (REV 19:12!18) by frame,
+    οἶδεν (REV 19:12!19, negated) agent οὐδεὶς (REV 19:12!18) by tree.'
+  reading: 'The rider has a name written that no one knows except himself (εἰ μὴ αὐτός): self-knowledge
+    (S) closed to all others (H). predicate_participants found the negated οἶδεν but no exception row:
+    the εἰ μή clause is attached elsewhere upstream. Treating Jesus'' knowledge as God''s knowledge is
+    a theological step the rows do not take.'
+rejected:
+- cite: Matt 5:14
+  ids:
+  - sblgnt:MAT.5.14
+  reason: κρύπτω of a city on a hill; a saying about disciples' visibility, not about God's knowledge
+    or knowledge withheld.
+- cite: Matt 12:15
+  ids:
+  - sblgnt:MAT.12.15
+  reason: 'γνούς: Jesus learned of the plot (12:14). The text presents ordinary awareness, not knowledge
+    beyond human means.'
+- cite: Matt 12:33
+  ids:
+  - sblgnt:MAT.12.33
+  reason: 'Passive γινώσκεται: a tree is known by its fruit. A human-knowledge proverb.'
+- cite: Matt 13:33
+  ids:
+  - sblgnt:MAT.13.33
+  reason: 'ἐγκρύπτω: a woman hides leaven in flour (parable). Not about knowledge.'
+- cite: Matt 13:44
+  ids:
+  - sblgnt:MAT.13.44
+  reason: 'κρύπτω: a man hides treasure in a field (parable). Not about knowledge.'
+- cite: Matt 15:12
+  ids:
+  - sblgnt:MAT.15.12
+  reason: Οἶδας is the disciples' question to Jesus about the Pharisees' offence; ordinary report, not
+    divine knowledge.
+- cite: Matt 16:8
+  ids:
+  - sblgnt:MAT.16.8
+  reason: 'γνούς: the disciples'' discussion (16:7) was held in his company; the text does not present
+    the knowledge as supernatural. (Kept parallels such as Mark 2:8 say so explicitly.)'
+- cite: Matt 17:12
+  ids:
+  - sblgnt:MAT.17.12
+  reason: 'People did not recognize Elijah: human failure to recognize, not knowledge God withholds or
+    holds.'
+- cite: Matt 20:22
+  ids:
+  - sblgnt:MAT.20.22
+  reason: 'The referent υἱοί is the sons of Zebedee: human knowers (''you do not know what you ask'').'
+- cite: Matt 23:30
+  ids:
+  - sblgnt:MAT.23.30
+  reason: A human counterfactual (the scribes' boast about the prophets); not about God's knowledge.
+- cite: Matt 25:18
+  ids:
+  - sblgnt:MAT.25.18
+  reason: 'κρύπτω: the servant hides the money (parable). Not about knowledge.'
+- cite: Matt 25:25
+  ids:
+  - sblgnt:MAT.25.25
+  reason: 'κρύπτω: the servant hides the talent (parable). Not about knowledge.'
+- cite: Matt 26:10
+  ids:
+  - sblgnt:MAT.26.10
+  reason: 'γνούς: the disciples'' complaint (26:8-9) was spoken aloud; ordinary awareness.'
+- cite: Mark 1:24
+  ids:
+  - sblgnt:MRK.1.24
+  reason: 'The knower is an unclean spirit (πνεύματι ἀκαθάρτῳ, 1:23): πνεῦμα is a word, not the Holy Spirit
+    here.'
+- cite: Mark 4:27
+  ids:
+  - sblgnt:MRK.4.27
+  reason: 'The farmer does not know how the seed grows: human ignorance in a parable of growth; not knowledge
+    God withholds as such.'
+- cite: Mark 5:30
+  ids:
+  - sblgnt:MRK.5.30
+  reason: 'Jesus perceives power going out from himself: knowledge of his own act, not of hidden things
+    in others or the future. Borderline; rejected.'
+- cite: Mark 6:20
+  ids:
+  - sblgnt:MRK.6.20
+  reason: 'εἰδώς (lemma ὁράω) with Herod as subject: a human knower.'
+- cite: Mark 6:54
+  ids:
+  - sblgnt:MRK.6.54
+  reason: 'People recognized Jesus: human recognition.'
+- cite: Mark 8:17
+  ids:
+  - sblgnt:MRK.8.17
+  reason: 'γνούς: as Matt 16:8, the disciples'' discussion was among them in his presence; the text does
+    not mark it as supernatural.'
+- cite: Luke 2:43
+  ids:
+  - sblgnt:LUK.2.43
+  reason: 'Jesus'' parents did not know he had stayed: human ignorance in narrative.'
+- cite: Luke 2:49
+  ids:
+  - sblgnt:LUK.2.49
+  reason: 'The referent πατήρ is Joseph (2:48 ὁ πατήρ σου): the knowers are Jesus'' parents.'
+- cite: Luke 6:44
+  ids:
+  - sblgnt:LUK.6.44
+  reason: 'Passive γινώσκεται: a tree is known by its fruit. A human-knowledge proverb.'
+- cite: Luke 7:39
+  ids:
+  - sblgnt:LUK.7.39
+  reason: The Pharisee's contrary-to-fact inference ('if he were a prophet he would know'). The subject
+    of ἐγίνωσκεν resolves to κύριον, but the sentence is the Pharisee's denial, and the counterfactual
+    is not an event God knows would have happened.
+- cite: Luke 8:46
+  ids:
+  - sblgnt:LUK.8.46
+  reason: 'Jesus knew power had gone out from him: knowledge of his own act. Borderline; rejected as for
+    Mark 5:30.'
+- cite: Luke 9:33
+  ids:
+  - sblgnt:LUK.9.33
+  reason: 'εἰδώς with Peter as subject: Peter not knowing what he said. Human.'
+- cite: Luke 10:11
+  ids:
+  - sblgnt:LUK.10.11
+  reason: γινώσκετε is an imperative to townspeople ('know this'). Human.
+- cite: Luke 11:49
+  ids:
+  - sblgnt:LUK.11.49
+  reason: 'The genitive θεοῦ hangs on σοφία (wisdom), which here ''says'' and sends prophets: personified
+    wisdom, not a statement about God''s knowledge.'
+- cite: Luke 12:48
+  ids:
+  - sblgnt:LUK.12.48
+  reason: 'The servant who did not know his master''s will: human ignorance and culpability, not knowledge
+    God withholds.'
+- cite: Luke 12:56
+  ids:
+  - sblgnt:LUK.12.56
+  reason: 'Hypocrites cannot interpret the present time: a failure of discernment the speaker blames,
+    not knowledge withheld.'
+- cite: Luke 13:21
+  ids:
+  - sblgnt:LUK.13.21
+  reason: 'κρύπτω: a woman hides leaven (parable).'
+- cite: Luke 24:18
+  ids:
+  - sblgnt:LUK.24.18
+  reason: Cleopas asks the stranger whether he alone does not know; the referent Ἰησοῦς is the one addressed,
+    and the question is human irony, not a statement of his knowledge.
+- cite: Luke 24:35
+  ids:
+  - sblgnt:LUK.24.35
+  reason: 'Jesus was made known to the disciples in the breaking of bread: human recognition of Jesus.'
+- cite: John 3:11
+  ids:
+  - sblgnt:JHN.3.11
+  reason: '''We speak what we know'': the object is the relative ὅ; the verse does not state what is known,
+    so it cannot be placed in the taxonomy.'
+- cite: John 4:1
+  ids:
+  - sblgnt:JHN.4.1
+  reason: 'Jesus learned that the Pharisees had heard: ordinary report.'
+- cite: John 4:22
+  ids:
+  - sblgnt:JHN.4.22
+  reason: '''We worship what we know'': Jesus speaks as one of the Jews; the knowers are the worshippers.'
+- cite: John 4:53
+  ids:
+  - sblgnt:JHN.4.53
+  reason: 'The referent πατήρ is the official, the boy''s father: human.'
+- cite: John 5:46
+  ids:
+  - sblgnt:JHN.5.46
+  reason: A contrary-to-fact inference about the hearers' belief (if you believed Moses you would believe
+    me); an argument, not knowledge of an alternative course of events.
+- cite: John 7:4
+  ids:
+  - sblgnt:JHN.7.4
+  reason: 'ἐν κρυπτῷ: acting in secret, said by Jesus'' brothers. Not about knowledge.'
+- cite: John 7:10
+  ids:
+  - sblgnt:JHN.7.10
+  reason: Jesus goes up to the feast in secret. Not about knowledge.
+- cite: John 7:15
+  ids:
+  - sblgnt:JHN.7.15
+  reason: '''How does this man know letters?'': the Jews'' question about Jesus'' education, human-level
+    learning.'
+- cite: John 8:37
+  ids:
+  - sblgnt:JHN.8.37
+  reason: '''I know you are Abraham''s offspring'': public knowledge of descent, not knowledge beyond
+    human means.'
+- cite: John 8:42
+  ids:
+  - sblgnt:JHN.8.42
+  reason: A contrary-to-fact argument about the hearers' sonship ('if God were your father, you would
+    love me'); not about God's knowledge.
+- cite: John 8:59
+  ids:
+  - sblgnt:JHN.8.59
+  reason: 'Jesus hid himself (ἐκρύβη) from those with stones: physical hiding.'
+- cite: John 9:41
+  ids:
+  - sblgnt:JHN.9.41
+  reason: A contrary-to-fact rebuke (if you were blind, you would have no sin); not about God's knowledge.
+- cite: John 11:21
+  ids:
+  - sblgnt:JHN.11.21
+  reason: 'Martha''s counterfactual (if you had been here...): a human claim, not something the text presents
+    as known by God.'
+- cite: John 11:32
+  ids:
+  - sblgnt:JHN.11.32
+  reason: Mary's counterfactual, as 11:21.
+- cite: John 12:35
+  ids:
+  - sblgnt:JHN.12.35
+  reason: 'The one walking in darkness does not know where he goes: a metaphor for unbelief.'
+- cite: John 12:36
+  ids:
+  - sblgnt:JHN.12.36
+  reason: 'Jesus hid himself from them: physical hiding.'
+- cite: John 14:9
+  ids:
+  - sblgnt:JHN.14.9
+  reason: 'Jesus asks Philip whether he has not known him: human failure to know; not knowledge God withholds.'
+- cite: John 14:28
+  ids:
+  - sblgnt:JHN.14.28
+  reason: A contrary-to-fact about the disciples' love and joy; not about God's knowledge.
+- cite: John 15:19
+  ids:
+  - sblgnt:JHN.15.19
+  reason: A general contrary-to-fact (the world would love its own); not about God's knowledge.
+- cite: John 18:20
+  ids:
+  - sblgnt:JHN.18.20
+  reason: 'ἐν κρυπτῷ ἐλάλησα οὐδέν: Jesus spoke nothing in secret. About public teaching, not knowledge.'
+- cite: John 18:30
+  ids:
+  - sblgnt:JHN.18.30
+  reason: The accusers' counterfactual; human.
+- cite: John 19:10
+  ids:
+  - sblgnt:JHN.19.10
+  reason: 'Pilate asks ''do you not know I have authority?'': the referent Ἰησοῦς is the one addressed;
+    the question is Pilate''s.'
+- cite: John 19:38
+  ids:
+  - sblgnt:JHN.19.38
+  reason: 'Joseph a secret disciple (κεκρυμμένος): human secrecy.'
+- cite: John 20:2
+  ids:
+  - sblgnt:JHN.20.2
+  reason: 'Mary does not know where they laid him: human ignorance in narrative.'
+- cite: John 21:24
+  ids:
+  - sblgnt:JHN.21.24
+  reason: '''We know his testimony is true'': the community''s knowledge.'
+- cite: Acts 2:30
+  ids:
+  - sblgnt:ACT.2.30
+  reason: 'εἰδώς with David (the patriarch) as subject: David knew God''s oath. The knower is human.'
+- cite: Acts 5:7
+  ids:
+  - sblgnt:ACT.5.7
+  reason: 'Sapphira did not know what had happened: human ignorance in narrative.'
+- cite: Acts 7:40
+  ids:
+  - sblgnt:ACT.7.40
+  reason: 'The referent πατέρες is ''our fathers'' in the wilderness: human knowers.'
+- cite: Acts 9:24
+  ids:
+  - sblgnt:ACT.9.24
+  reason: 'The plot became known to Saul: human.'
+- cite: Acts 18:14
+  ids:
+  - sblgnt:ACT.18.14
+  reason: Gallio's counterfactual; human.
+- cite: Acts 19:15
+  ids:
+  - sblgnt:ACT.19.15
+  reason: 'The knower is the evil spirit (τὸ πνεῦμα τὸ πονηρόν): πνεῦμα is a word, not the Holy Spirit.'
+- cite: Acts 27:39
+  ids:
+  - sblgnt:ACT.27.39
+  reason: 'The sailors did not recognize the land: human.'
+- cite: Rom 2:29
+  ids:
+  - sblgnt:ROM.2.29
+  reason: ἐν τῷ κρυπτῷ describes the inward Jew (circumcision of the heart); the verse is about true identity,
+    not about God's knowing.
+- cite: Rom 7:1
+  ids:
+  - sblgnt:ROM.7.1
+  reason: 'Paul speaks to those who know the law: human.'
+- cite: 1 Cor 1:24
+  ids:
+  - sblgnt:1CO.1.24
+  reason: 'Christ ''the wisdom of God'': a title of Christ; σοφία, not knowledge.'
+- cite: 1 Cor 4:1
+  ids:
+  - sblgnt:1CO.4.1
+  reason: 'Apostles as stewards of God''s mysteries: about their office; the verse says nothing about
+    hiddenness.'
+- cite: 1 Cor 11:31
+  ids:
+  - sblgnt:1CO.11.31
+  reason: A contrary-to-fact about self-judgment; not about God's knowledge.
+- cite: 1 Cor 13:2
+  ids:
+  - sblgnt:1CO.13.2
+  reason: A hypothetical human knower of 'all mysteries'; human knowledge.
+- cite: 1 Cor 14:2
+  ids:
+  - sblgnt:1CO.14.2
+  reason: 'The tongue-speaker utters mysteries no one understands: human-to-human unintelligibility.'
+- cite: 1 Cor 14:7
+  ids:
+  - sblgnt:1CO.14.7
+  reason: 'How will the tune be known: about instruments; human.'
+- cite: 1 Cor 14:9
+  ids:
+  - sblgnt:1CO.14.9
+  reason: 'How will what is said be known: human intelligibility.'
+- cite: 1 Cor 15:51
+  ids:
+  - sblgnt:1CO.15.51
+  reason: μυστήριον introduces a disclosed teaching; the verse says nothing of its being hidden.
+- cite: 2 Cor 2:14
+  ids:
+  - sblgnt:2CO.2.14
+  reason: 'The genitive αὐτοῦ (Christ) on γνώσεως is objective: the knowledge of Christ spread by the
+    apostles. Human knowledge.'
+- cite: 2 Cor 3:2
+  ids:
+  - sblgnt:2CO.3.2
+  reason: 'The Corinthians are a letter known and read by all people: human.'
+- cite: 2 Cor 4:2
+  ids:
+  - sblgnt:2CO.4.2
+  reason: 'τὰ κρυπτὰ τῆς αἰσχύνης: the hidden things of shame renounced by Paul; not about knowledge.'
+- cite: 2 Cor 5:21
+  ids:
+  - sblgnt:2CO.5.21
+  reason: '''Him who knew no sin'': knowing sin by experience; not about the extent of knowledge.'
+- cite: 2 Cor 6:9
+  ids:
+  - sblgnt:2CO.6.9
+  reason: 'Apostles as unknown yet well known: human reputation.'
+- cite: 2 Cor 10:5
+  ids:
+  - sblgnt:2CO.10.5
+  reason: 'κατὰ τῆς γνώσεως τοῦ θεοῦ: the knowledge of God that arguments oppose; objective genitive,
+    human knowledge of God.'
+- cite: Gal 1:10
+  ids:
+  - sblgnt:GAL.1.10
+  reason: Paul's counterfactual about pleasing people; not about God's knowledge.
+- cite: Gal 3:21
+  ids:
+  - sblgnt:GAL.3.21
+  reason: A contrary-to-fact argument about the law; not about God's knowledge.
+- cite: Eph 3:4
+  ids:
+  - sblgnt:EPH.3.4
+  reason: 'Paul''s insight into the mystery of Christ: about his understanding, not about hiddenness.'
+- cite: Eph 5:12
+  ids:
+  - sblgnt:EPH.5.12
+  reason: 'Things done in secret by the disobedient: human secrecy.'
+- cite: Eph 5:32
+  ids:
+  - sblgnt:EPH.5.32
+  reason: 'The mystery of Christ and the church (marriage analogy): the verse says nothing about hiddenness
+    or knowledge.'
+- cite: Eph 6:9
+  ids:
+  - sblgnt:EPH.6.9
+  reason: 'The referent κύριοι is human masters (''knowing that their Master is in heaven''): the knowers
+    are human.'
+- cite: Eph 6:19
+  ids:
+  - sblgnt:EPH.6.19
+  reason: 'Paul asks for boldness to make known the mystery of the gospel: proclamation; hiddenness not
+    in view.'
+- cite: Phil 4:5
+  ids:
+  - sblgnt:PHP.4.5
+  reason: 'Let your gentleness be known to all: human.'
+- cite: Col 2:2
+  ids:
+  - sblgnt:COL.2.2
+  reason: 'Believers'' knowledge of God''s mystery, Christ: about their understanding, not about what
+    is hidden.'
+- cite: Col 3:3
+  ids:
+  - sblgnt:COL.3.3
+  reason: 'Your life is hidden with Christ in God: the believer''s life, not knowledge.'
+- cite: Col 4:1
+  ids:
+  - sblgnt:COL.4.1
+  reason: 'The referent κύριοι is human masters: human knowers.'
+- cite: Col 4:3
+  ids:
+  - sblgnt:COL.4.3
+  reason: 'Prayer for an open door to speak the mystery: proclamation.'
+- cite: 2 Thess 1:8
+  ids:
+  - sblgnt:2TH.1.8
+  reason: 'Those who do not know God: human ignorance under judgment.'
+- cite: 2 Thess 2:7
+  ids:
+  - sblgnt:2TH.2.7
+  reason: 'The mystery of lawlessness: an evil at work, not knowledge God holds or hides.'
+- cite: 1 Tim 1:9
+  ids:
+  - sblgnt:1TI.1.9
+  reason: εἰδώς with a human subject (the one who uses the law).
+- cite: 1 Tim 3:9
+  ids:
+  - sblgnt:1TI.3.9
+  reason: 'The mystery of the faith held by deacons: not about hiddenness.'
+- cite: 1 Tim 3:16
+  ids:
+  - sblgnt:1TI.3.16
+  reason: 'The mystery of godliness, now manifested: the verse is a confession, hiddenness not stated.'
+- cite: 1 Tim 4:3
+  ids:
+  - sblgnt:1TI.4.3
+  reason: 'Those who know the truth: human.'
+- cite: 1 Tim 5:25
+  ids:
+  - sblgnt:1TI.5.25
+  reason: 'Good works cannot be hidden: human reputation.'
+- cite: 2 Tim 1:12
+  ids:
+  - sblgnt:2TI.1.12
+  reason: 'Paul knows whom he has believed: human.'
+- cite: 2 Tim 2:23
+  ids:
+  - sblgnt:2TI.2.23
+  reason: 'εἰδώς with Timothy (τέκνον) as subject: human.'
+- cite: 2 Tim 3:14
+  ids:
+  - sblgnt:2TI.3.14
+  reason: 'εἰδώς with Timothy as subject: human.'
+- cite: Titus 3:11
+  ids:
+  - sblgnt:TIT.3.11
+  reason: 'εἰδώς with Titus as subject: human.'
+- cite: Phlm 1:21
+  ids:
+  - sblgnt:PHM.1.21
+  reason: 'εἰδώς with Paul as subject: human.'
+- cite: Heb 4:8
+  ids:
+  - sblgnt:HEB.4.8
+  reason: A contrary-to-fact argument about Joshua's rest; not about God's knowledge.
+- cite: Heb 8:4
+  ids:
+  - sblgnt:HEB.8.4
+  reason: A contrary-to-fact about Christ's priesthood on earth; an argument, not knowledge of an alternative
+    event.
+- cite: Heb 8:7
+  ids:
+  - sblgnt:HEB.8.7
+  reason: A contrary-to-fact about the first covenant; an argument.
+- cite: Heb 11:15
+  ids:
+  - sblgnt:HEB.11.15
+  reason: A contrary-to-fact about the patriarchs returning; an argument about their desire.
+- cite: Heb 11:23
+  ids:
+  - sblgnt:HEB.11.23
+  reason: 'Moses hidden by his parents: physical hiding.'
+- cite: Jas 4:17
+  ids:
+  - sblgnt:JAS.4.17
+  reason: 'The one who knows the good and does not do it: human.'
+- cite: 1 Pet 3:4
+  ids:
+  - sblgnt:1PE.3.4
+  reason: 'The hidden person of the heart: inner character, precious before God; not about God''s knowing.'
+- cite: 2 Pet 1:12
+  ids:
+  - sblgnt:2PE.1.12
+  reason: 'εἰδότας with the readers as subject: human.'
+- cite: 2 Pet 1:14
+  ids:
+  - sblgnt:2PE.1.14
+  reason: 'εἰδώς with Peter as subject: Peter knows his death is near, as the Lord showed him. The knower
+    is human.'
+- cite: 1 John 2:13
+  ids:
+  - sblgnt:1JN.2.13
+  reason: 'The referent πατέρες is the fathers addressed by the author: human knowers.'
+- cite: 1 John 2:14
+  ids:
+  - sblgnt:1JN.2.14
+  reason: 'As 2:13: human fathers (and children) who know the Father.'
+- cite: 1 John 2:19
+  ids:
+  - sblgnt:1JN.2.19
+  reason: The author's contrary-to-fact about those who left; human inference.
+- cite: 1 John 4:6
+  ids:
+  - sblgnt:1JN.4.6
+  reason: 'The one who knows God listens to us: human.'
+- cite: 2 John 1:1
+  ids:
+  - sblgnt:2JN.1.1
+  reason: 'All who know the truth: human.'
+- cite: Jude 1:5
+  ids:
+  - sblgnt:JUD.1.5
+  reason: 'εἰδότας with the readers as subject: human.'
+- cite: Rev 1:20
+  ids:
+  - sblgnt:REV.1.20
+  reason: 'The mystery of the seven stars, explained at once: a symbol interpreted, not hidden knowledge
+    as such.'
+- cite: Rev 2:24
+  ids:
+  - sblgnt:REV.2.24
+  reason: 'Those who have not known the ''deep things of Satan'': human knowers.'
+- cite: Rev 3:9
+  ids:
+  - sblgnt:REV.3.9
+  reason: 'The synagogue of Satan will know that I have loved you: human knowers.'
+- cite: Rev 3:17
+  ids:
+  - sblgnt:REV.3.17
+  reason: 'The Laodiceans do not know their condition: human self-ignorance.'
+- cite: Rev 6:15
+  ids:
+  - sblgnt:REV.6.15
+  reason: 'Kings hide themselves in caves: physical hiding.'
+- cite: Rev 6:16
+  ids:
+  - sblgnt:REV.6.16
+  reason: 'People ask the mountains to hide them from the face of the one on the throne: flight from judgment,
+    not knowledge.'
+- cite: Rev 7:14
+  ids:
+  - sblgnt:REV.7.14
+  reason: '''My lord, you know'' is John speaking to one of the elders (7:13); the referent Κύριε is a
+    title for the elder, not God.'
+- cite: Rev 12:12
+  ids:
+  - sblgnt:REV.12.12
+  reason: 'The devil knows his time is short: not God, not a human.'
+- cite: Rev 17:5
+  ids:
+  - sblgnt:REV.17.5
+  reason: '''Mystery'' as part of Babylon''s name: a symbol.'
+- cite: Rev 17:7
+  ids:
+  - sblgnt:REV.17.7
+  reason: 'The angel explains the mystery of the woman and the beast: a symbol interpreted.'
+blind_spots:
+- 'No semantic domains (Louw-Nida is not openly licensed and is not in this build): recall rests on translator
+  glosses (Cherith english_terms) and Clear''s Strong''s-keyed synonym proximity, so a passage about God''s
+  knowledge that uses none of the searched words is found only if it was added as a known passage (Matt
+  10:29-30, Matt 26:34, John 13:19, 1 Thess 2:4, Heb 4:12 were; others surely were not, e.g. predictions
+  of events phrased without a knowing word).'
+- 'Referents are words, not entities: the divine-referent filter keeps θεός, πατήρ, κύριος, πνεῦμα, υἱός,
+  Ἰησοῦς, Χριστός as lemmas, so it both over-includes (human fathers, masters, an unclean spirit, John''s
+  ''my lord'' to an elder) and misses titles (ὁ κρατῶν, ὁ πρῶτος, ὁ ἅγιος, ὁ Ἀμήν in Rev 2-3, found only
+  by a separate unfiltered step over Revelation). Similar titles elsewhere may be missed.'
+- Upstream lemmatizes the participle εἰδώς under ὁράω (shared Strong's G1492), so οἶδα queries miss it;
+  a separate gloss-filtered step over ὁράω recovered 22 such words. Other εἰδ- forms glossed 'see' are
+  not covered.
+- Contrary-to-fact detection misses elided protases, apodoses without ἄν, and mixed conditionals (per
+  the saved query's own notes), so some P passages may be missing.
+- 'The Septuagint is absent. The Old Testament texts this taxonomy classically leans on cannot be checked
+  here: for P, 1 Sam 23:11-13 (David at Keilah); for A and S, Ps 139, Ps 147:5, Isa 40:28; for D, Isa
+  46:9-10; for H, Deut 29:29.'
+- Rom 16:25-27 (the doxology on the mystery kept secret for long ages) is not in this edition (gbg resolve
+  reports it missing), so it could not be considered.
+- Treating Jesus' knowledge (and the risen Christ's in Rev 2-3) as God's knowledge is a theological judgement;
+  those passages are flagged in their readings.
+- Textual variants are not in this build.

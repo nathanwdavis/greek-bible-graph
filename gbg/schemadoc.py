@@ -45,6 +45,18 @@ PITFALLS = [
     "`sentence` ids are build-local and change when upstream re-brackets.",
     "**Not in this build:** Louw-Nida semantic domains (not openly licensed), textual "
     "variants, and the Septuagint. Say so rather than answering from memory.",
+    "**Meaning comes from two open, imperfect layers -- use both.** `token.english_terms` "
+    "are stems of a translator's gloss (saved query `lemmas_by_gloss`: type plain English); "
+    "`lemma_proximity` is Clear's Strong's-keyed synonym distance, LOWER = closer, each pair "
+    "listed once in one direction (saved query `similar_lemmas`). Neither is a semantic "
+    "domain: a passage can be about knowing without any knowing word. Say which layer found "
+    "what.",
+    "**Topical indexes are human judgements, in two different styles.** `naves_topic` "
+    "(Nave's, 1896) is editorial and nested -- search its `path` -- but keyed to the KJV, so "
+    "it can cite a verse for wording the SBLGNT lacks. `openbible_topic` comes from readers' "
+    "votes: broad and noisy, so weigh `openbible_topic_verse.votes`. Topic ids are not "
+    "citable; cite the verses. Saved queries `topics_matching`, `topic_verses`, "
+    "`verse_topics`.",
     "**`gcase`, not `case`** (CASE is an SQL keyword).",
     "**Order:** surface order is `token.ord`; constituent order is `tree_ord` within a "
     "sentence. `surface` never includes punctuation -- that is in `after`.",
@@ -94,14 +106,18 @@ def static_doc() -> str:
             f"`{dbmod.PGQ_GRAPH}`, with these labels:", "",
             "| edge-view label | SQL/PGQ label | from | to | defined by |", "|---|---|---|---|---|"]
     for _name, _fill, src, _key, dst, label in dbmod.pgq_edge_tables():
-        t = graphdef.BY_NAME[src] if src in graphdef.BY_NAME and label.startswith(src + "_") \
-            else None
-        if t is not None:
+        # An edge table's label is its own name; anything else is a foreign key.
+        # (Prefix matching misfiles `lemma_proximity` as a column of `lemma`.)
+        edge = graphdef.BY_NAME.get(label)
+        if edge is not None and edge.kind == "edge":
+            note = " (explicit targets only)" if any(c.name == "implicit"
+                                                     for c in edge.columns) else ""
+            out.append(f"| {edge.column('dst').label} | `{label}` | `{src}` "
+                       f"| `{dst}` | table `{label}`{note} |")
+        else:
+            t = graphdef.BY_NAME[src]
             col = next(c for c in t.refs if f"{t.name}_{c.label.lower()}" == label)
             out.append(f"| {col.label} | `{label}` | `{src}` | `{dst}` | `{src}.{col.name}` |")
-        else:
-            out.append(f"| {graphdef.BY_NAME[label].column('dst').label} | `{label}` | `token` "
-                       f"| `{dst}` | table `{label}` (explicit targets only) |")
     out.append("| DOMINATES | `dominates` | `wg` | `token` | table `dominance` |")
     out += ["", "Example (`gbg sql --pgq`):", "", "```sql",
             f"FROM GRAPH_TABLE ({dbmod.PGQ_GRAPH}",
