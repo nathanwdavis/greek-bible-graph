@@ -32,6 +32,9 @@ BOOK_RE = re.compile(rf"^{EDITION}:([1-4A-Z][A-Z0-9]{{2}})$")
 SENTENCE_RE = re.compile(rf"^{EDITION}:s:n\d{{11}}$")
 WG_RE = re.compile(rf"^{EDITION}:wg:n\d{{11}}\.\d+$")
 LEMMA_RE = re.compile(r"^lemma:\S.*$")
+#: Topical-index nodes: upstream curation, keyed by source. Not citable -- a
+#: topic is a reason to look at a verse; the verse is what gets cited.
+TOPIC_RE = re.compile(r"^topic:(naves|openbible):[a-z0-9-]+(/\d+)?$")
 #: MACULA's own token id, as it appears in xml:id and in referent lists.
 XMLID_RE = re.compile(r"^n\d{11}$")
 #: MACULA's sentinel for an implicit participant (an unexpressed subject or
@@ -40,7 +43,7 @@ IMPLICIT_XMLID = "n00000000000"
 
 KINDS = {
     "token": TOKEN_RE, "verse": VERSE_RE, "book": BOOK_RE,
-    "sentence": SENTENCE_RE, "wg": WG_RE, "lemma": LEMMA_RE,
+    "sentence": SENTENCE_RE, "wg": WG_RE, "lemma": LEMMA_RE, "topic": TOPIC_RE,
 }
 CITABLE = ("token", "verse", "book", "lemma")
 

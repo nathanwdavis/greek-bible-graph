@@ -31,6 +31,11 @@
           "path": "SBLGNT/lowfat/25-3john.xml",
           "sha256": "5139f8a46a995d75804048ce2ac8a63f7994792b011d529247092ef73b2a5e05",
           "bytes": 148669
+        },
+        {
+          "path": "sources/Clear/synonyms/Proximity.tsv",
+          "sha256": "0191780e5fe196371741443ee15edb1f6e6ae00522625a83a98d5e1f57e197ee",
+          "bytes": 398620
         }
       ],
       "components": {
@@ -94,6 +99,15 @@
           "license": "CC-BY-4.0",
           "attribution": "Cherith Glosses for the Greek New Testament, by Andi Wu, Copyright (C) 2023 by Cherith Analytics"
         },
+        "clear-synonyms": {
+          "fields": [
+            "StrongNumberX1",
+            "StrongNumberX2",
+            "Distance"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "MACULA Greek Linguistic Datasets (Clear synonyms: Strong's-to-Strong's semantic proximity, sources/Clear/synonyms), available at https://github.com/Clear-Bible/macula-greek/"
+        },
         "marble": {
           "fields": [
             "domain",
@@ -118,7 +132,82 @@
           "SBLGNT/tsv/macula-greek-SBLGNT.tsv": "7f71504fdee8659bdd9f85342e4103d645864c2851b8205915bb298f0c004cc5",
           "SBLGNT/lowfat/18-philemon.xml": "3782b340f3946192829fe07c229c2201390790bef2536d0223180f28bfaa756d",
           "SBLGNT/lowfat/24-2john.xml": "de822aa64dc6374ba1a0920fe85e44639b26d6a74e671c49b167334c17291a47",
-          "SBLGNT/lowfat/25-3john.xml": "bf5737c05c54083f315d777e7b8f0056c893fff8632a82d6186258872b07f579"
+          "SBLGNT/lowfat/25-3john.xml": "bf5737c05c54083f315d777e7b8f0056c893fff8632a82d6186258872b07f579",
+          "sources/Clear/synonyms/Proximity.tsv": "dd4faa737a91d98b77620f636520d763df60e51c44ed2a1207cc2e98643f586c"
+        }
+      }
+    },
+    "naves": {
+      "repo": "https://github.com/BradyStephenson/bible-data",
+      "raw_url": "https://raw.githubusercontent.com/BradyStephenson/bible-data/{commit}/{path}",
+      "commit": "8799b409c82a5d4acebba3be5107d6eff7c85d78",
+      "license": "CC-BY-4.0",
+      "attribution": "Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0)",
+      "local_dir": "naves",
+      "files": [
+        {
+          "path": "NavesTopicalDictionary.csv",
+          "sha256": "e6ce333a409a7f9537d76885f5695d1c2cbd1002f40ce2ab6b7be249aa0e4c0f",
+          "bytes": 189445
+        }
+      ],
+      "components": {
+        "naves": {
+          "fields": [
+            "section",
+            "subject",
+            "entry"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "Nave's Topical Bible (Orville J. Nave, 1896), as structured data in BibleData by Brady Stephenson, https://github.com/BradyStephenson/bible-data (CC BY 4.0)"
+        }
+      },
+      "derived": {
+        "tool": "tools/make_fixture.py",
+        "books": [
+          "2JN",
+          "3JN",
+          "PHM"
+        ],
+        "inputs": {
+          "NavesTopicalDictionary.csv": "84f54e0c90293ed0674589cb417fa11a7dab572716735e5d626cc58645f1d49b"
+        }
+      }
+    },
+    "openbible-topics": {
+      "repo": "https://www.openbible.info/topics",
+      "raw_url": "https://a.openbible.info/data/{path}",
+      "commit": "2026-09-21",
+      "license": "CC-BY-4.0",
+      "attribution": "Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY)",
+      "local_dir": "openbible",
+      "files": [
+        {
+          "path": "topic-scores.zip",
+          "sha256": "9c7eaea5f7a6ee1d1b85dc5a3a9063e6edb41a8593c57999c4310b2f951a8641",
+          "bytes": 62250
+        }
+      ],
+      "components": {
+        "openbible": {
+          "fields": [
+            "Topic",
+            "OSIS",
+            "Quality Score"
+          ],
+          "license": "CC-BY-4.0",
+          "attribution": "Topical Bible data from OpenBible.info, https://www.openbible.info/topics (CC BY)"
+        }
+      },
+      "derived": {
+        "tool": "tools/make_fixture.py",
+        "books": [
+          "2JN",
+          "3JN",
+          "PHM"
+        ],
+        "inputs": {
+          "topic-scores.zip": "db301bfc4f9e2e27ec9bb098e86acfe11cf0dbefe3009df3e1c1532ac8281a9a"
         }
       }
     }

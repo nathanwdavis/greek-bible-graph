@@ -38,12 +38,19 @@ from pathlib import Path
 
 import duckdb
 
-from . import books, cli, graphdef, greek, ids, licenses, manifest, parse_lowfat, parse_tsv, rows
+from . import (books, cli, english, graphdef, greek, ids, licenses, manifest, parse_lowfat,
+               parse_topics, parse_tsv, rows)
 from .sources import Lock, load_lock, verify_files
 
 SOURCE = "macula-greek"
+NAVES, NAVES_PATH = "naves", "NavesTopicalDictionary.csv"
+OPENBIBLE, OPENBIBLE_PATH = "openbible-topics", "topic-scores.zip"
+#: Every source a build reads, in the order their attributions are listed.
+SOURCES = (SOURCE, NAVES, OPENBIBLE)
 TSV_PATH = "SBLGNT/tsv/macula-greek-SBLGNT.tsv"
 LOWFAT_PREFIX = "SBLGNT/lowfat/"
+PROXIMITY_PATH = "sources/Clear/synonyms/Proximity.tsv"
+PROXIMITY_HEADER = ["StrongNumberX1", "StrongNumberX2", "Distance"]
 #: The only things a build directory may contain; anything else means --out
 #: points somewhere it should not, and the build refuses to replace it.
 BUILD_ENTRIES = {"gbg.duckdb", "gbg.duckdb.wal", "parquet", "manifest.json", "staging"}
@@ -58,12 +65,18 @@ class BuildError(Exception):
 # --- license gate --------------------------------------------------------------
 
 def license_problems(lock: Lock) -> list[cli.Violation]:
-    src = lock.source(SOURCE)
     out = []
-    if not licenses.is_open(src.license):
-        out.append(cli.Violation("sources.lock.json", "license-not-open",
-                                 f"{SOURCE} is {src.license}"))
-    comps = {c.name: c for c in src.components}
+    comps = {}
+    for name in SOURCES:
+        src = lock.source(name)
+        if not licenses.is_open(src.license):
+            out.append(cli.Violation("sources.lock.json", "license-not-open",
+                                     f"{name} is {src.license}"))
+        for c in src.components:
+            if c.name in comps:
+                out.append(cli.Violation("sources.lock.json", "license-unmapped",
+                                         f"component {c.name!r} is declared by two sources"))
+            comps[c.name] = c
     for t in graphdef.TABLES:
         for c in t.columns:
             if c.component == graphdef.GBG:
@@ -177,7 +190,9 @@ TEXT_AGG = ("rtrim(string_agg(surface || CASE WHEN after = ' ' THEN ' ' ELSE aft
             "'' ORDER BY ord))")
 
 
-def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> None:
+def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult,
+         proximity: Path) -> Counter:
+    """Load every table; returns the anomalies only the loaded data can count."""
     V, I, B = "VARCHAR", "INTEGER", "BOOLEAN"
     stage(con, staging, "_tok", rw.tokens, {
         "id": V, "xml_id": V, "ref": V, "book": V, "chapter": I, "verse": I, "word": I,
@@ -199,6 +214,14 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
     stage(con, staging, "_refers_to", rw.refers_to, edge_cols)
     stage(con, staging, "_has_subject", rw.has_subject, edge_cols)
     stage(con, staging, "_frame_arg", rw.frame_arg, {**edge_cols, "arg_role": V})
+    # Gloss terms once per distinct gloss (about 9k in the NT), joined back to
+    # tokens -- gbg.english is the one definition, so it runs in Python.
+    glosses = sorted({t["english"] for t in rw.tokens if t["english"] is not None})
+    eng_rows = []
+    for g in glosses:
+        terms, negated = english.gloss_terms(g)
+        eng_rows.append({"english": g, "terms": "|".join(terms), "negated": negated})
+    stage(con, staging, "_eng", eng_rows, {"english": V, "terms": V, "negated": B})
     present = sorted({t["book"] for t in rw.tokens}, key=lambda c: books.BY_CODE[c].num)
     stage(con, staging, "_book", [{"code": c, "num": books.BY_CODE[c].num,
                                    "name": books.BY_CODE[c].name, "sbl": books.BY_CODE[c].sbl}
@@ -220,7 +243,12 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
         "depth": "tr.depth", "child_ord": "tr.child_ord", "tree_ord": "tr.tree_ord",
         "surface_key": "gbg_key(t.surface)", "lemma_key": "gbg_key(t.lemma)",
         "rule": "tr.rule", "junction": "tr.junction", "discontinuous": "tr.discontinuous",
-    }, "FROM _tok t JOIN _tree tr ON tr.xml_id = t.xml_id")
+        "english_terms": "CASE WHEN t.english IS NULL THEN NULL "
+                         "WHEN coalesce(e.terms, '') = '' THEN []::VARCHAR[] "
+                         "ELSE string_split(e.terms, '|') END",
+        "english_negated": "CASE WHEN t.english IS NULL THEN NULL ELSE e.negated END",
+    }, """FROM _tok t JOIN _tree tr ON tr.xml_id = t.xml_id
+         LEFT JOIN _eng e ON e.english = t.english""")
 
     insert(con, "lemma", {
         "id": "lemma_id", "lemma": "lemma", "key": "gbg_key(lemma)", "n_tokens": "count(*)",
@@ -272,6 +300,107 @@ def load(con, staging: Path, rw: rows.Rows, lf: parse_lowfat.LowfatResult) -> No
         cols = [c.name for c in graphdef.BY_NAME[name].columns]
         insert(con, name, {c: c for c in cols}, f'FROM "_{name}"')
 
+    return load_proximity(con, proximity)
+
+
+def load_topics(con, staging: Path, name: str, parsed: parse_topics.Topics) -> Counter:
+    """One topical source -> <name>_topic + <name>_topic_verse, spans resolved in SQL.
+
+    A span is placed only if its book is in this edition and both ends resolve
+    to verses; everything else is counted -- an Old Testament reference in a NT
+    build, a verse this edition lacks (Rom 16:25-27 is not in the SBLGNT).
+    """
+    V, I = "VARCHAR", "INTEGER"
+    stage(con, staging, f"_{name}_topics", parsed.topics,
+          {"id": V, "title": V, "parent": V, "depth": I, "line": I, "path": V})
+    stage(con, staging, f"_{name}_spans", parsed.spans,
+          {"topic": V, "ord": I, "ref": V, "book": V, "c1": I, "v1": I, "c2": I, "v2": I,
+           "votes": I})
+    con.execute(f"""CREATE TEMP TABLE "_{name}_placed" AS
+        SELECT s.*, b.id AS book_id,
+          CASE WHEN s.c1 IS NULL THEN (SELECT min(ord) FROM verse WHERE book_id = b.id)
+               WHEN s.v1 IS NULL THEN (SELECT min(ord) FROM verse
+                                       WHERE book_id = b.id AND chapter = s.c1)
+               ELSE (SELECT ord FROM verse WHERE book_id = b.id AND chapter = s.c1
+                     AND verse = s.v1) END AS o1,
+          CASE WHEN s.c2 IS NULL THEN (SELECT max(ord) FROM verse WHERE book_id = b.id)
+               WHEN s.v2 IS NULL THEN (SELECT max(ord) FROM verse
+                                       WHERE book_id = b.id AND chapter = s.c2)
+               ELSE (SELECT ord FROM verse WHERE book_id = b.id AND chapter = s.c2
+                     AND verse = s.v2) END AS o2
+        FROM "_{name}_spans" s LEFT JOIN book b ON b.code = s.book""")
+    table = "naves" if name == "naves" else "openbible"
+    source = NAVES if name == "naves" else OPENBIBLE
+    exprs = {"src": "p.topic", "dst": "v.id", "ord": "p.ord", "ref": "p.ref", "tier": "'data'",
+             "confidence": "NULL", "source": f"'{source}'"}
+    if table == "openbible":
+        exprs["votes"] = "p.votes"
+    insert(con, f"{table}_topic_verse", exprs, f"""FROM "_{name}_placed" p
+        JOIN verse v ON v.book_id = p.book_id AND v.ord BETWEEN p.o1 AND p.o2""")
+    counted = f"""(SELECT src, count(DISTINCT dst) AS n FROM "{table}_topic_verse"
+                   GROUP BY src) c ON c.src = t.id"""
+    if table == "naves":
+        insert(con, "naves_topic", {
+            "id": "t.id", "title": "t.title", "parent_id": "t.parent", "depth": "t.depth",
+            "path": "t.path", "n_verses": "coalesce(c.n, 0)",
+        }, f'FROM "_{name}_topics" t LEFT JOIN {counted}')
+    else:
+        insert(con, "openbible_topic", {"id": "t.id", "title": "t.title",
+                                        "n_verses": "coalesce(c.n, 0)"},
+               f'FROM "_{name}_topics" t LEFT JOIN {counted}')
+    other, unplaced = con.execute(f"""SELECT count(*) FILTER (WHERE book_id IS NULL),
+        count(*) FILTER (WHERE book_id IS NOT NULL
+                         AND (o1 IS NULL OR o2 IS NULL OR o1 > o2))
+        FROM "_{name}_placed" """).fetchone()
+    out = Counter(parsed.anomalies)
+    out.update({f"{table}.spans_book_not_in_edition": other,
+                f"{table}.spans_verse_not_in_edition": unplaced})
+    return out
+
+
+def load_proximity(con, path: Path) -> Counter:
+    """Clear's Strong's-keyed proximity -> lemma_proximity, via lemma.strongs.
+
+    Upstream pairs are Strong's numbers across Greek, Hebrew and Aramaic, and
+    a number can belong to several lemmas (G1492: οἶδα and ὁράω). Only
+    Greek-Greek rows whose numbers some lemma carries can become edges; every
+    other row is counted, never silently dropped, and never "repaired" (a
+    suffixed G4894a is not guessed to be 4894).
+    """
+    with open(path, encoding="utf-8") as fh:
+        header = fh.readline().rstrip("\n").split("\t")
+    if header != PROXIMITY_HEADER:
+        raise BuildError([f"{path}: header {header}, expected {PROXIMITY_HEADER}"])
+    con.execute(f"""CREATE TEMP TABLE _prox AS SELECT StrongNumberX1 AS a,
+        StrongNumberX2 AS b, Distance AS d FROM read_csv('{path}', delim='\t', header=true,
+        quote='', columns={{'StrongNumberX1': 'VARCHAR', 'StrongNumberX2': 'VARCHAR',
+        'Distance': 'DOUBLE'}}, auto_detect=false, parallel=false)""")
+    con.execute("CREATE TEMP TABLE _lemma_strong AS "
+                "SELECT id AS lemma_id, 'G' || unnest(strongs) AS strong FROM lemma")
+    insert(con, "lemma_proximity", {
+        "src": "s.lemma_id", "dst": "d.lemma_id", "src_strong": "p.a", "dst_strong": "p.b",
+        "distance": "p.d", "tier": "'data'", "confidence": "NULL",
+        "source": f"'{SOURCE}'",
+    }, """FROM _prox p JOIN _lemma_strong s ON s.strong = p.a
+         JOIN _lemma_strong d ON d.strong = p.b""")
+    counts = con.execute("""SELECT
+        count(*) FILTER (WHERE a NOT LIKE 'G%' OR b NOT LIKE 'G%'),
+        count(*) FILTER (WHERE a LIKE 'G%' AND b LIKE 'G%'
+            AND (a NOT IN (SELECT strong FROM _lemma_strong)
+                 OR b NOT IN (SELECT strong FROM _lemma_strong))),
+        count(*) FILTER (WHERE a IN (SELECT strong FROM _lemma_strong)
+            AND b IN (SELECT strong FROM _lemma_strong))
+        FROM _prox""").fetchone()
+    edges, selfs = con.execute("SELECT count(*), count(*) FILTER (WHERE src = dst) "
+                               "FROM lemma_proximity").fetchone()
+    return Counter({
+        "lemma_proximity.rows_not_greek": counts[0],
+        "lemma_proximity.rows_greek_unmapped": counts[1],
+        # one upstream row becomes several edges when a number has several lemmas
+        "lemma_proximity.edges_beyond_rows": edges - counts[2],
+        "lemma_proximity.self_pairs": selfs,
+    })
+
 
 # --- the build ------------------------------------------------------------------
 
@@ -283,7 +412,7 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
     """Build into ``out``. Returns the manifest. Raises BuildError on refusal."""
     lock = load_lock(lock_path)
     src = lock.source(SOURCE)
-    problems = verify_files(lock, SOURCE, root)
+    problems = [p for name in SOURCES for p in verify_files(lock, name, root)]
     if problems:
         raise BuildError(problems)
     lic = license_problems(lock)
@@ -300,6 +429,8 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
     if fatal:
         raise BuildError(fatal)
     rw = rows.build(lf.token_attrs)
+    naves = parse_topics.parse_naves(lock.source_dir(NAVES, root) / NAVES_PATH)
+    openbible = parse_topics.parse_openbible(lock.source_dir(OPENBIBLE, root) / OPENBIBLE_PATH)
 
     anomalies = Counter(rw.anomalies) + Counter(lf.anomalies) + mismatches
     anomalies["refers_to.first_target_cycles"] = referent_cycles(rw.refers_to)
@@ -320,15 +451,19 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
         for t in graphdef.TABLES:
             con.execute(graphdef.ddl(t))
         log("loading")
-        load(con, staging, rw, lf)
+        # update(), not +=: a Counter sum drops zero counts, and a pinned zero is a finding
+        anomalies.update(load(con, staging, rw, lf, base / PROXIMITY_PATH))
+        anomalies.update(load_topics(con, staging, "naves", naves))
+        anomalies.update(load_topics(con, staging, "openbible", openbible))
         con.execute(graphdef.edge_view_sql())
 
         log("fingerprinting")
         man = {
             "generated_by": "gbg build",
             "edition": ids.EDITION,
-            "sources": {SOURCE: {"commit": src.commit,
-                                 "files": {f.path: f.sha256 for f in src.files}}},
+            "sources": {name: {"commit": lock.source(name).commit,
+                               "files": {f.path: f.sha256 for f in lock.source(name).files}}
+                        for name in SOURCES},
             "excluded_fields": sorted(excluded),
             "ignored_fields": ignored,
             "tables": {t.name: manifest.table_fingerprint(con, t) for t in graphdef.TABLES},
@@ -336,21 +471,23 @@ def build(lock_path: Path, root: Path, out: Path, *, log=print) -> dict:
         }
         text = manifest.serialize(man)
         comps = {c.name: {"license": c.license, "fields": list(c.fields)}
-                 for c in src.components}
+                 for name in SOURCES for c in lock.source(name).components}
+        attribution = "; ".join(lock.source(name).attribution for name in SOURCES)
         con.execute("CREATE TABLE meta (key VARCHAR PRIMARY KEY, value VARCHAR NOT NULL)")
         con.executemany("INSERT INTO meta VALUES (?, ?)", [
             ("build_id", manifest.build_id(text)),
             ("edition", ids.EDITION),
             ("manifest", text),
             ("components", json.dumps(comps, sort_keys=True)),
-            ("attribution", src.attribution),
-            ("source_commits", json.dumps({SOURCE: src.commit})),
+            ("attribution", attribution),
+            ("source_commits", json.dumps({name: lock.source(name).commit
+                                           for name in SOURCES})),
         ])
 
         log("exporting parquet")
         pq = tmp / "parquet"
         pq.mkdir()
-        note = _sql_str(f"{src.attribution} ({src.license}); see NOTICE.md. "
+        note = _sql_str(f"{attribution}; see NOTICE.md. "
                         f"Excluded: {', '.join(sorted(excluded))}.")
         for t in graphdef.TABLES:
             order = ", ".join(f'"{k}"' for k in t.pk)

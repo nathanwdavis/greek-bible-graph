@@ -74,7 +74,7 @@ def pgq_edge_tables() -> list[tuple[str, str, str, str, str, str]]:
     for t in graphdef.TABLES:
         if t.kind == "edge":
             out.append((f"e_{t.name}", f'SELECT * FROM gbg.main."{t.name}" WHERE dst IS NOT NULL',
-                        "token", "src", t.column("dst").ref, t.name))
+                        t.column("src").ref, "src", t.column("dst").ref, t.name))
     return out
 
 
@@ -155,8 +155,10 @@ def _literal(v) -> str:
         return "NULL"
     if isinstance(v, bool):
         return "true" if v else "false"
-    if isinstance(v, int):
-        return str(v)
+    if isinstance(v, (int, float)):
+        return repr(v)
+    if isinstance(v, (list, tuple)):
+        return "[" + ", ".join(_literal(x) for x in v) + "]"
     # Standard SQL string: the only escape is a doubled quote (DuckDB does not
     # treat backslashes specially), so this cannot break out of the literal.
     return "'" + str(v).replace("'", "''") + "'"

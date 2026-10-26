@@ -69,6 +69,8 @@ The rule is **open licenses only**: CC BY, CC0 or public domain, anything a user
 | LXX | [OpenScriptorium/lxx-morph](https://github.com/OpenScriptorium/lxx-morph): Rahlfs 1935, 59 books, ~623k tokens | Data CC BY 4.0 | Designed (§8) |
 | Crosswalk | [STEPBible-Data](https://github.com/STEPBible/STEPBible-Data): TAGNT (NT variants, disambiguated Strong's), TBESG/TFLSJ (lexicons covering NT + LXX) | CC BY 4.0 | Designed |
 | Benchmark | OpenBible.info cross-references | CC BY | Designed |
+| Topics | Nave's Topical Bible (1896) as BibleData's CSV (BradyStephenson/bible-data, pinned by commit) | CC BY 4.0 (text public domain) | Built (§4) |
+| Topics | OpenBible.info topics, a dated snapshot vendored in `vendor/openbible/` | CC BY | Built (§4) |
 
 **Rejected**:
 - CATSS-derived LXX morphology. eliranwong/LXX-Rahlfs-1935 is CC BY-NC-SA.
@@ -82,6 +84,8 @@ The rule is **open licenses only**: CC BY, CC0 or public domain, anything a user
 | Clear (MACULA) | ids, morphology, lemma, Strong's, trees, roles, frames, referents | CC BY 4.0 | yes |
 | Berean Interlinear | `gloss` | public domain (2023-04-30) | yes |
 | Cherith Glosses | `english` | CC BY 4.0 | yes |
+| Clear synonyms | `sources/Clear/synonyms/Proximity.tsv`: Strong's-to-Strong's distance | CC BY 4.0 | yes (§4, meaning) |
+| Clear word senses | `sources/Clear/wordsense/greek-wordsenses.tsv` | CC BY 4.0 | **not loaded** (§4: ids do not align) |
 | UBS MARBLE | `domain`, `ln` (Louw–Nida) | "used with permission" | **excluded** |
 
 The lock declares every component with its real license. The exclusion list is *derived* from those licenses and never hand-maintained. It is enforced at three points:
@@ -135,7 +139,8 @@ Verse membership therefore comes from each word's own `ref`. The `<milestone>` e
 | Kind | Tables |
 |---|---|
 | Nodes | `book` (27), `verse` (7,939), `sentence` (8,010), `wg` (101,170), `token` (137,741), `lemma` (5,468) |
-| Relations | `refers_to` (18,213), `has_subject` (20,372), `frame_arg` (43,662) |
+| Relations | `refers_to` (18,213), `has_subject` (20,372), `frame_arg` (43,662), `lemma_proximity` (29,721) |
+| Topics | `naves_topic` (29,867) + `naves_topic_verse` (56,966); `openbible_topic` (6,713) + `openbible_topic_verse` (137,347) |
 | Index | `dominance` (714,350: the transitive closure of the trees) |
 | View | `edge` (every relation, typed) |
 
@@ -177,6 +182,69 @@ Each finding below is pinned as an anomaly count in `build-manifest.json`. A new
   - Only 6% of verbs with an expressed subject do (523 of 8,812).
 
   So the edge is named `has_subject`, and the pitfalls section of the schema and the skill both lead with it. `subject_lemma_tree` and `subject_lemma_subjref` are separate saved queries: they answer different questions. "Every verb whose subject is Paul" needs both, plus `refers_to` from pronoun subjects. The second end-to-end eval run found this (`evals/runs/2026-09-25-gbg-query-full.yaml`).
+
+### Meaning without Louw–Nida
+
+Thematic questions ("every passage about God's knowledge") need words grouped
+by meaning, and the one ready-made layer, MARBLE's Louw–Nida domains, is not
+open (D-2). Two open layers stand in for it, and they fail differently, which
+is why both are loaded (D-13, D-14):
+
+- **Gloss terms.** Cherith's `english` is short and dictionary-like, one
+  contextual gloss per word (γινώσκω → know / understand / find out / "had
+  sexual relations with"), so it works as a per-word sense label.
+  `gbg/english.py` turns each gloss into Snowball stems: bracketed insertions
+  and `~` dropped, stopwords dropped, irregular forms mapped first (the stemmer
+  leaves *knew* and *hidden* alone), a leading "not"/"without" recorded as
+  `english_negated` instead of becoming a term. The result is
+  `token.english_terms`, searched through `lemmas_by_gloss` with plain English.
+  A lemma's share of matching tokens exposes polysemy (ὁράω: 22 of 476 glossed
+  "know"). The limits are the translator's: derivations stay apart (*beloved* is
+  not *love*), and "predestined" was Berean's choice before it was a search term.
+- **Clear proximity.** MACULA ships a Strong's-to-Strong's distance table
+  (Greek, Hebrew and Aramaic numbers; lower = closer). Mapped to lemmas through
+  `lemma.strongs` it becomes `lemma_proximity`: γινώσκω's nearest neighbours are
+  ἐπιγινώσκω 0.26, οἶδα 0.26, ἐπίγνωσις 0.39, ἐπίσταμαι 0.40. It finds what the
+  glosses split (ἀγαπάω–ἀγαπητός). Only Greek–Greek rows whose numbers some lemma
+  carries become edges; the rest are pinned counts: 145,546 rows pair Greek with
+  Hebrew or Aramaic (kept upstream for the LXX phase), 1,550 name a Greek number
+  no lemma carries (suffixed forms like `G4894a`, never guessed to be `4894`),
+  1,993 extra edges arise where one number belongs to two lemmas (G1492: οἶδα and
+  ὁράω), and 273 pairs join two numbers of the same lemma (ἐγώ's forms carry
+  several), so they are self-pairs.
+- **Clear word senses are not loaded.** `greek-wordsenses.tsv` assigns an
+  unlabelled sense number per word (τίθημι sense 5 = appointed / destined). But it
+  is keyed by token id from an unstated, older MACULA release: 221 of its 60,574
+  ids are absent from this SBLGNT, 239 exist in neither edition, and 3,250 point at
+  words whose SBLGNT and Nestle1904 lemmas differ, with neither edition's words
+  fitting the senses. A sense attached to the wrong word is worse than none, so the
+  file waits until upstream states its alignment (D-15).
+
+Neither layer says what a passage is *about*: a verse can concern God's
+knowledge with no knowing word in it (Heb 4:13). Human topical indexes do, so
+two are loaded (D-17). They fail in opposite ways, so neither is the index:
+
+- **Nave's Topical Bible (1896)** is editorial and nested (GOD > KNOWLEDGE OF,
+  32 NT verses in this edition), but it is keyed to the KJV. It cites verses for
+  wording the SBLGNT lacks (1 Tim 1:17 "wise"), and it cannot place 73 NT
+  references at all (Rom 16:25-27, Acts 8:37 and the like). Its only structured,
+  openly licensed copy is BibleData's CSV. That repository does not say how the
+  text was digitised, and a spreadsheet cut its longest cell at 32,767
+  characters, which loses the later subtopics of "JESUS, THE CHRIST" (counted:
+  `naves.entries_truncated`). Parsing it taught three upstream spellings that are
+  now named, not guessed: `Jude`/`So` for JUD/SNG, "with" between references,
+  and ". " as a separator. The rest is counted: 5 malformed references, 4,458
+  "See ..." cross-references.
+- **OpenBible.info** is broad and current but flat and noisy. Its topics come
+  from readers' votes on search results (Heb 4:13 sits under "omniscient", and
+  also under "cameras"), so each edge keeps its vote score. It is regenerated
+  weekly with no history, so a dated snapshot is vendored and pinned by sha256.
+  `gbg fetch --update` refuses it: re-pinning means committing a new snapshot.
+
+Each source has its own tables, because licensing is enforced per column and a
+column names one component. Old Testament spans (51,673 and 26,231) and verses
+this edition lacks are counted per source, not dropped. Embeddings stay deferred
+until they can be measured against these indexes (§10).
 
 ## 5. Normalisation and references
 
@@ -259,6 +327,45 @@ A golden that is the query's own earlier output can be regenerated to match anyt
 - `--check-goldens` runs in CI.
 - `--answers` scores a set of Claude's answers offline. A fabricated `sblgnt:` id is a hard failure, because a made-up citation is worse than no answer.
 
+### Thematic questions: a checked funnel
+
+"Find every passage about X, then classify each against my taxonomy" has no
+single query, no exact golden, and ends in judgement. It is handled as a
+funnel, where each step is data and only the last is interpretation:
+
+1. **Vocabulary**: `lemmas_by_gloss` and `similar_lemmas` (§4, meaning).
+2. **Participants**: `predicate_participants` joins every "who does it" signal
+   the graph has. These are the tree subject/object, `has_subject`, frame A0/A1,
+   a noun's genitive dependents, and the subject of an elided εἰ μή clause
+   ("no one knows ... except the Father", which MACULA marks with
+   `predication = elided`). Each is followed through `refers_to` to the word it
+   ends at, with `agree` counting the signals that concur. It ends at a word,
+   not a person: resolving πνεῦμα or πατήρ to an entity is per-row review
+   (§10, named entities).
+3. **Constructions**: `contrary_to_fact` finds second-class conditionals, the
+   grammar of "possible but not actual". Its known misses are named in its
+   header.
+4. **Context**: `hits_in_context` turns hit tokens into sentences, cited by
+   verse.
+5. **Classification**: an analysis file (`gbg analysis`) records the taxonomy,
+   every retrieval step and its row count, and each candidate as a kept
+   passage (labels, evidence, basis, reading) or a rejection (reason).
+   `--check` is auto-zettel-skill's "refuse at write time" applied to
+   interpretation. Ids must exist, cites must resolve to their ids, evidence
+   must lie inside its passage, labels must obey the taxonomy's subset rules,
+   retrieval must reproduce its row counts, and no candidate may be dropped
+   silently. Whether a passage really belongs under a label is left to a
+   person, and `basis` versus `reading` keeps that line visible.
+
+The eval for this shape is `recall` (D-16). The golden is an independent human
+index: Nave's (1896) "GOD, KNOWLEDGE OF", NT references only. An answer must
+cite at least a stated share of it. Precision is not scored, because the index
+is a floor and not the whole truth. A fabricated id still fails the run. Since
+D-17 put Nave's in the graph, an answer can reach that golden by reading the
+topic, so the golden now tests whether the topical layer was used. The first
+end-to-end run, made before topics existed, measured the vocabulary funnel
+alone: 0.81 (`evals/runs/2026-09-26-god-knowledge/`).
+
 ## 7. Citing the corpus from zettel notes
 
 This is a future PR to auto-zettel-skill, not part of this repo. Today a literature note carries `locator: "p. 12"`, which the gates check only for being present. The proposal adds a structured field beside it:
@@ -336,7 +443,10 @@ corpus_refs:
 
 ## 10. Open questions
 
-- **MARBLE / Louw–Nida.** The data is the most-requested semantic layer, and it is "used with permission". Asking UBS for terms is the only honest route in.
+- **MARBLE / Louw–Nida.** The data is the most-requested semantic layer, and it is "used with permission". Asking UBS for terms is the only honest route in. Until then, gloss terms and Clear proximity stand in (§4, "Meaning without Louw–Nida").
+- **Topical indexes: provenance.** BibleData's Nave's CSV is explicitly CC BY 4.0 but does not say how it was digitised; CCEL-derived copies carry CCEL's non-commercial terms and are not used. Torrey's has no clean structured copy.
+- **Embeddings.** Admit only as `proposed_*` with a pinned open model, and only if they add recall over the gloss, proximity and topical layers, measured against a held-out topical index.
+- **Clear word senses.** Load them once upstream states which MACULA release their ids follow (§4).
 - **lxx-morph provenance.** Its README cites an "Eliran Wong public-domain digital edition" for the base text, while eliranwong/LXX-Rahlfs-1935 on GitHub is CC BY-NC-SA and CATSS-derived. The Rahlfs 1935 *text* is public domain; confirm lxx-morph's surface text owes nothing to CATSS before building on it.
 - **LXX contextual glosses.** No open source exists, so the LXX will be an interlinear with lemma glosses only.
 - **DuckPGQ maturity.** It is research-grade and lags DuckDB releases.
@@ -361,3 +471,8 @@ corpus_refs:
 | D-10 | Stage through TSV + `read_csv` | ~100× faster than binding Python lists |
 | D-11 | Upstream anomalies are pinned as counts, not fixed or ignored | A changed count becomes a reviewed diff; rewriting upstream data would be a guess |
 | D-12 | `forest-parent` dropped from the lint set | Unrepresentable with one parent column; `forest-root` and `dangling-edge` cover it |
+| D-13 | Gloss terms are stems of Cherith's gloss, computed by `gbg/english.py`; snowballstemmer pinned exactly | A per-word sense label that is open; stems are stored, so a stemmer upgrade must be a reviewed manifest change |
+| D-14 | Semantic similarity comes from upstream (Clear proximity, tier `data`), not from a similarity this build computes | An upstream judgement is data with a source; a score we compute would be `computed`, belong in a `proposed_*` table, and need its own benchmark |
+| D-15 | Clear word senses are not loaded | Their ids follow an unstated MACULA release and demonstrably misalign for thousands of words |
+| D-16 | Thematic answers are an analysis file checked by `gbg analysis`, scored by `recall` against an independent index | Classification is interpretation; what can be gated (ids, cites, taxonomy rules, funnel reproducibility, no silent drops) is, and the rest is labelled |
+| D-17 | Load two topical indexes, Nave's (pinned by commit) and OpenBible (vendored dated snapshot), each in its own tables | They fail oppositely (editorial but KJV-keyed and dated; broad but vote-driven); per-field licensing needs one component per column |

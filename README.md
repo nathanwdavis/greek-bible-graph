@@ -1,8 +1,8 @@
 # greek-bible-graph
 
 The Greek New Testament as a queryable corpus graph. The SBL Greek New
-Testament and MACULA Greek's morphology, glosses, syntax trees, semantic frames
-and coreference are built into DuckDB + Parquet. You query it with SQL, with
+Testament and MACULA Greek's morphology, glosses, syntax trees, semantic frames,
+coreference and synonym distances are built into DuckDB + Parquet. You query it with SQL, with
 SQL/PGQ graph patterns, or in plain English through a Claude Code skill that
 cites a verse or word id for every claim.
 
@@ -23,7 +23,9 @@ python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 .venv/bin/gbg lint         # integrity gate, ~1 s
 ```
 
-The rest of this README writes `gbg` for `.venv/bin/gbg`.
+The rest of this README writes `gbg` for `.venv/bin/gbg`. If `gbg fetch` fails
+with `CERTIFICATE_VERIFY_FAILED` (a python.org Python on macOS has no CA bundle),
+run it as `SSL_CERT_FILE=/etc/ssl/cert.pem gbg fetch`.
 
 ```text
 $ gbg ref "Phlm 2"
@@ -58,8 +60,9 @@ $ gbg sql --pgq "FROM GRAPH_TABLE (gbg_graph
 | `gbg ref PASSAGE [--tree \| --tsv \| --json]` | interlinear, syntax trees, or rows with ids |
 | `gbg resolve REF [--json]` | reference ↔ ids; exit 0 found, 1 not in this edition, 2 malformed |
 | `gbg sql "SELECT…" [--json] [--pgq]` | one read-only SELECT, sandboxed (no files, no writes, timeout, row cap) |
-| `gbg query [--list] NAME --param k=v` | 8 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
+| `gbg query [--list] NAME --param k=v` | 17 saved queries with typed parameters; `--pgq` for SQL/PGQ twins |
 | `gbg eval --check-goldens \| --answers F` | the natural-language eval harness |
+| `gbg analysis FILE --check \| --render` | check a thematic analysis (ids, cites, labels, funnel), or render it as Markdown |
 
 ## Asking in plain English
 
@@ -69,8 +72,24 @@ $ gbg sql --pgq "FROM GRAPH_TABLE (gbg_graph
 ln -s "$PWD/skills/gbg-query" ~/.claude/skills/gbg-query
 ```
 
-Then ask questions like "In Philemon 12, who is αὐτόν?" or "Which verbs in
-Philemon have ἐγώ as their grammatical subject?". The skill reads the schema,
+Then ask questions like "In Philemon 12, who is αὐτόν?", "Which verbs in
+Philemon have ἐγώ as their grammatical subject?" or "Which Greek words mean
+knowing or hiding?" -- concept questions go through the open glosses
+(`lemmas_by_gloss`) and Clear's synonym distances (`similar_lemmas`), since
+the semantic domains are not openly licensed. Two human topical indexes, Nave's
+Topical Bible and OpenBible.info (`topics_matching`, `topic_verses`,
+`verse_topics`), find passages about a subject in any wording.
+
+Thematic questions go further: "find every passage about God's knowledge and
+classify each against this taxonomy". The skill runs a recorded funnel:
+vocabulary (`lemmas_by_gloss`, `similar_lemmas`), then who does what
+(`predicate_participants`, which combines the syntax tree, coreference and
+semantic frames, and also catches "no one knows ... except the Father"), then
+constructions (`contrary_to_fact`), then context (`hits_in_context`). It writes
+the classification to an analysis file that `gbg analysis --check` holds to the
+build. Every id must exist, every label must be in your taxonomy, subset rules
+like F ⊆ A must hold, and every candidate must be kept or rejected with a
+reason. The rows and the reading placed on them stay separate. The skill reads the schema,
 prefers saved queries, cites a row id for every claim, and declines what the
 build does not contain: Louw–Nida domains, textual variants, and the LXX.
 `evals/runs/` records its first end-to-end run: 5/5 answered, with no fabricated ids.
@@ -91,6 +110,9 @@ them. See `.claude/CLAUDE.md`.
 
 The code is MIT. The data is licensed by its owners and checked **per field**:
 the SBLGNT text is CC BY 4.0, MACULA's annotations are CC BY 4.0, the Berean
-glosses are public domain, and the Cherith glosses are CC BY 4.0. MACULA's
+glosses are public domain, the Cherith glosses are CC BY 4.0, and Clear's synonym
+proximities (part of MACULA) are CC BY 4.0. The topical indexes are CC BY: Nave's
+Topical Bible (1896) as BibleData's CSV, and a dated OpenBible.info snapshot under
+`vendor/openbible/`. MACULA's
 Louw–Nida domains (UBS MARBLE, "used with permission") are excluded from the
 build, the fixtures and every artifact. See [`NOTICE.md`](NOTICE.md).

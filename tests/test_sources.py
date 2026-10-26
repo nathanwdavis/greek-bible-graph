@@ -99,7 +99,8 @@ def test_real_lock_is_well_formed_and_marble_is_excluded():
     assert licenses.is_open(src.license)
     assert src.excluded_fields() == {"domain", "ln"}
     assert len(src.commit) == 40 and all(len(f.sha256) == 64 for f in src.files)
-    assert len(src.files) == 28  # the TSV + 27 lowfat books, enumerated (no listing API)
+    # the TSV + 27 lowfat books + Clear's Proximity.tsv, enumerated (no listing API)
+    assert len(src.files) == 29
 
 
 def test_fixture_matches_its_lock():

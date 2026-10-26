@@ -30,6 +30,7 @@ MAX_SHOWN = 20
 ID_PATTERNS = {
     "token": ids.TOKEN_RE.pattern, "verse": ids.VERSE_RE.pattern, "book": ids.BOOK_RE.pattern,
     "sentence": ids.SENTENCE_RE.pattern, "wg": ids.WG_RE.pattern, "lemma": ids.LEMMA_RE.pattern,
+    "naves_topic": ids.TOPIC_RE.pattern, "openbible_topic": ids.TOPIC_RE.pattern,
 }
 
 
@@ -129,7 +130,8 @@ def dangling_edges(con):
 def implicit_target(con):
     out = []
     for t in graphdef.TABLES:
-        if t.kind == "edge":
+        # Only relations that can name an unexpressed participant carry `implicit`.
+        if t.kind == "edge" and any(c.name == "implicit" for c in t.columns):
             out += _v(t.name, "implicit-target", _rows(con, f"""
                 SELECT src FROM "{t.name}" WHERE implicit <> (dst IS NULL) ORDER BY src"""),
                 "edges where implicit and a NULL target disagree")
